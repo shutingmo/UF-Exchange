@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "UFX",
   "version": "1.0.0",
   "description": "Routing server-side requests using ExpressJS",
@@ -16,29 +15,5 @@
   "devDependencies": {
     "should": "^7.1.1",
     "supertest": "^1.2.0"
-=======
-  "name": "team2",
-  "version": "1.0.0",
-  "description": "This repo contains our UFX web application.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lvmanchikanti/Team2.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lvmanchikanti/Team2/issues"
-  },
-  "homepage": "https://github.com/lvmanchikanti/Team2#readme",
-  "dependencies": {
-    "express": "^4.16.4",
-    "mongoose": "^5.3.4",
-    "morgan": "^1.9.1"
->>>>>>> set up initial stack + data schemas
   }
 }
