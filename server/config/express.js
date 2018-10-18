@@ -3,7 +3,7 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config'),
+    config = require('./config');
 
 module.exports.init = function() {
   //connect to database
