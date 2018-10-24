@@ -1,0 +1,61 @@
+body {
+    background-color: #fff;
+}
+
+.button{
+  
+   font: 16px verdana, sans-serif;
+}
+
+#glackr { 
+   margin-top:7px; text-align:left; font: 30px verdana, sans-serif; display:inline-block;
+   
+  position: absolute;
+    left: 10px;
+        }
+
+.content {
+position: absolute;
+    top: 60px;
+    left: 10px;
+    font: 20px verdana, sans-serif; 
+}
+
+#login { 
+   margin-top:10px; font: 20px verdana, sans-serif; display:inline-block; margin-right:40px;
+position: absolute;
+    right: 100px;}
+#signup { 
+
+    right: 100px;}
+#seemore { 
+   font: 30px verdana, sans-serif;
+   margin-top: 10px; 
+   }
+   .lowhr {
+position: relative; 
+margin-top: 75vh;
+background: #000;
+height:4px;
+}
+ .line{
+display: block;
+height: 1px;
+    border: 0;
+    border-top: 2px solid #000;
+      margin-top: 50px; 
+}
+
+.right {
+  margin-top:10px;
+    position: absolute;
+    right: 10px;
+    font: 20px verdana, sans-serif;
+   
+}
+
+.highhr {
+  margin-top:50px;
+background: #000;
+height:4px;
+}
