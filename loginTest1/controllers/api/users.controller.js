@@ -13,6 +13,8 @@ router.delete('/:_id', deleteUser);
 module.exports = router;
 
 function authenticateUser(req, res) {
+    console.log(req.body.username)
+    console.log(req.body.password)
     userService.authenticate(req.body.username, req.body.password)
         .then(function (token) {
             if (token) {

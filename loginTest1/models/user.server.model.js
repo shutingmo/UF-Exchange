@@ -40,7 +40,6 @@ var userSchema = new Schema({
   },
   hash: {
     type: String,
-    'default': ''
   }
 });
 

@@ -20,6 +20,23 @@ service.delete = _delete;
 module.exports = service;
 
 function authenticate(username, password) {
+    // var deferred = Q.defer();
+
+    // db.users.findOne({ username: username }, function (err, user) {
+    //     if (err) deferred.reject(err.name + ': ' + err.message);
+
+    //     // console.log(user.password);
+    //     // console.log(user.hash);
+    //     if (user && bcrypt.compareSync(password, user.hash)) {
+    //         // authentication successful
+    //         deferred.resolve(jwt.sign({ sub: user._id }, config.secret));
+    //     } else {
+    //         // authentication failed
+    //         deferred.resolve();
+    //     }
+    // });
+
+    // return deferred.promise;
     var deferred = Q.defer();
 
     db.users.findOne({ username: username }, function (err, user) {
