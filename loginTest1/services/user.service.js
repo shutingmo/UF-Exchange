@@ -151,9 +151,10 @@ function update(_id, userParam) {
     function updateUser() {
         // fields to update
         var set = {
-            firstName: userParam.firstName,
-            lastName: userParam.lastName,
+            name: userParam.name,
             username: userParam.username,
+            email: userParam.email,
+            password: userParam.password
         };
 
         // update password if it was entered
