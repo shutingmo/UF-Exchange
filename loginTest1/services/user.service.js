@@ -5,7 +5,9 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 var db = mongo.db(config.connectionString, { native_parser: true });
+var User = require('../models/user.server.model.js');
 db.bind('users');
+
 
 var service = {};
 
@@ -72,13 +74,27 @@ function create(userParam) {
 
     function createUser() {
         // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
+        // var user = _.omit(userParam, 'password');
+
+        // // add hashed password to user object
+        // user.hash = bcrypt.hashSync(userParam.password, 10);
+
+        // db.users.insert(
+        //     user,
+        //     function (err, doc) {
+        //         if (err) deferred.reject(err.name + ': ' + err.message);
+
+        //         deferred.resolve();
+        //     });
+
+        
+        var newUser = new User(userParam);
 
         // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
+        newUser.hash = bcrypt.hashSync(userParam.password, 10);
 
         db.users.insert(
-            user,
+            newUser,
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 

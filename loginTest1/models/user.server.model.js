@@ -37,6 +37,10 @@ var userSchema = new Schema({
     type: String,
     required: true,
     'default': 'user'
+  },
+  hash: {
+    type: String,
+    'default': ''
   }
 });
 

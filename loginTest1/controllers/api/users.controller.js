@@ -29,6 +29,7 @@ function authenticateUser(req, res) {
 }
 
 function registerUser(req, res) {
+    console.log(req.body);
     userService.create(req.body)
         .then(function () {
             res.sendStatus(200);
