@@ -1,6 +1,6 @@
 ﻿{
     "connectionString": "mongodb://cynthia:cen3031@ds141633.mlab.com:41633/ufx",
     "apiUrl": "http://localhost:3000/api",
-    "secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
+    "secret": "hello secret route"
 }
 
