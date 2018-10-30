@@ -38,9 +38,10 @@ var userSchema = new Schema({
     required: true,
     'default': 'user'
   },
-  hash: {
-    type: String,
-  }
+  //delete this
+  // hash: {
+  //   type: String,
+  // }
 });
 
 /* Use your schema to instantiate a Mongoose model */

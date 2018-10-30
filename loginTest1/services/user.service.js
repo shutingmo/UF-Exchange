@@ -42,7 +42,7 @@ function authenticate(username, password) {
     db.users.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        if (user && bcrypt.compareSync(password, user.hash)) {
+        if (user && bcrypt.compareSync(password, user.password)) {
             // authentication successful
             deferred.resolve(jwt.sign({ sub: user._id }, config.secret));
         } else {
@@ -62,7 +62,9 @@ function getById(_id) {
 
         if (user) {
             // return user (without hashed password)
-            deferred.resolve(_.omit(user, 'hash'));
+            // deferred.resolve(_.omit(user, 'hash'));
+            deferred.resolve(_.omit(user, 'password'));
+
         } else {
             // user not found
             deferred.resolve();
@@ -108,7 +110,8 @@ function create(userParam) {
         var newUser = new User(userParam);
 
         // add hashed password to user object
-        newUser.hash = bcrypt.hashSync(userParam.password, 10);
+        // newUser.hash = bcrypt.hashSync(userParam.password, 10);
+        newUser.password = bcrypt.hashSync(userParam.password, 10);
 
         db.users.insert(
             newUser,
@@ -154,12 +157,17 @@ function update(_id, userParam) {
             name: userParam.name,
             username: userParam.username,
             email: userParam.email,
-            password: userParam.password
+
+            //delete this later
+            // password: userParam.password
         };
 
         // update password if it was entered
         if (userParam.password) {
-            set.hash = bcrypt.hashSync(userParam.password, 10);
+            // set.hash = bcrypt.hashSync(userParam.password, 10);
+
+            set.password = bcrypt.hashSync(userParam.password, 10);
+
         }
 
         db.users.update(
