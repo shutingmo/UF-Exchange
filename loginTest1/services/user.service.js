@@ -87,27 +87,27 @@ function create(userParam) {
                 // username already exists
                 deferred.reject('Username "' + userParam.username + '" is already taken');
             } else {
-                createUser();
+                // createUser();
+                matchPasswords();
             }
         });
 
+    function matchPasswords() {
+        console.log('the password is ' + userParam.password);
+        console.log('retyped is ' + userParam.retypePassword);
+    
+        if(userParam.password === userParam.retypePassword)
+        {
+            createUser();
+        }
+        else
+        {
+            deferred.reject('Passwords do not match');
+        }
+    }
+
     function createUser() {
-        // set user object to userParam without the cleartext password
-        // var user = _.omit(userParam, 'password');
-
-        // // add hashed password to user object
-        // user.hash = bcrypt.hashSync(userParam.password, 10);
-
-        // db.users.insert(
-        //     user,
-        //     function (err, doc) {
-        //         if (err) deferred.reject(err.name + ': ' + err.message);
-
-        //         deferred.resolve();
-        //     });
-
-        
-        var newUser = new User(userParam);
+        var newUser = _.omit(userParam, 'retypePassword');
 
         // add hashed password to user object
         // newUser.hash = bcrypt.hashSync(userParam.password, 10);
@@ -121,9 +121,12 @@ function create(userParam) {
                 deferred.resolve();
             });
     }
+    
 
     return deferred.promise;
 }
+
+
 
 function update(_id, userParam) {
     var deferred = Q.defer();

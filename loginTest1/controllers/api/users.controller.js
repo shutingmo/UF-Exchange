@@ -41,6 +41,16 @@ function registerUser(req, res) {
         });
 }
 
+// function checkPassword(req,res) {
+//     userService.matchPasswords(req.body)
+//         .then(function () {
+//             res.sendStatus(200);
+//         })
+//         .catch(function (err) {
+//             res.status(400).send(err);
+//         });
+// }
+
 function getCurrentUser(req, res) {
     userService.getById(req.user.sub)
         .then(function (user) {

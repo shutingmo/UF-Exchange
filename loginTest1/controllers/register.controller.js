@@ -20,6 +20,9 @@ router.post('/', function (req, res) {
 
         if (response.statusCode !== 200) {
             return res.render('register', {
+                //if there was an error, reload the register page
+                //with name, username, and email
+                //doesn't include password
                 error: response.body,
                 name: req.body.name,
                 username: req.body.username,
