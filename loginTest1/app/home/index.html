@@ -1,12 +1,26 @@
-﻿<h1>Hi {{vm.user.name}}!!</h1>
+﻿<h1>Hi {{$scope.user.name}}!!</h1>
 <!DOCTYPE html>
 <html>
 <body>
+
+    <div ng-app="app" ng-controller="Home.IndexController">
+
+    <!-- <input ng-model="$scope.user.name"> -->
+
+    <h1>My name is {{$scope.user.name}}</h1>
+
+    </div>
 
 <!-- <h2>Post a Listing</h2> -->
 <!-- <button type="button"><a href="dummyIndex.html"></a>Click Me!</button> -->
 <br><a href="/app/home/dummyIndex.html" class="btn btn-default">Post A Listing!</a><br>
 
+
+<script src="app/app.js"></script>
+<script src="app/app-services/user.service.js"></script>
+<script src="app/app-services/flash.service.js"></script>
+<script src="/index.controller.js"></script>
+<script src="app/account/index.controller.js"></script>
 
 
 </body>

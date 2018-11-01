@@ -19,7 +19,8 @@
         return service;
 
         function GetCurrent() {
-            return $http.get('/api/users/current').then(handleSuccess, handleError);
+            console.log('in getCurrent');
+            return $http.get('/api/current').then(handleSuccess, handleError);
         }
 
         function GetAll() {

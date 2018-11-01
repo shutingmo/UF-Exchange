@@ -1,28 +1,75 @@
-﻿(function () {
+﻿// (function () {
+//     'use strict';
+
+//     angular
+//         .module('app')
+//         .controller('Account.IndexController', Controller);
+
+//     function Controller($window, UserService, FlashService) {
+//         var vm = this;
+
+//         vm.user = null;
+//         vm.saveUser = saveUser;
+//         vm.deleteUser = deleteUser;
+
+//         initController();
+
+//         function initController() {
+//             // get current user
+//             UserService.GetCurrent().then(function (user) {
+//                 vm.user = user;
+//             });
+
+//         }
+
+//         function saveUser() {
+//             UserService.Update(vm.user)
+//                 .then(function () {
+//                     FlashService.Success('User updated');
+//                 })
+//                 .catch(function (error) {
+//                     FlashService.Error(error);
+//                 });
+//         }
+
+//         function deleteUser() {
+//             UserService.Delete(vm.user._id)
+//                 .then(function () {
+//                     // log user out
+//                     $window.location = '/login';
+//                 })
+//                 .catch(function (error) {
+//                     FlashService.Error(error);
+//                 });
+//         }
+//     }
+
+// })();
+
+(function () {
     'use strict';
 
     angular
         .module('app')
         .controller('Account.IndexController', Controller);
 
-    function Controller($window, UserService, FlashService) {
-        var vm = this;
-
-        vm.user = null;
-        vm.saveUser = saveUser;
-        vm.deleteUser = deleteUser;
+    function Controller($window, UserService, FlashService, $scope) {
+        $scope.user = {};
+        $scope.saveUser = saveUser;
+        $scope.deleteUser = deleteUser;
 
         initController();
 
         function initController() {
             // get current user
             UserService.GetCurrent().then(function (user) {
-                vm.user = user;
+                $scope.user = user;
             });
+
         }
 
         function saveUser() {
-            UserService.Update(vm.user)
+            UserService.Update($scope.user)
                 .then(function () {
                     FlashService.Success('User updated');
                 })
@@ -32,7 +79,7 @@
         }
 
         function deleteUser() {
-            UserService.Delete(vm.user._id)
+            UserService.Delete($scope.user._id)
                 .then(function () {
                     // log user out
                     $window.location = '/login';

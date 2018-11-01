@@ -15,8 +15,8 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 
-var db = mongo.db(config.connectionString, { native_parser: true });
-db.bind('users');
+// var db = mongo.db(config.connectionString, { native_parser: true });
+// db.bind('users');
 
 mongoose.connect(config.db.uri);
 
@@ -30,6 +30,7 @@ mongoose.connect(config.db.uri);
 
 // module.exports = router;
 
+
 //testing new routes
 
 router.route('/authenticate').post(authenticateUser);
@@ -38,9 +39,43 @@ router.route('/current').get(getCurrentUser);
 
 module.exports = router;
 
+// function authenticateUser(req, res){
+//     User.findOne({username: req.body.username}, function(err, user){
+//         // console.log(req.body.username);
+//         if(err)
+//         {
+//             // res.status(400).send(err);
+//            throw err;
+//         }
+//         if(!user)
+//         {
+//             res.status(400).send('user not found');
+//             console.log('user not here');
+//         }
+        
+//         else if (user && bcrypt.compareSync(req.body.password, user.password)) {
+//             // authentication successful
+            
+//             console.log('auth success');
+//             // res.status(200).send('woohoo');
+//             console.log('the user name is ' + user.name);
+//             console.log(user);
+//             // return res.json({ name: user.name, email: user.email, username: user.username});
+//             return res.json({token: jwt.sign({ name: user.name, email: user.email, username: user.username}, 'RESTFULAPIs')});
+//         } else {
+//             // authentication failed
+//             // res.status(400).json({ message: 'Authentication failed. Wrong password.' });
+
+//             res.status(400).send('authentication failed. incorrect password');
+
+//         }
+//     })
+// };
+
 function authenticateUser(req, res){
+    var token;
     User.findOne({username: req.body.username}, function(err, user){
-        console.log(req.body.username);
+        // console.log(req.body.username);
         if(err)
         {
             // res.status(400).send(err);
@@ -55,7 +90,14 @@ function authenticateUser(req, res){
         else if (user && bcrypt.compareSync(req.body.password, user.password)) {
             // authentication successful
             
-            return res.json({token: jwt.sign({ name: user.name, email: user.email, username: user.username}, 'RESTFULAPIs')});
+            console.log('auth success');
+            // res.status(200).send('woohoo');
+            console.log('the user name is ' + user.name);
+            console.log(user);
+            // return res.json({ name: user.name, email: user.email, username: user.username});
+            // return res.json({token: jwt.sign({ name: user.name, email: user.email, username: user.username}, 'RESTFULAPIs')});
+            // token = (jwt.sign({ sub: user._id }, 'shhh'));
+            useToken((jwt.sign({ user: user._id }, 'shhh')));
         } else {
             // authentication failed
             // res.status(400).json({ message: 'Authentication failed. Wrong password.' });
@@ -64,7 +106,20 @@ function authenticateUser(req, res){
 
         }
     })
+
+    function useToken(token){
+        if(token)
+        {
+            console.log('token is ' + token);
+            res.send({token: token});
+        }
+        else{
+            res.status(400).send('something went wrong');
+        }
+
+    }
 };
+
 
 function registerUser(req, res) {
     //make sure they're not already a registered user in the database
@@ -114,6 +169,7 @@ function registerUser(req, res) {
 }
 
 function getCurrentUser(req, res) {
+    console.log('hello');
     User.findById({_id}, function(err, user){
         if(err) throw err;
 
@@ -121,13 +177,13 @@ function getCurrentUser(req, res) {
         {
             // return res.json(_.omit(user, 'password'));
             // return res.json({token: jwt.sign({ name: user.name, email: user.email, username: user.username}, 'RESTFULAPIs')});
-            res.send(_.omit(user,'password'));
+            // res.send(_.omit(user,'password'));
             // res.send(user);
             // return res.json({token: jwt.sign({sub: user._id})});
             // var test = _.omit(user, 'password');
 
-            // console.log(user);
-            // return res.json({token: jwt.sign({sub: user._id})}, 'RESTFULAPIs');
+            console.log('user is' + user);
+            return res.json({token: jwt.sign({ name: user.name, email: user.email, username: user.username}, 'RESTFULAPIs')});
 
         }
         else
