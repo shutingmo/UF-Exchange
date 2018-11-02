@@ -23,10 +23,19 @@ module.exports.init = function() {
   Serve static files */
   app.use('/', express.static('client'));
 
-  /**TODO 
+  /**TODO se
   Use the listings router for requests to the api */
-  app.use('/login', userRouter);
-  app.use('/register', userRouter);
+  // app.use('/login', userRouter);
+  // app.use('/signup', userRouter);
+  // app.use('/account', userRouter);
+  // app.user('/authenticate', userRouter);
+  // app.user('/update', userRouter);
+  // app.user('/delete', userRouter);
+
+  app.user('/user', userRouter);
+  
+  //for cancel button just follow jason's logout example in the html
+
 
 
   /**TODO 
