@@ -2,6 +2,9 @@ angular.module('user', []).factory('userFactory', function($http) {
     
     var userFactoryMethods = {};
 
+    userFactoryMethods.getAllUsers() = function(){
+        return $http.get('http://localhost:8080/user');
+    },
     userFactoryMethods.getCurrentUser = function() {
         return $http.get('http://localhost:8080/user');
     },

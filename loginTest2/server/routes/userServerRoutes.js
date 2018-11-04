@@ -21,16 +21,21 @@ router.route('/login/success')
 //signup controller
 //  /user/signup
 router.route('/signup')
-    .post(signupCtrl.registerUser)
+    .post(signupCtrl.signupUser)
 
 
 
 //user controller
 router.route('/account/:id')
-    .get(userCtrl.getCurrentUser)
+    // .get(userCtrl.getCurrentUser)
     .put(userCtrl.updateUser)
     .delete(userCtrl.deleteUser)
 
+router.route('/all')
+    .get(userCtrl.getAllUsers)
+
+router.route('/current')
+    .get(userCtrl.getCurrentUser)
 // router.param('userId', userCtrl.userById);
 
 

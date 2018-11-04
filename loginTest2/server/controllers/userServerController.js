@@ -3,7 +3,16 @@ var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
 
-
+exports.getAllUsers = function(req, res){
+    User.find({}).then(function (err, users) {
+        if(err)
+        {
+            console.log(err)
+            return;
+        }
+        res.json(users);
+    });
+};
 
 exports.authenticateUser = function(req, res){
     User.findOne({username:req.body.username}, function(err, user) {
@@ -21,14 +30,17 @@ exports.authenticateUser = function(req, res){
 
 };
 
-exports.registerUser = function(req, res){
+exports.signupUser = function(req, res){
 
     User.findOne({username: req.body.username}, function(err, user){
-        if(err) throw err;
-
-        if(user)
+        if(err) 
         {
             console.log(err);
+            return res.status(400).send(err);
+        }
+        if(user)
+        {
+            console.log('username already taken');
             res.status(400).send('Username ' + req.body.username + ' is already taken');
         }
         else{
