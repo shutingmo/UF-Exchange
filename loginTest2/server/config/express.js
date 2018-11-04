@@ -17,22 +17,18 @@ module.exports.init = function() {
   app.use(morgan('dev'));
 
   //body parsing middleware 
+  // app.use(bodyParser.urlencoded({extended: true}));
+
   app.use(bodyParser.json());
   
   /**TODO
   Serve static files */
   // app.use('/', express.static('/../../client'));
+  // app.use('/', express.static('/../../client/html/testLogin.html'));
   app.use('/', express.static('client'));
 
 
-  /**TODO se
-  Use the listings router for requests to the api */
-  // app.use('/login', userRouter);
-  // app.use('/signup', userRouter);
-  // app.use('/account', userRouter);
-  // app.user('/authenticate', userRouter);
-  // app.user('/update', userRouter);
-  // app.user('/delete', userRouter);
+  
 
   app.use('/user', userRouter);
   
@@ -42,14 +38,18 @@ module.exports.init = function() {
 
   /**TODO 
   Go to homepage for all routes not specified */ 
-  // app.get('/', function(req,res){
-  //   res.redirect('/html/index.html');
+  // app.all('/', function(req,res){
+  //   // res.sendFile('/Users/cynthiamo/ufx/loginTest2/client/js/html/testLogin.html');
+  //   // res.sendFile("/client/html/loginTest.html", {"root": __dirname});
+
   // });
 
-  // app.all('/*', function(req, res){
-  //   res.redirect('/');
-  // });
+  app.all('/*', function(req, res){
+    res.redirect('/');
+  });
 
-  app.use('/', express.static(__dirname + '/../../client/html/testLogin.html'))
+  // app.use('/', express.static(__dirname + '/../../client/html/testLogin.html'))
+  // app.use(express.static(__dirname + "/client"));
+
   return app;
 };  
