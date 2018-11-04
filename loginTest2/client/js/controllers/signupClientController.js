@@ -25,7 +25,9 @@ function signupControl($scope, userFactory){
     // }
 
     $scope.signupUser = function(){
-        
+         console.log('inside create user')
+
+         console.log('new user is ' + newUser);
         // var newUser = UserModel();
 
         // newUser.name = $scope.newUser.name;
@@ -33,7 +35,7 @@ function signupControl($scope, userFactory){
         // newUser.email = $scope.newUser.email;
         // newUser.password = $scope.newUser.password;
 
-        UserModel.signupUser($scope.newUser).then(function(res, err){
+        userFactory.signupUser($scope.newUser).then(function(res, err){
             if(err)
             {
                 console.log("unable to create user");
