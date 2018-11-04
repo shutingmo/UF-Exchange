@@ -26,10 +26,12 @@ router.route('/signup')
 
 
 //user controller
-router.route('/account')
+router.route('/account/:id')
     .get(userCtrl.getCurrentUser)
     .put(userCtrl.updateUser)
     .delete(userCtrl.deleteUser)
+
+// router.param('userId', userCtrl.userById);
 
 
 

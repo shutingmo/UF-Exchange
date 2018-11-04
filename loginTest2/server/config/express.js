@@ -32,7 +32,7 @@ module.exports.init = function() {
   // app.user('/update', userRouter);
   // app.user('/delete', userRouter);
 
-  app.user('/user', userRouter);
+  app.use('/user', userRouter);
   
   //for cancel button just follow jason's logout example in the html
 
