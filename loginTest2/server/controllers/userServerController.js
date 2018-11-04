@@ -6,7 +6,17 @@ var bcrypt = require('bcryptjs');
 
 
 exports.authenticateUser = function(req, res){
+    User.findOne({username:req.body.username}, function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
+        }
 
+        if(user && bcrypt.compareSync(req.body.password, user.password))
+            return res.sendstatus(200);
+        else
+            return res.status(401).send('Username or password is incorrect');
+    })
 
 
 };
@@ -18,7 +28,7 @@ exports.registerUser = function(req, res){
 
         if(user)
         {
-            console.log('username already taken');
+            console.log(err);
             res.status(400).send('Username ' + req.body.username + ' is already taken');
         }
         else{
@@ -33,7 +43,7 @@ exports.registerUser = function(req, res){
         }
         else
         {
-            console.log('passwords dont match');
+            console.log('passwords don\'t match');
             res.status(400).send('passwords do not match');
         }
     }
@@ -46,7 +56,8 @@ exports.registerUser = function(req, res){
         newUser.save(function(err){
             if(err) 
             {
-                throw err;
+                console.log(err)
+                return res.status(400).send(err)
             }
 
             else
@@ -63,7 +74,8 @@ exports.registerUser = function(req, res){
 exports.getCurrentUser = function(req,res){
     User.findOne( {username: req.body.username}, {password: 0}, function(err, user){
         if (err){
-            return res.status(200).send(err)
+            console.log(err);
+            return res.status(400).send(err)
         } 
 
         if(!user){
@@ -80,14 +92,16 @@ exports.getCurrentUser = function(req,res){
 exports.updateUser = function(req, res){
     User.findOne({username: req.body.username}, {username: true, email:true}, function(err, user){
         if (err){
-            return res.status(200).send(err)
+            console.log(err);
+            return res.status(400).send(err)
         } 
 
         if(user.username !== req.body.username)
         {
             Users.findOne( {username: req.body.username} , function(err, user){
                 if (err){
-                    return res.status(200).send(err)
+                    console.log(err);
+                    return res.status(400).send(err)
                 } 
 
                 if(user)
@@ -101,11 +115,12 @@ exports.updateUser = function(req, res){
         {
             Users.findOne( {email: req.body.email} , function(err, user){
                 if (err){
-                    return res.status(200).send(err)
+                    console.log(err);
+                    return res.status(400).send(err)
                 } 
 
                 if(user) {
-                    return res.status(400).send('email ' + req.body.email + ' already taken')
+                    return res.status(401).send('email ' + req.body.email + ' already taken')
                 }
                 else {
                     update();
@@ -113,10 +128,58 @@ exports.updateUser = function(req, res){
             })
         }
     })
+    function update(){
+
+        /*//Jason Watmore's update method:
+        var set = {
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email
+        };
+
+        if (req.body.password)
+            set.password = bcrypt.hashSync(userParam.password, 10);
+
+        User.update(
+            { username: req.body.username },
+            { $set: set },
+            function(err, user)
+                if(err) return res.status(400).send(err);
+        );*/
+        
+        var user = req.user;
+        user.name = req.body.name;
+        user.username = req.body.username;
+        user.email = req.body.email;
+
+        if(req.body.password)
+            user.password = bcrypt.hashSync(req.body.password, 10);
+
+        user.save(function(err) {
+            if(err) {
+                console.log(err);
+                return res.status(400).send(err);
+            }
+            else {
+                console.log('Updated user attributes');
+                res.json(user);
+            }
+        });
+    }
+
 };
 
 
 exports.deleteUser = function(req,res){
+    var user = req.user;
 
+    user.remove(function(err) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
+        }
+        else
+            res.end();
+    })
 };
 
