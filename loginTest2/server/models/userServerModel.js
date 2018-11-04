@@ -41,7 +41,7 @@ var userSchema = new Schema({
     type: String,
     required: true,
     'default': 'user'
-  },
+  }
   //delete this
   // hash: {
   //   type: String,

@@ -30,7 +30,9 @@ module.exports.init = function() {
 
   
 
-  app.use('/user', userRouter);
+  // app.use('/user', userRouter);
+
+  app.use('/signup', userRouter)
   
   //for cancel button just follow jason's logout example in the html
 

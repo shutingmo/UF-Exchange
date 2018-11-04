@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
+var userCtrl = require('./userServerController.js');
 
 exports.signupUser = function(req, res){
     var request = req;

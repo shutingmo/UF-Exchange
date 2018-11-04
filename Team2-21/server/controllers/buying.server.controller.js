@@ -3,7 +3,7 @@ var express = require('express'),
     Buying = require('../models/buying.server.model.js');
 
 // Create a buying listing 
-exports.create = function(req, res) {
+  exports.create = function(req, res) {
 
     /* Instantiate a Listing */
     var buying = new Buying(req.body);
