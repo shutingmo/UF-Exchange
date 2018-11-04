@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var config = require('../config/config.js');
-var userCtrl = require('/userServerControler.js');
+var userCtrl = require('./userServerController.js');
 var router = express.Router();
 
 

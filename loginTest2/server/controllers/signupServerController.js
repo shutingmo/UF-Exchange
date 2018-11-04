@@ -2,10 +2,10 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 
-exports.registerUser = function(req, res){
+exports.signupUser = function(req, res){
     var request = req;
     var response = res;
-    userCtrl.registerUser((request, response), function(err){
+    userCtrl.signupUser((request, response), function(err){
         if(err)
         {
             throw err;

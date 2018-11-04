@@ -21,7 +21,9 @@ module.exports.init = function() {
   
   /**TODO
   Serve static files */
+  // app.use('/', express.static('/../../client'));
   app.use('/', express.static('client'));
+
 
   /**TODO se
   Use the listings router for requests to the api */
@@ -44,9 +46,10 @@ module.exports.init = function() {
   //   res.redirect('/html/index.html');
   // });
 
-  app.all('/*', function(req, res){
-    res.redirect('/');
-  });
+  // app.all('/*', function(req, res){
+  //   res.redirect('/');
+  // });
 
+  app.use('/', express.static(__dirname + '/../../client/html/testLogin.html'))
   return app;
 };  

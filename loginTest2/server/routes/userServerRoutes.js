@@ -38,7 +38,7 @@ router.route('/current')
     .get(userCtrl.getCurrentUser)
 // router.param('userId', userCtrl.userById);
 
-
+module.exports = router;
 
 
 

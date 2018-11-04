@@ -12,5 +12,10 @@
     "url": "https://github.com/shutingmo/Team2/tree/login3"
   },
   "author": "Shuting Mo, Regan Tam",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  }
 }
