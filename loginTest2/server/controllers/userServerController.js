@@ -16,8 +16,12 @@ var bcrypt = require('bcryptjs');
 
 exports.authenticateUser = function(req, res){
     console.log('the username is ' + JSON.stringify(req.body.username));
+    console.log('the password is ' + JSON.stringify(req.body.password));
+    
     // res.send(req.body.username);
-    User.findOne({username:req.body.username}, function(err) {
+    User.findOne({username:req.body.username}, function(err, user) {
+        console.log('the user found is ' + JSON.stringify(user));
+        
         if(err) {
             console.log(err);
             return res.status(400).send(err);
