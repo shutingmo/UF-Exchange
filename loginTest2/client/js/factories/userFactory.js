@@ -38,11 +38,26 @@ angular.module('user', []).factory('userFactory', function($http) {
 
         //     return $http.get('http://localhost:3000/login', user)
         // }
-        loginUser: function(){
-            console.log('in user factory ')
+        loginUser: function(returnUser){
+            console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $http.get('http://localhost:3000/login/auth')
+            return $http.post('http://localhost:3000/login/auth', returnUser)
         }
+
+        // loginUser: function(){
+        //     console.log('in user factory ')
+
+        //     return $http.get('http://localhost:3000/login/auth')
+        //     // return $http({
+        //     //     url: 'http://localhost:3000/login/auth',
+        //     //     method: "GET",
+        //     //     params: {
+        //     //         // username: $scope.returnUser.username,
+        //     //         // password: $scope.returnUser.password
+        //     //         user:$scope.returnUser
+        //     //     }
+        //     // })
+        // }
 
     };
 

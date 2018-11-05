@@ -36,7 +36,7 @@ module.exports.init = function() {
 
   app.use('/signup', userRouter)
 
-  console.log('in express');
+  // console.log('in express');
   app.use('/login/auth', loginRouter);
   
   //for cancel button just follow jason's logout example in the html

@@ -42,8 +42,8 @@ var router = express.Router();
 router.route('/')
     .post(userCtrl.signupUser);
 
-router.route('/')
-    .get(userCtrl.authenticateUser);
+// router.route('/')
+//     .get(userCtrl.authenticateUser);
 
 
 
