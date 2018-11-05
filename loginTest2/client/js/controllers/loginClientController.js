@@ -4,7 +4,7 @@ angular.module('user').controller('loginController', ['$scope','userFactory',
         $scope.login = function(){
             // $scope.user = [];
             // $scope.user.push($scope.returnUser);
-            console.log($scope.returnUser);
+            // console.log(JSON.stringify($scope.returnUser));
             // userFactory.loginUser($scope.returnUser).then(function(res,err){
             //     console.log('in client controller');
 

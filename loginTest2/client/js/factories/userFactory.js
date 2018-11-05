@@ -41,7 +41,7 @@ angular.module('user', []).factory('userFactory', function($http) {
         loginUser: function(){
             console.log('in user factory ')
 
-            return $http.get('http://localhost:3000/login')
+            return $http.get('http://localhost:3000/login/auth')
         }
 
     };
