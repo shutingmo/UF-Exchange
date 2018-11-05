@@ -14,53 +14,60 @@ var bcrypt = require('bcryptjs');
 //     });
 // };
 
-// exports.authenticateUser = function(req, res){
-//     User.findOne({username:req.body.username}, function(err, user) {
-//         if(err) {
-//             console.log(err);
-//             return res.status(400).send(err);
-//         }
+exports.authenticateUser = function(req, res){
+    console.log(req.body.username);
+    res.send(req.body.username);
+    User.findOne({username:req.body.username}, function(err) {
+        if(err) {
+            console.log(err);
+            return res.status(400).send(err);
+        }
 
-//         if(user && bcrypt.compareSync(req.body.password, user.password))
-//             return res.sendstatus(200);
-//         else
-//             return res.status(401).send('Username or password is incorrect');
-//     })
+        console.log('login complete');
+        return res.status(200).send('login done');
 
-
-// };
+        // if(user && bcrypt.compareSync(req.body.password, user.password))
+        //     return res.sendstatus(200);
+        // else
+        //     return res.status(401).send('Username or password is incorrect');
+    })
+};
 
 exports.signupUser = function(req, res){
 
-    // User.findOne({username: req.body.username}, function(err, user){
-    //     if(err) 
-    //     {
-    //         console.log(err);
-    //         return res.status(400).send(err);
-    //     }
-    //     if(user)
-    //     {
-    //         console.log('username already taken');
-    //         res.status(400).send('Username ' + req.body.username + ' is already taken');
-    //     }
-    //     else{
-    //         matchPasswords();
-    //     }
-    // })
+    User.findOne({username: req.body.username}, function(err, user){
+        if(err) 
+        {
+            console.log(err);
+            return res.status(400).send(err);
+        }
+        if(user)
+        {
+            console.log('username already taken');
+            res.status(400).send('Username ' + req.body.username + ' is already taken');
+        }
+        else{
+            matchPasswords();
+        }
+    })
 
-    // function matchPasswords() {
-    //     if(req.body.password === req.body.retypePassword)
-    //     {
-    //         createUser();
-    //     }
-    //     else
-    //     {
-    //         console.log('passwords don\'t match');
-    //         res.status(400).send('passwords do not match');
-    //     }
-    // }
+    // matchPasswords();
+    function matchPasswords() {
+        console.log(req.body.password)
+        console.log(req.body.retypePassword)
 
-    createUser();
+        if(req.body.password === req.body.retypePassword)
+        {
+            createUser();
+        }
+        else
+        {
+            console.log('passwords don\'t match');
+            res.status(400).send('passwords do not match');
+        }
+    }
+
+    // createUser();
     function createUser() {
         var newUser = new User(req.body);
 

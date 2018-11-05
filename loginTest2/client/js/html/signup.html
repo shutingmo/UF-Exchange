@@ -7,7 +7,7 @@
 <body ng-app="ufxApp">
 <div ng-controller="signupController">
 
-  <!-- <div class="container"> -->
+  <div class="container">
     <form novalidate class="simple-form">
       
     
@@ -24,20 +24,20 @@
 
       Password: <input type="password" placeholder="Enter Password" ng-model="newUser.password"  required><br/>
 
-      <!-- Retype Password: <input type="password" placeholder="Retype Password" ng-model="retypePassword"  required><br/> -->
+      Retype Password: <input type="password" placeholder="Retype Password" ng-model="newUser.retypePassword"  required><br/>
 
-      <button class="btn btn-primary" ng-click="signup()">Sign Up</button>
+      <!-- <button class="btn btn-primary" ng-click="signup()">Sign Up</button> -->
     </form>
 
-    <!-- <div class="clearfix">
-      <button type="submit" class="signupbtn" ng-click="signupUser()">Sign Up</button>
+    <div class="clearfix">
+      <button type="submit" class="signupbtn" ng-click="signup()">Sign Up</button>
 
       <a href="testLogin.html">
           <button type="button" class="cancelbtn">Cancel</button>
       </a>
-    </div> -->
+    </div>
 
-  <!-- </div> -->
+  </div>
 
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->

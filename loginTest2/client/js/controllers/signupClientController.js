@@ -70,10 +70,10 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
             //        $scope.errorMessage = "didn't create user";
             //    }
                 if(res.status !== 200)
-               {
+                {
                    console.log("\nunable to create user");
                    $scope.errorMessage = "didn't create user";
-               }
+                } 
    
                $scope.newUser = {};
            })
