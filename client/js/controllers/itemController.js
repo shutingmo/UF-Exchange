@@ -14,6 +14,12 @@ angular.module('listings').controller('ItemController', ['$scope', 'Listings',
       console.log('Unable to retrieve selling listings:', error);
     });
 
+    $scope.setCondition = function(condition) {
+      //setting the location from dropdown
+      $scope.newListing.condition = condition;
+      $scope.listings.push($scope.newListing.condition);
+    }
+
     $scope.setLocation = function(location) {
       //setting the location from dropdown
       $scope.newListing.location = location;

@@ -12,7 +12,20 @@
                 Category: <input type="text" ng-model="newListing.category" /><br />
                 Price: <input type="text" ng-model="newListing.price" /><br />
                 Description: <input type="text" ng-model="newListing.description" /><br />
-                Condition: <input type="text" ng-model="newListing.condition" /><br />
+                <!-- Condition: <input type="text" ng-model="newListing.condition" /><br /> -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Condition
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" ng-click ="setCondition('New')">New</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCondition('Like New')">Like New</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCondition('Good')">Good</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCondition('Fair')">Fair</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCondition('Poor')">Poor</a>
+                    </div>
+                </div>
+                <br />
                 <!-- Location: <input type="text" ng-model="newListing.location" /><br /> -->
                 Buyer: <input type="text" ng-model="newListing.buyer.name" /><br />
                 Buyer email: <input type="text" ng-model="newListing.buyer.email" /><br />
@@ -33,7 +46,8 @@
                         <a class="dropdown-item" href="#" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a>
                     </div>
                 </div>
-
+                <br />
+                <br />
                 <button class="btn btn-primary" ng-click="saveBuying()">Save Buying Listing</button>
                 <button class="btn btn-primary" ng-click="saveSelling()">Save Selling Listing</button>
 
