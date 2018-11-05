@@ -29,35 +29,21 @@
 angular.module('user', []).factory('userFactory', function($http) {
     var userFactoryMethods = {
         signupUser: function(user){
-            return $http.post('http://localhost:3000/signup', user)
+            return $http.post('http://localhost:3000/signup', user);
         },
 
-        // loginUser: function(user){
-        //     var u = JSON.stringify(user)
-        //     console.log('in user factory '+ u)
-
-        //     return $http.get('http://localhost:3000/login', user)
-        // }
         loginUser: function(returnUser){
             console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $http.post('http://localhost:3000/login/auth', returnUser)
+            return $http.post('http://localhost:3000/login/auth', returnUser);
+        },
+
+        getCurrentUser: function(){
+            return $http.get('http://localhost:3000/');
+
         }
 
-        // loginUser: function(){
-        //     console.log('in user factory ')
-
-        //     return $http.get('http://localhost:3000/login/auth')
-        //     // return $http({
-        //     //     url: 'http://localhost:3000/login/auth',
-        //     //     method: "GET",
-        //     //     params: {
-        //     //         // username: $scope.returnUser.username,
-        //     //         // password: $scope.returnUser.password
-        //     //         user:$scope.returnUser
-        //     //     }
-        //     // })
-        // }
+        
 
     };
 

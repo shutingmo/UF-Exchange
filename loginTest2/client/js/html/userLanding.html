@@ -3,11 +3,10 @@
 <head>
     <title>Home</title>
 </head>
-<body>
+<body ng-app="ufxApp">
 
-    <div ng-app="app" ng-controller="Home.IndexController">
+    <div ng-controller="accountController">
 
-    <!-- <input ng-model="$scope.user.name"> -->
 
     <h1>My name is {{$scope.user.name}}</h1>
 
@@ -15,14 +14,13 @@
 
 <!-- <h2>Post a Listing</h2> -->
 <!-- <button type="button"><a href="dummyIndex.html"></a>Click Me!</button> -->
-<br><a href="/Users/cynthiamo/ufx/loginTest2/client/js/html/dummyIndex.html" class="btn btn-default">Post A Listing!</a><br>
+<br><a href="postListing.html" class="btn btn-default">Post A Listing!</a><br>
 
 
-<script src="app/app.js"></script>
-<script src="app/app-services/user.service.js"></script>
-<script src="app/app-services/flash.service.js"></script>
-<script src="/index.controller.js"></script>
-<script src="app/account/index.controller.js"></script>
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="../app.js"></script>
+<script src="../factories/userFactory.js"></script>
+<script src="../controllers/accountClientController.js"></script>
 
 
 </body>
