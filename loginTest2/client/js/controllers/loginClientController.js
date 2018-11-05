@@ -22,9 +22,17 @@ angular.module('user').controller('loginController', ['$scope','userFactory',
 
                 if(res.status !== 200)
                 {
-                   console.log("\nunable to create user");
-                   $scope.errorMessage = "didn't create user";
+                   console.log("\nunable to login user");
+                //    return res.send('unable to create user');
                 } 
+                else if (res.status === 200)
+                {
+                    console.log('login was success, front end');
+                    // return res.send('woohoo login done, front end');
+                    // res.redirect('../../../')
+                    window.location.replace('../html/userLanding.html');
+
+                }
 
                 $scope.returnUser = {};
             })

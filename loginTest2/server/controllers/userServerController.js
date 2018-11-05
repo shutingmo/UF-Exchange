@@ -21,14 +21,23 @@ exports.authenticateUser = function(req, res){
     // res.send(req.body.username);
     User.findOne({username:req.body.username}, function(err, user) {
         console.log('the user found is ' + JSON.stringify(user));
-        
+
         if(err) {
             console.log(err);
             return res.status(400).send(err);
         }
 
-        console.log('login complete');
-        return res.status(200).send('login done');
+        if(user && (req.body.password === user.password) && (req.body.username === user.username))
+        {
+            console.log('login complete');
+            return res.status(200).send('login done');
+        }
+        else
+        {
+            console.log('Username or password is incorrect');
+            return res.status(401).send('Username or password is incorrect');
+        }
+        
 
         // if(user && bcrypt.compareSync(req.body.password, user.password))
         //     return res.sendstatus(200);
