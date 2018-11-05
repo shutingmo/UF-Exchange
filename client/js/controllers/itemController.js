@@ -14,18 +14,24 @@ angular.module('listings').controller('ItemController', ['$scope', 'Listings',
       console.log('Unable to retrieve selling listings:', error);
     });
 
+    $scope.setLocation = function(location) {
+      //setting the location from dropdown
+      $scope.newListing.location = location;
+      $scope.listings.push($scope.newListing.location);
+    }
+
     $scope.saveBuying = function() {
       $scope.listings.push($scope.newListing);
 
       Listings.createBuying($scope.newListing).then(function(err)
       {
-        $scope.newListing = {};
-
         if(err)
         {
           $scope.errorMessage = "Error. Listing not successfully added";
           console.log('Unable to add listing', err);
         }
+
+        $scope.newListing = {};
         
       });
     };
@@ -35,14 +41,13 @@ angular.module('listings').controller('ItemController', ['$scope', 'Listings',
 
       Listings.createSelling($scope.newListing).then(function(err)
       {
-        $scope.newListing = {};
-
         if(err)
         {
           $scope.errorMessage = "Error. Listing not successfully added";
           console.log('Unable to add listing', err);
         }
         
+        $scope.newListing = {};
 
       });
     };
