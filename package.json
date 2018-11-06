@@ -1,0 +1,22 @@
+{
+  "name": "logintest2",
+  "version": "1.0.0",
+  "description": "ufx login and sign up process",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shutingmo/Team2/tree/login3"
+  },
+  "author": "Shuting Mo, Regan Tam",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "html": "^1.0.0",
+    "morgan": "^1.9.1"
+  }
+}
