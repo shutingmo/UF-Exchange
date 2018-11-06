@@ -39,12 +39,11 @@ var router = express.Router();
 // // router.param('userId', userCtrl.userById);
 
 
-router.route('/getinfo')
-    // .post(userCtrl.signupUser)
+router.route('/:userId')
     .get(userCtrl.getCurrentUser)
 
-router.route('/update')
-    .post(userCtrl.updateUser)
+// router.route('/update')
+//     .post(userCtrl.updateUser)
 
 // router.route('/update')
 //     .post(userCtrl.updateUser)
@@ -53,7 +52,7 @@ router.route('/update')
 //     .get(userCtrl.authenticateUser);
 
 
-
+router.param('userId', userCtrl.userById);
 
 module.exports = router;
 

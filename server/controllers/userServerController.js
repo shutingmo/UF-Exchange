@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
+// var body = require('body-parser');
 
 // exports.getAllUsers = function(req, res){
 //     User.find({}).then(function (err, users) {
@@ -107,7 +108,8 @@ exports.signupUser = function(req, res){
 };
 
 exports.getCurrentUser = function(req,res){
-    console.log('request body is ' + req.body);
+    console.log('curr user ' + JSON.stringify(req.user));
+    res.json(req.user);
     // User.findOne( {username: req.body.username}, {password: 0}, function(err, user){
     //     if (err){
     //         console.log(err);
@@ -124,7 +126,21 @@ exports.getCurrentUser = function(req,res){
     // );
 
 };
-
+exports.userById = function(req, res, next, id){
+    console.log('id is ' + req.params.id);
+    User.findById(id).exec(function(err, user){
+        if(err)
+        {
+            res.status(400).send(err);
+        }
+        else
+        {
+            req.user = user;
+            console.log('user found is ' + JSON.stringify(req.user))
+            next();
+        }
+    });
+};
 exports.updateUser = function(req, res){
     console.log('request body in update is ' + JSON.stringify(req.body))
     console.log(req.body.username);

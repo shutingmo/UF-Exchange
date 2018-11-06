@@ -20,6 +20,9 @@ module.exports.init = function() {
 
   //body parsing middleware 
   // app.use(bodyParser.urlencoded({extended: true}));
+  // app.use(express.bodyParser());
+  // app.use(bodyParser.urlencoded({ extended: false }))
+
 
   app.use(bodyParser.json());
   
@@ -39,7 +42,10 @@ module.exports.init = function() {
   // console.log('in express');
   app.use('/login/auth', loginRouter);
   
-  app.use('/account', userRouter);
+  // app.use('/account/update', userRouter);
+
+  app.use('/account/getinfo', userRouter);
+
 
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
