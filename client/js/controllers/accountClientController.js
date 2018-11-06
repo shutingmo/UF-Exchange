@@ -11,21 +11,34 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         // $scope.user = {};
         console.log('hi')
 
-        // userFactory.getCurrentUser().then(function(res){
-        //     console.log('response data is ' + res.data);
-        //     $scope.user = res.data;
-        // }, function(error) {
-        //     console.log('Unable to retrieve listings:', error);
-        // });
-        $scope.getCurrentUserInfo = function(id){
-            console.log('client controller id is ' + id);
-            userFactory.getCurrentUser(id).then(function(res){
-                // console.log('response data is ' + res.data)
-                // console.log('sanity check')
-                $scope.user = res.data;
-            }, function(error) {
-                console.log('Unable to retrieve current user:', error);
-            });
+        userFactory.getAllUsers().then(function(res){
+            console.log('response data is ' + JSON.stringify(res.data));
+            $scope.user = res.data;
+            console.log('$scope.user is ' + JSON.stringify($scope.user));
+        }, function(error) {
+            console.log('Unable to retrieve users:', error);
+        });
+
+        // $scope.getCurrentUserInfo = function(_id){
+        //     console.log('client controller id is ' + _id);
+        //     userFactory.getCurrentUser(_id).then(function(res){
+        //         // console.log('response data is ' + res.data)
+        //         // console.log('sanity check')
+        //         $scope.user = res.data;
+        //     }, function(error) {
+        //         console.log('Unable to retrieve current user:', error);
+        //     });
+        // }
+
+        $scope.getCurrentUserInfo = function(username){
+            console.log('client controller username is ' + username);
+            // userFactory.getCurrentUser(_id).then(function(res){
+            //     // console.log('response data is ' + res.data)
+            //     // console.log('sanity check')
+            //     $scope.user = res.data;
+            // }, function(error) {
+            //     console.log('Unable to retrieve current user:', error);
+            // });
         }
         
         

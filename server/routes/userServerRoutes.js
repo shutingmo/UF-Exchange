@@ -5,54 +5,15 @@ var signupCtrl = require('../controllers/signupServerController.js');
 var express = require('express');
 var router = express.Router();
 
-// //login controller
+router.route('/')
+    .get(userCtrl.getAllUser);
 
-// //  /user/login
-// router.route('/login/authenticate')
-//     .post(loginCtrl.authenticateUser)
-
-// //to do
-// //might need $window :(
-// router.route('/login/success')
-
-
-
-
-// //signup controller
-// //  /user/signup
-// router.route('/signup')
-//     .post(signupCtrl.signupUser)
-
-
-
-// //user controller
-// router.route('/account/:id')
-//     // .get(userCtrl.getCurrentUser)
-//     .put(userCtrl.updateUser)
-//     .delete(userCtrl.deleteUser)
-
-// router.route('/all')
-//     .get(userCtrl.getAllUsers)
-
-// router.route('/current')
-//     .get(userCtrl.getCurrentUser)
-// // router.param('userId', userCtrl.userById);
-
-
-router.route('/:userId')
+router.route('/:_id')
     .get(userCtrl.getCurrentUser)
 
-// router.route('/update')
-//     .post(userCtrl.updateUser)
+router.param('_id', userCtrl.userByID);
 
-// router.route('/update')
-//     .post(userCtrl.updateUser)
-
-// router.route('/')
-//     .get(userCtrl.authenticateUser);
-
-
-router.param('userId', userCtrl.userById);
+// console.log('userId is in routes ' + userId);
 
 module.exports = router;
 

@@ -1,9 +1,14 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
+    ObjectId = mongoose.Schema.Types.ObjectId;
 /* Create your schema */
 var userSchema = new Schema({
+  // _id: { 
+  //   type: ObjectId, 
+  //   unique: true 
+  //   // default: uuid.v4 
+  // },
   name: {
     type: String,
     required: true

@@ -107,6 +107,11 @@ exports.signupUser = function(req, res){
 
 };
 
+exports.getAllUser = function(req,res){
+    User.find({}, function(err, data){
+        res.json(data);
+    })
+};
 exports.getCurrentUser = function(req,res){
     console.log('curr user ' + JSON.stringify(req.user));
     res.json(req.user);
@@ -126,11 +131,12 @@ exports.getCurrentUser = function(req,res){
     // );
 
 };
-exports.userById = function(req, res, next, id){
-    console.log('id is ' + req.params.id);
-    User.findById(id).exec(function(err, user){
+exports.userByID = function(req, res, next, _id){
+    console.log('back end controller id is ' + _id);
+    User.findById(_id).exec(function(err, user){
         if(err)
         {
+            console.log('user by id had error')
             res.status(400).send(err);
         }
         else
