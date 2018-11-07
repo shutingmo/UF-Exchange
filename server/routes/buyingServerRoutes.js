@@ -1,4 +1,4 @@
-var buying = require('../controllers/buying.server.controller.js'),
+var buying = require('../controllers/buyingServerController.js'),
     express = require('express'),
     router = express.Router();
 

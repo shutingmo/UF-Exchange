@@ -1,35 +1,35 @@
-angular.module('listings').controller('ItemController', ['$scope', 'Listings', 
-  function($scope, Listings) {
-    /* Get all the listings, then bind it to the scope */
+angular.module('items').controller('ItemController', ['$scope', 'Items', 
+  function($scope, Items) {
+    /* Get all the items, then bind it to the scope */
 
-    Listings.getAll().then(function(response) {
-      $scope.listings = response.data;
+    Items.getAll().then(function(response) {
+      $scope.items = response.data;
     }, function(error) {
-      console.log('Unable to retrieve listings:', error);
+      console.log('Unable to retrieve items:', error);
     });
 
-    Listings.getSelling().then(function(response) {
-      $scope.listings = response.data;
+    Items.getSelling().then(function(response) {
+      $scope.items = response.data;
     }, function(error) {
-      console.log('Unable to retrieve selling listings:', error);
+      console.log('Unable to retrieve selling items:', error);
     });
 
     $scope.setCondition = function(condition) {
       //setting the location from dropdown
-      $scope.newListing.condition = condition;
-      $scope.listings.push($scope.newListing.condition);
+      $scope.newItem.condition = condition;
+      $scope.items.push($scope.newItem.condition);
     }
 
     $scope.setLocation = function(location) {
       //setting the location from dropdown
-      $scope.newListing.location = location;
-      $scope.listings.push($scope.newListing.location);
+      $scope.newItem.location = location;
+      $scope.items.push($scope.newItem.location);
     }
 
     $scope.saveBuying = function() {
-      $scope.listings.push($scope.newListing);
+      $scope.items.push($scope.newItem);
 
-      Listings.createBuying($scope.newListing).then(function(err)
+      Items.createBuying($scope.newItem).then(function(err)
       {
         if(err)
         {
@@ -37,15 +37,15 @@ angular.module('listings').controller('ItemController', ['$scope', 'Listings',
           console.log('Unable to add listing', err);
         }
 
-        $scope.newListing = {};
+        $scope.newItem = {};
         
       });
     };
 
     $scope.saveSelling = function() {
-      $scope.listings.push($scope.newListing);
+      $scope.items.push($scope.newItem);
 
-      Listings.createSelling($scope.newListing).then(function(err)
+      Items.createSelling($scope.newItem).then(function(err)
       {
         if(err)
         {
@@ -53,7 +53,7 @@ angular.module('listings').controller('ItemController', ['$scope', 'Listings',
           console.log('Unable to add listing', err);
         }
         
-        $scope.newListing = {};
+        $scope.newItem = {};
 
       });
     };

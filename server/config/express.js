@@ -4,8 +4,8 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config');
-    buyingRouter = require('../routes/buying.server.routes.js');
-    sellingRouter = require('../routes/selling.server.routes.js')
+    buyingRouter = require('../routes/buyingServerRoutes.js');
+    sellingRouter = require('../routes/sellingServerRoutes.js')
     
 module.exports.init = function() {
   //connect to database
@@ -31,9 +31,6 @@ module.exports.init = function() {
 
   /**TODO 
   Go to homepage for all routes not specified */ 
-  // app.get('/', function(req,res){
-  //   res.redirect('/html/index.html');
-  // });
 
   app.all('/*', function(req, res){
     res.redirect('/');

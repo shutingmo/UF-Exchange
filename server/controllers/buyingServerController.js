@@ -1,6 +1,6 @@
 var express = require('express'),
     mongoose = require('mongoose');
-    Buying = require('../models/buying.server.model.js');
+    Buying = require('../models/buyingServerModel.js');
 
 // Create a buying listing 
 exports.create = function(req, res) {
