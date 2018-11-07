@@ -22,6 +22,10 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+  // retypePassword: {
+  //   type: String,
+  //   required: true
+  // },
   favorite: {
     type: [Number],
     'default' : []
@@ -38,6 +42,11 @@ var userSchema = new Schema({
     required: true,
     'default': 'user'
   }
+  //delete this
+  // hash: {
+  //   type: String,
+  // }
+
 });
 
 /* Use your schema to instantiate a Mongoose model */
