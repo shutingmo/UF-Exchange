@@ -4,6 +4,8 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config');
+    buyingRouter = require('../routes/buyingServerRoutes.js');
+    sellingRouter = require('../routes/sellingServerRoutes.js')
     userRouter = require('../routes/userServerRoutes.js');
     loginRouter = require('../routes/loginServerRoutes.js');
     signupRouter = require('../routes/signupServerRoutes.js');
@@ -29,6 +31,13 @@ module.exports.init = function() {
   // app.use('/', express.static('/../../client/html/testLogin.html'));
   app.use('/', express.static('client'));
 
+  /**TODO 
+  Use the listings router for requests to the api */
+  app.use('/buying', buyingRouter);
+  app.use('/selling', sellingRouter);
+
+  /**TODO 
+  Go to homepage for all routes not specified */ 
 
   
 
