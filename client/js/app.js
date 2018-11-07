@@ -1,7 +1,9 @@
 /* register the modules the application depends upon here*/
-angular.module('user', 'items', []);
+angular.module('items', []);
+// angular.module('user', []);
+
 
 /* register the application and inject all the necessary dependencies */
-var app = angular.module('ufxApp', ['items']);
+var app = angular.module('ufxItemApp', ['items']);
 
-var userApp = angular.module('ufxUserApp', ['user']);
+var userApp = angular.module('ufxApp', ['user']);
