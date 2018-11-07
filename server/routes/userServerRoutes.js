@@ -13,8 +13,6 @@ router.route('/:_id')
 
 router.param('_id', userCtrl.userByID);
 
-// console.log('userId is in routes ' + userId);
-
 module.exports = router;
 
 

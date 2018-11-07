@@ -16,10 +16,57 @@
     <br><a href="account.html" class="btn btn-default">Update User</a><br>
     
     <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($_id)">Get Current User Info</button> -->
-    <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($username)">Get Current User Info</button>
+    <!-- <button type="submit" class="signupbtn" ng-click="getCurrentUserInfo($username)">Get Current User Info</button> -->
+
+    <div ng-repeat="user in user | filter: query" ng-click="getCurrentUserInfo($index)">
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+    
+    <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user._id}}</a>
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+    <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    </div>
+
+    <div ng-click="getCurrentUserInfo()">
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+        
+        <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">
+            <button type="button">user info</button>
+        </a>
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+        <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    </div>
+
+    <!-- <div ng-click="getCurrentUserInfo()"> -->
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+        
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{vm.user._id}}">
+            <button type="button">user vm info</button>
+        </a> -->
+    
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+        <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    <!-- </div> -->
 
 
-</div>
+
+    
+
+
+    <!-- <div ng-repeat="user in user | filter: query" ng-click="getCurrentUserInfo($index)"></div> -->
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+    
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user._id}}</a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">
+        <button type="button">user info</button>
+    </a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+    <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    
+    
+
+    <!-- </div> -->
 
 <!-- <h2>Post a Listing</h2> -->
 <!-- <button type="button"><a href="dummyIndex.html"></a>Click Me!</button> -->

@@ -3,3 +3,4 @@ angular.module('user', []);
 
 /* register the application and inject all the necessary dependencies */
 var app = angular.module('ufxApp', ['user']);
+
