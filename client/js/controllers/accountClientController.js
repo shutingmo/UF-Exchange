@@ -3,9 +3,9 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         
         console.log('hi')
         
-        // var vm = this;
-        // vm.user = null;
-        // vm.getCurrentUserInfo = getCurrentUserInfo;
+        var vm = this;
+        vm.user = {};
+        // return vm;
 
         userFactory.getAllUsers().then(function(res){
             console.log('response data is ' + JSON.stringify(res.data));
@@ -13,27 +13,29 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             console.log('$scope.user is ' + JSON.stringify($scope.user));
             console.log(JSON.stringify($scope.user[0]._id));
             console.log(JSON.stringify($scope.user[1].username));
+
+             
             // console.log($scope.user.filter(use => use.username === '1')[0])
             // return $scope.user.filter(use => use.username === '1')[0];
             // console.log($scope.user.filter(use => use._id === '5be0d14dda0b18153ab0fc56')[0])
             // $scope.user.filter(use => use._id === '5be0d14dda0b18153ab0fc56')[0];
 
-            console.log($scope.user.filter(user => user.username === $scope.user[0].username))
+            // console.log($scope.user.filter(user => user.username === $scope.user[0].username))
             
-            var person = $scope.user.filter(user => user.username === $scope.user[0].username);
+            var person = $scope.user.filter(user => user.username === $scope.user[2].username);
             // $scope.user.filter(use => use._id === '5be0d14dda0b18153ab0fc56')[0];
 
-            // return $scope.user.filter(use => use._id === '1')[0];
+            // // return $scope.user.filter(use => use._id === '1')[0];
 
             
-            // $scope.user.filter(x => x.id === '5be0d14dda0b18153ab0fc56');
-            console.log(JSON.stringify(person[0]._id));
+            // // $scope.user.filter(x => x.id === '5be0d14dda0b18153ab0fc56');
+            // console.log(JSON.stringify(person[0]._id));
 
-            // $scope.user._id = $scope.user.filter(user => user._id === $scope.user[0]._id);
+            // // $scope.user._id = $scope.user.filter(user => user._id === $scope.user[0]._id);
 
-            $scope.user._id = person[0]._id;
-            $scope.user.username = person[0].username;
-            $scope.user.email = person[0].email;
+            vm.user._id = person[2]._id;
+            // $scope.user.username = person[0].username;
+            // $scope.user.email = person[0].email;
 
             // console.log(JSON.stringify($scope.user._id));
             // return $scope.use._id;
@@ -45,51 +47,35 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             return $scope.user.filter(use => use.username === '1')[0];
         });
 
-        $scope.getCurrentUserInfo = function(index){
-            // console.log('client controller id is ' + _id);
-            // userFactory.getCurrentUser(_id).then(function(res){
-            //     // console.log('response data is ' + res.data)
-            //     // console.log('sanity check')
-            //     $scope.user = res.data;
-            // }, function(error) {
-            //     console.log('Unable to retrieve current user:', error);
-            // });
-            var person = $scope.user.filter(user => user.username === $scope.user[index].username);
-            $scope.user._id = person[index]._id;
+        // $scope.getCurrentUserInfo = function(index){
+        //     // console.log('client controller id is ' + _id);
+        //     // userFactory.getCurrentUser(_id).then(function(res){
+        //     //     // console.log('response data is ' + res.data)
+        //     //     // console.log('sanity check')
+        //     //     $scope.user = res.data;
+        //     // }, function(error) {
+        //     //     console.log('Unable to retrieve current user:', error);
+        //     // });
+        //     var person = $scope.user.filter(user => user.username === $scope.user[index].username);
+        //     $scope.user._id = person[index]._id;
 
-        }
+        // }
 
         
 
-        // function getCurrentUserInfo() {
-        //     console.log('yoo');
-        //     userFactory.getAllUsers().then(function(res){
-        //         // console.log('response data is ' + JSON.stringify(res.data));
-        //         // $scope.user = res.data;
-        //         // console.log('$scope.user is ' + JSON.stringify($scope.user));
-        //         // console.log(JSON.stringify($scope.user[0]._id));
-        //         // console.log(JSON.stringify($scope.user[1].username));
+        vm.getCurrentUserInfo = function(){
+            console.log('yoo');
+            vm.user._id = '5be0d14dda0b18153ab0fc56';
+            userFactory.getAllUsers().then(function(res){
                 
-        //         // console.log($scope.user.filter(user => user.username === $scope.user[0].username))
-                
-        //         // var person = $scope.user.filter(user => user.username === $scope.user[0].username);
+                $scope.user = res.data;
 
+                var person = $scope.user.filter(user => user.username === $scope.user[0].username);
 
-        //         // console.log(JSON.stringify(person[0]._id));
-    
-        //         // // $scope.user._id = $scope.user.filter(user => user._id === $scope.user[0]._id);
-    
-        //         // $scope.user._id = person[0]._id;
-        //         // $scope.user.username = person[0].username;
-        //         // $scope.user.email = person[0].email;
-        //         $scope.user = res.data;
-
-        //         var person = $scope.user.filter(user => user.username === $scope.user[0].username);
-
-        //         vm.user = person;
-        //         console.log(JSON.stringify(vm.user));
-        //     })
-        // }
+                vm.user._id = person[0]._id;
+                console.log(JSON.stringify(vm.user));
+            })
+        }
             // console.log('client controller id is ' + _id);
             // userFactory.getCurrentUser(_id).then(function(res){
             //     // console.log('response data is ' + res.data)
@@ -103,7 +89,6 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
 
             
 
-        
 
 
         
