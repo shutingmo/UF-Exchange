@@ -6,7 +6,7 @@ var path = require('path'),
     config = require('./config');
     userRouter = require('../routes/userServerRoutes.js');
     loginRouter = require('../routes/loginServerRoutes.js');
-
+    signupRouter = require('../routes/signupServerRoutes.js');
     
 module.exports.init = function() {
   //connect to database
@@ -20,6 +20,9 @@ module.exports.init = function() {
 
   //body parsing middleware 
   // app.use(bodyParser.urlencoded({extended: true}));
+  // app.use(express.bodyParser());
+  // app.use(bodyParser.urlencoded({ extended: false }))
+
 
   app.use(bodyParser.json());
   
@@ -34,11 +37,17 @@ module.exports.init = function() {
 
   // app.use('/user', userRouter);
 
-  app.use('/signup', userRouter)
+  app.use('/signup', signupRouter);
 
   // console.log('in express');
   app.use('/login/auth', loginRouter);
   
+  // app.use('/account/update', userRouter);
+
+  app.use('/account/getinfo', userRouter);
+
+
+  // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
 
 

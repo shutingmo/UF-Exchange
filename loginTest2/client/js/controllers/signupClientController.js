@@ -22,6 +22,14 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
                    console.log("\nunable to create user");
                    $scope.errorMessage = "didn't create user";
                 } 
+                else if (res.status === 200)
+                {
+                    console.log('signup was success, front end');
+                    // return res.send('woohoo login done, front end');
+                    // res.redirect('../../../')
+                    window.location.replace('../html/login.html');
+
+                }
    
                $scope.newUser = {};
            })

@@ -38,9 +38,18 @@ angular.module('user', []).factory('userFactory', function($http) {
             return $http.post('http://localhost:3000/login/auth', returnUser);
         },
 
-        getCurrentUser: function(){
-            return $http.get('http://localhost:3000/');
+        getAllUsers: function(){
+            return $http.get('http://localhost:3000/account/getinfo');
+        },
 
+        getCurrentUser: function(_id){
+            console.log('in fac id is ' + _id)
+            return $http.get('http://localhost:3000/account/getinfo/:_id', _id);
+
+        },
+
+        updateUser: function(updatedUser){
+            return $http.post('http://localhost:3000/account/update', updatedUser);
         }
 
         

@@ -1,17 +1,15 @@
 var userCtrl = require('../controllers/userServerController.js');
 var loginCtrl = require('../controllers/loginServerController.js');
-var signupCtrl = require('../controllers/signupServerController.js');
+// var signupCtrl = require('../controllers/signupServerController.js');
 
 var express = require('express');
 var router = express.Router();
 
+
 router.route('/')
-    .get(userCtrl.getAllUser);
+    .post(userCtrl.signupUser);
 
-router.route('/:_id')
-    .get(userCtrl.getCurrentUser)
 
-router.param('_id', userCtrl.userByID);
 
 module.exports = router;
 
