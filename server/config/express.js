@@ -4,6 +4,8 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config');
+    buyingRouter = require('../routes/buyingServerRoutes.js');
+    sellingRouter = require('../routes/sellingServerRoutes.js')
     userRouter = require('../routes/userServerRoutes.js');
     loginRouter = require('../routes/loginServerRoutes.js');
     signupRouter = require('../routes/signupServerRoutes.js');
@@ -46,6 +48,32 @@ module.exports.init = function() {
 
   app.use('/account/getinfo', userRouter);
 
+
+  // app.use('/account/update', userRouter);
+  //for cancel button just follow jason's logout example in the html
+
+
+
+  /**TODO 
+  Go to homepage for all routes not specified */ 
+  /**TODO 
+  Use the listings router for requests to the api */
+  app.use('/buying', buyingRouter);
+  app.use('/selling', sellingRouter);
+
+  /**TODO 
+  Go to homepage for all routes not specified */ 
+
+  
+
+  // app.use('/user', userRouter);
+
+  app.use('/signup', signupRouter);
+
+  // console.log('in express');
+  app.use('/login/auth', loginRouter);
+  
+  app.use('/account', userRouter);
 
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
