@@ -9,7 +9,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         // //     })
         // // }
         // $scope.user = {};
-        console.log('hi')
+        // console.log('hi')
         // userFactory.getCurrentUser().then(function(res){
         //     console.log('response data is ' + res.data);
         //     $scope.user = res.data;
@@ -17,34 +17,43 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         //     console.log('Unable to retrieve listings:', error);
         // });
         
-        $scope.update = function(){
+        // $scope.update = function(){
 
-            // $scope.user = this;
-            // console.log($scope.user.updatedUser);
+        //     // $scope.user = this;
+        //     // console.log($scope.user.updatedUser);
 
-            // let user = $scope.user;
-            // console.log(user.name);
-            $scope.user = [];
-            $scope.user.push($scope.updatedUser);
+        //     // let user = $scope.user;
+        //     // console.log(user.name);
+        //     $scope.user = [];
+        //     $scope.user.push($scope.updatedUser);
 
-            userFactory.updateUser($scope.updatedUser).then(function(res,err){
-                if(res.status !== 200)
-                {
-                   console.log("\nunable to update user");
-                   $scope.errorMessage = "didn't update user";
-                } 
-                else if (res.status === 200)
-                {
-                    console.log('update was success, front end');
-                    // return res.send('woohoo login done, front end');
-                    // res.redirect('../../../')
-                    window.location.replace('../html/userLanding.html');
+        //     userFactory.updateUser($scope.updatedUser).then(function(res,err){
+        //         if(res.status !== 200)
+        //         {
+        //            console.log("\nunable to update user");
+        //            $scope.errorMessage = "didn't update user";
+        //         } 
+        //         else if (res.status === 200)
+        //         {
+        //             console.log('update was success, front end');
+        //             // return res.send('woohoo login done, front end');
+        //             // res.redirect('../../../')
+        //             window.location.replace('../html/userLanding.html');
 
-                }
+        //         }
    
-               $scope.updatedUser = {};
-            })
-        }
+        //        $scope.updatedUser = {};
+        //     })
+        // }
+        userFactory.getCurrentUser().then(function(user){
+            console.log('client controller get cur user')
+            console.log(JSON.stringify(user.data))
+            var currUser = user.data;
+            $scope.name = currUser.name;
+            console.log('Hi ' + JSON.stringify(currUser.name) + '!');
+        }, function(error){
+            console.log('unable to get current user ', error)
+        })
     }
 
 ]);

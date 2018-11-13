@@ -5,13 +5,18 @@ var signupCtrl = require('../controllers/signupServerController.js');
 var express = require('express');
 var router = express.Router();
 
+// router.route('/')
+//     .get(userCtrl.getAllUser);
+
+// router.route('/:_id')
+//     .get(userCtrl.getCurrentUser)
+
 router.route('/')
-    .get(userCtrl.getAllUser);
+    .get(userCtrl.getCurrentUser);
 
-router.route('/:_id')
-    .get(userCtrl.getCurrentUser)
 
-router.param('_id', userCtrl.userByID);
+
+// router.param('_id', userCtrl.userByID);
 
 module.exports = router;
 
