@@ -159,50 +159,83 @@ exports.userByID = function(req, res, next, _id){
     });
 };
 exports.updateUser = function(req, res){
+    console.log("backend update user")
     console.log('request body in update is ' + JSON.stringify(req.body))
     console.log(req.body.username);
-    console.log('request user is ' + JSON.stringify(req.user))
     // console.log(req.body.password);
+    console.log('curr session user is ' + JSON.stringify(currSessionUser))
 
+    User.findOne({username: currSessionUser}, {username: true, email:true}, function(err, user){
+        console.log('aaaaaa')
+        if (err){
+            console.log(err);
+            return res.status(400).send(err)
+        } 
+        // else if(!user){
+        //     console.log(err);
+        //     return res.status(400).send(err)
+        // }
+        console.log('user found is ' + user);
 
-    // User.findOne({username: req.body.username}, {username: true, email:true}, function(err, user){
-    //     if (err){
-    //         console.log(err);
-    //         return res.status(400).send(err)
-    //     } 
+        // if(user.username === req.body.username)
+        // {
+        //    console.log('this is your current user name') 
+        //    return res.status(400).send(err)
+        // }
 
-    //     if(user.username !== req.body.username)
-    //     {
-    //         Users.findOne( {username: req.body.username} , function(err, user){
-    //             if (err){
-    //                 console.log(err);
-    //                 return res.status(400).send(err)
-    //             } 
+        if(user.username !== req.body.username)
+        {
+            User.findOne( {username: req.body.username} , function(err, user){
+                if (err){
+                    console.log(err);
+                    return res.status(400).send(err)
+                } 
+                // if(!user){
+                //     console.log(err);
+                //     return res.status(400).send(err)
+                // }
 
-    //             if(user)
-    //             {
-    //                 return res.status(400).send('username ' + req.body.username + ' already taken')
-    //             }
-                
-    //         })
-    //     }
-    //     if(user.email !== req.body.email)
-    //     {
-    //         Users.findOne( {email: req.body.email} , function(err, user){
-    //             if (err){
-    //                 console.log(err);
-    //                 return res.status(400).send(err)
-    //             } 
+                if(user)
+                {
+                    console.log('found based on user name ' + user)
+                    return res.status(400).send('username ' + req.body.username + ' already taken')
+                }
+                console.log('no user or already taken username')
+            })
+        }
 
-    //             if(user) {
-    //                 return res.status(401).send('email ' + req.body.email + ' already taken')
-    //             }
-    //             else {
-    //                 update();
-    //             }
-    //         })
-    //     }
-    // })
+        // if(user.email === req.body.email)
+        // {
+        //    console.log('this is your current email') 
+        //    return res.status(400).send(err)
+        // }
+
+        if(user.email !== req.body.email)
+        {
+            User.findOne( {email: req.body.email} , function(err, user){
+                if (err){
+                    console.log(err);
+                    return res.status(400).send(err)
+                } 
+                // if(!user){
+                //     console.log(err);
+                //     return res.status(400).send(err)
+                // }
+
+                if(user) {
+                    console.log('found based on email ' + user)
+
+                    return res.status(401).send('email ' + req.body.email + ' already taken')
+                }
+                else {
+                    console.log('no user or already taken email')
+
+                    update();
+                }
+
+            })
+        }
+    })
     function update(){
 
         /*//Jason Watmore's update method:
@@ -221,25 +254,48 @@ exports.updateUser = function(req, res){
             function(err, user)
                 if(err) return res.status(400).send(err);
         );*/
-        
-        var user = req.user;
-        user.name = req.body.name;
-        user.username = req.body.username;
-        user.email = req.body.email;
+        console.log('inside update backend')
+        console.log(JSON.stringify(req.body));
+
+        // var user = req.body;
+        // user.name = req.body.name;
+        // user.username = req.body.username;
+        // user.email = req.body.email;
+
+        // if(req.body.password)
+        //     user.password = bcrypt.hashSync(req.body.password, 10);
+
+        // User.update(function(err) {
+        //     if(err) {
+        //         console.log(err);
+        //         return res.status(400).send(err);
+        //     }
+        //     else {
+        //         console.log('Updated user attributes');
+        //         res.json(user);
+        //     }
+        // });
+        var user = req.body;
 
         if(req.body.password)
             user.password = bcrypt.hashSync(req.body.password, 10);
 
-        user.save(function(err) {
-            if(err) {
-                console.log(err);
-                return res.status(400).send(err);
+        var newUserInfo = {
+            name:req.body.name,
+            username:req.body.username,
+            email:req.body.email,
+            password:user.password
+        }
+
+        User.update(newUserInfo, function(err){
+            if(err)
+            {
+                console.log('unable to update user')
+                return res.status(400).send('update user unsuccessful')
             }
-            else {
-                console.log('Updated user attributes');
-                res.json(user);
-            }
-        });
+        })
+
+
     }
 
 };

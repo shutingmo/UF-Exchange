@@ -12,7 +12,8 @@ var router = express.Router();
 //     .get(userCtrl.getCurrentUser)
 
 router.route('/')
-    .get(userCtrl.getCurrentUser);
+    .get(userCtrl.getCurrentUser)
+    .post(userCtrl.updateUser)
 
 
 

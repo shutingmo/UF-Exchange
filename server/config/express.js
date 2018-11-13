@@ -48,6 +48,8 @@ module.exports.init = function() {
 
   app.use('/account/getinfo', userRouter);
 
+  app.use('/account/update',userRouter);
+
 
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html

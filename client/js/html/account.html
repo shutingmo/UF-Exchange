@@ -15,13 +15,13 @@
       <p>Please fill in this form to update your account.</p>
       <hr>
       
-      <h1>Hi {{name}}</h1>
+      <h1>Hi {{user.name}}</h1>
       <!-- <form ng-submit="signupUser()"> -->
-      Name: <input type="text" placeholder="Enter Name" ng-model="updatedUser.name" required><br/>
+      Name: <input type="text" placeholder={{user.name}} ng-model="updatedUser.name" required><br/>
 
-      Username: <input type="text" placeholder="Enter Username" ng-model="updatedUser.username"  required><br/>
+      Username: <input type="text" placeholder={{user.username}} ng-model="updatedUser.username"  required><br/>
 
-      Email: <input type="text" placeholder="Enter Email" ng-model="updatedUser.email"  required><br/>
+      Email: <input type="text" placeholder={{user.email}} ng-model="updatedUser.email"  required><br/>
 
       Password: <input type="password" placeholder="Enter Password" ng-model="updatedUser.password"  required><br/>
 

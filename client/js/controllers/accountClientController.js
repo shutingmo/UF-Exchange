@@ -49,12 +49,35 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             console.log('client controller get cur user')
             console.log(JSON.stringify(user.data))
             var currUser = user.data;
-            $scope.name = currUser.name;
+            $scope.user = currUser;
+        
             console.log('Hi ' + JSON.stringify(currUser.name) + '!');
         }, function(error){
             console.log('unable to get current user ', error)
         })
+
+        $scope.update = function(){
+            console.log('front end update user')
+            userFactory.updateUser($scope.updatedUser).then(function(res,err){
+                if(res.status !== 200)
+                {
+                    console.log("\nunable to update user");
+                    $scope.errorMessage = "didn't update user";
+                } 
+                else if (res.status === 200)
+                {
+                    console.log('update was success, front end');
+                    // return res.send('woohoo login done, front end');
+                    // res.redirect('../../../')
+                    // window.location.replace('../html/userLanding.html');
+
+                }
+    
+                $scope.updatedUser = {};
+            })
+        }
     }
+
 
 ]);
 
