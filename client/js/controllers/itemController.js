@@ -75,13 +75,13 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
     $scope.saveSelling = function() {
       $scope.items.push($scope.newItem);
 
+      console.log(JSON.stringify($scope.newItem));
       itemFactory.createSelling($scope.newItem).then(function(res,err)
       {
         if(res.status !== 200)
         {
-          $scope.errorMessage = "Error. Listing not successfully added";
-          console.log('Unable to add listing', err);
-        }
+            console.log("\nunable to add listing");
+        } 
 
         $scope.newItem = {};
 
