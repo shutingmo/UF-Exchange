@@ -1,6 +1,6 @@
 /* register the modules the application depends upon here*/
 angular.module('items', []);
-// angular.module('user', []);
+angular.module('user', []);
 
 
 /* register the application and inject all the necessary dependencies */
