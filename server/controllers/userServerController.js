@@ -117,6 +117,11 @@ exports.signupUser = function(req, res){
 
 exports.getAllUser = function(req,res){
     User.find({}, function(err, data){
+        if(err)
+        {
+            console.log(err)
+            return res.status(400).send(err);
+        }
         res.json(data);
     })
 };
@@ -158,6 +163,7 @@ exports.userByID = function(req, res, next, _id){
         }
     });
 };
+
 exports.updateUser = function(req, res){
     console.log("backend update user")
     console.log('request body in update is ' + JSON.stringify(req.body))
@@ -171,61 +177,43 @@ exports.updateUser = function(req, res){
             console.log(err);
             return res.status(400).send(err)
         } 
-        // else if(!user){
-        //     console.log(err);
-        //     return res.status(400).send(err)
-        // }
-        console.log('user found is ' + user);
+        else if(!user){
+            console.log(err);
+            return res.status(400).send(err)
+        }
 
-        // if(user.username === req.body.username)
-        // {
-        //    console.log('this is your current user name') 
-        //    return res.status(400).send(err)
-        // }
-
-        if(user.username !== req.body.username)
+        //if the current username and the username you want to change it to are different
+        else if(user.username !== req.body.username)
         {
+            //see if there is already a user with that username 
             User.findOne( {username: req.body.username} , function(err, user){
                 if (err){
                     console.log(err);
                     return res.status(400).send(err)
                 } 
-                // if(!user){
-                //     console.log(err);
-                //     return res.status(400).send(err)
-                // }
 
-                if(user)
+                else if(user)
                 {
                     console.log('found based on user name ' + user)
-                    return res.status(400).send('username ' + req.body.username + ' already taken')
+                    return res.status(400).send(user)
                 }
-                console.log('no user or already taken username')
             })
         }
 
-        // if(user.email === req.body.email)
-        // {
-        //    console.log('this is your current email') 
-        //    return res.status(400).send(err)
-        // }
-
+        //if current email and email you want to change it to are different
         if(user.email !== req.body.email)
         {
+            //see if a user already has this email
             User.findOne( {email: req.body.email} , function(err, user){
                 if (err){
                     console.log(err);
                     return res.status(400).send(err)
                 } 
-                // if(!user){
-                //     console.log(err);
-                //     return res.status(400).send(err)
-                // }
-
-                if(user) {
+              
+                else if(user) {
                     console.log('found based on email ' + user)
 
-                    return res.status(401).send('email ' + req.body.email + ' already taken')
+                    return res.status(401).send(user)
                 }
                 else {
                     console.log('no user or already taken email')
@@ -237,44 +225,9 @@ exports.updateUser = function(req, res){
         }
     })
     function update(){
-
-        /*//Jason Watmore's update method:
-        var set = {
-            name: req.body.name,
-            username: req.body.username,
-            email: req.body.email
-        };
-
-        if (req.body.password)
-            set.password = bcrypt.hashSync(userParam.password, 10);
-
-        User.update(
-            { username: req.body.username },
-            { $set: set },
-            function(err, user)
-                if(err) return res.status(400).send(err);
-        );*/
         console.log('inside update backend')
         console.log(JSON.stringify(req.body));
 
-        // var user = req.body;
-        // user.name = req.body.name;
-        // user.username = req.body.username;
-        // user.email = req.body.email;
-
-        // if(req.body.password)
-        //     user.password = bcrypt.hashSync(req.body.password, 10);
-
-        // User.update(function(err) {
-        //     if(err) {
-        //         console.log(err);
-        //         return res.status(400).send(err);
-        //     }
-        //     else {
-        //         console.log('Updated user attributes');
-        //         res.json(user);
-        //     }
-        // });
         var user = req.body;
 
         if(req.body.password)
@@ -287,11 +240,17 @@ exports.updateUser = function(req, res){
             password:user.password
         }
 
-        User.update(newUserInfo, function(err){
+        currSessionUser = req.body.username;
+
+        User.updateOne(newUserInfo, function(err){
             if(err)
             {
                 console.log('unable to update user')
-                return res.status(400).send('update user unsuccessful')
+                return res.status(400).send(err)
+            }
+            else{
+                console.log('updated user')
+                return res.status(200).send('successful update')
             }
         })
 
@@ -299,6 +258,13 @@ exports.updateUser = function(req, res){
     }
 
 };
+
+exports.logoutUser = function(req, res) {
+    console.log('Goodbye ' + currSessionUser);
+    currSessionUser = null;
+    return res.status(200).send("Logged out!");
+};
+
 
 
 // exports.deleteUser = function(req,res){
