@@ -64,7 +64,7 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
 
         if(res.status !== 200)
         {
-            console.log("\nunable to add listing");
+            console.log("\nunable to add listing", err);
         } 
       
         $scope.newItem = {};
@@ -75,9 +75,9 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
     $scope.saveSelling = function() {
       $scope.items.push($scope.newItem);
 
-      itemFactory.createSelling($scope.newItem).then(function(err)
+      itemFactory.createSelling($scope.newItem).then(function(res,err)
       {
-        if(err)
+        if(res.status !== 200)
         {
           $scope.errorMessage = "Error. Listing not successfully added";
           console.log('Unable to add listing', err);
