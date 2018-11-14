@@ -53,14 +53,20 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
     $scope.saveBuying = function() {
       $scope.items.push($scope.newItem);
 
-      Items.createBuying($scope.newItem).then(function(err)
+      console.log(JSON.stringify($scope.newItem));
+      itemFactory.createBuying($scope.newItem).then(function(res,err)
       {
-        if(err)
-        {
-          $scope.errorMessage = "Error. Listing not successfully added";
-          console.log('Unable to add listing', err);
-        }
+        // if(err)
+        // {
+        //   $scope.errorMessage = "Error. Listing not successfully added";
+        //   console.log('Unable to add listing', err);
+        // }
 
+        if(res.status !== 200)
+        {
+            console.log("\nunable to add listing");
+        } 
+      
         $scope.newItem = {};
 
       });
@@ -69,7 +75,7 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
     $scope.saveSelling = function() {
       $scope.items.push($scope.newItem);
 
-      Items.createSelling($scope.newItem).then(function(err)
+      itemFactory.createSelling($scope.newItem).then(function(err)
       {
         if(err)
         {
