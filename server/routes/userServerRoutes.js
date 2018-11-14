@@ -14,6 +14,7 @@ var router = express.Router();
 router.route('/')
     .get(userCtrl.getCurrentUser)
     .post(userCtrl.updateUser)
+    .delete(userCtrl.deleteUser);
 
 
 

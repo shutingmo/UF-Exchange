@@ -18,6 +18,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
                 if(res.status !== 200)
                 {
                     console.log("\nunable to update user");
+
                     $scope.errorMessage = "didn't update user";
                 } 
                 else if (res.status === 200)
@@ -40,6 +41,24 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
                 else
                     console.log('couldn\'t log you out', err);
             })
+        };
+
+        $scope.delete = function() {
+            console.log('logging you out...');
+
+            if (confirm("Are you sure you want to delete your account?")) {
+
+                userFactory.delete().then(function(err) {
+                    if (err.status === 200)
+                        window.location.replace('../html/homeLanding.html');
+                    else
+                        console.log('couldn\'t delete your account', err);
+                })
+
+            } else {
+                
+            }   
+            
         };
     }
 

@@ -28,12 +28,6 @@ exports.authenticateUser = function(req, res){
             return res.status(400).send(err);
         }
 
-        // if(user && (req.body.password === user.password) && (req.body.username === user.username))
-        // {
-        //     console.log('login complete');
-        //     currSessionUser = req.body.username;
-        //     return res.status(200).send('login done');
-        // }
         if(user && bcrypt.compareSync(req.body.password, user.password) && (req.body.username === user.username))
         {
             console.log('login complete');
@@ -46,12 +40,7 @@ exports.authenticateUser = function(req, res){
             console.log('Username or password is incorrect');
             return res.status(401).send('Username or password is incorrect');
         }
-        
-
-        // if(user && bcrypt.compareSync(req.body.password, user.password))
-        //     return res.sendstatus(200);
-        // else
-        //     return res.status(401).send('Username or password is incorrect');
+    
     })
 };
 
@@ -183,7 +172,7 @@ exports.updateUser = function(req, res){
         }
 
         //if the current username and the username you want to change it to are different
-        else if(user.username !== req.body.username)
+        if(user.username !== req.body.username)
         {
             //see if there is already a user with that username 
             User.findOne( {username: req.body.username} , function(err, user){
@@ -267,16 +256,19 @@ exports.logoutUser = function(req, res) {
 
 
 
-// exports.deleteUser = function(req,res){
-//     var user = req.user;
+exports.deleteUser = function(req,res){
+    console.log('delete user ' + JSON.stringify(currSessionUser));
 
-//     user.remove(function(err) {
-//         if(err) {
-//             console.log(err);
-//             return res.status(400).send(err);
-//         }
-//         else
-//             res.end();
-//     })
-// };
+    User.findOneAndDelete({username: currSessionUser}, function(err){
+        if(err)
+            {
+                console.log('unable to delete user')
+                return res.status(400).send(err)
+            }
+            else{
+                console.log('deleted user')
+                return res.status(200).send('successful update')
+            }
+    })
+};
 

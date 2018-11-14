@@ -51,10 +51,16 @@ button:hover {
     background-color: #f44336;
 }
 
+.deletebtn {
+    padding: 14px 20px;
+    background-color: rgb(27, 180, 168);
+}
+
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
+.cancelbtn, .signupbtn, .deletebtn {
   float: left;
-  width: 50%;
+  width: 30%;
+  margin: 15px;
 }
 
 /* Add padding to container elements */

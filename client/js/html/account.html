@@ -15,8 +15,8 @@
       <p>Please fill in this form to update your account.</p>
       <hr>
       
-      <h1>Hi {{user.name}}</h1>
-      <!-- <form ng-submit="signupUser()"> -->
+      <h1>Hi {{user.name}} </h1>
+      
       Name: <input type="text" placeholder={{user.name}} ng-model="updatedUser.name" required><br/>
 
       Username: <input type="text" placeholder={{user.username}} ng-model="updatedUser.username"  required><br/>
@@ -27,11 +27,13 @@
 
       Retype Password: <input type="password" placeholder="Retype Password" ng-model="updatedUser.retypePassword"  required><br/>
 
-      <!-- <button class="btn btn-primary" ng-click="signup()">Sign Up</button> -->
     </form>
 
     <div class="clearfix">
       <button type="submit" class="signupbtn" ng-click="update()">Update</button>
+
+      <button type="submit" class="deletebtn" ng-click="delete()">Delete Account</button>
+
 
       <a href="userLanding.html">
           <button type="button" class="cancelbtn">Cancel</button>

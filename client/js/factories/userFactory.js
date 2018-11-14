@@ -29,18 +29,19 @@ angular.module('user', []).factory('userFactory', function($http) {
         updateUser: function(updatedUser){
             return $http.post('http://localhost:3000/account/update', updatedUser);
         },
-        
+
         logout: function() {
             console.log('still logging you out...')
             return $http.delete('http://localhost:3000/login/auth')
-        }
+        },
 
-        
+        delete: function(){
+            console.log('in process of deleting your account')
+            return $http.delete('http://localhost:3000/account/delete')
+        }
 
     };
 
-    return userFactoryMethods;
-
-    
+    return userFactoryMethods;  
   });
   
