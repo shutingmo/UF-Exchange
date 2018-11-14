@@ -15,8 +15,21 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+<<<<<<< HEAD
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongoose": "^4.13.17",
+    "morgan": "^1.6.1",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "should": "^7.1.1",
+    "supertest": "^1.2.0"
+=======
     "express": "^4.16.4",
     "html": "^1.0.0",
     "morgan": "^1.9.1"
+>>>>>>> 96544d152568491d64d91ea764c06d685855f472
   }
 }

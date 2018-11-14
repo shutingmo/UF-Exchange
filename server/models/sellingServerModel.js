@@ -52,7 +52,7 @@ var sellingSchema = new Schema({
   flagged: {
     type: Boolean,
     default: 'false'
-  },
+  }
   // edited_at: Date
 });
 

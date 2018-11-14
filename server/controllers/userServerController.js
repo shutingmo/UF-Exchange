@@ -18,7 +18,7 @@ var bcrypt = require('bcryptjs');
 exports.authenticateUser = function(req, res){
     console.log('the username is ' + JSON.stringify(req.body.username));
     console.log('the password is ' + JSON.stringify(req.body.password));
-    
+
     // res.send(req.body.username);
     User.findOne({username:req.body.username}, function(err, user) {
         console.log('the user found is ' + JSON.stringify(user));
@@ -40,14 +40,14 @@ exports.authenticateUser = function(req, res){
             console.log('Username or password is incorrect');
             return res.status(401).send('Username or password is incorrect');
         }
-    
+
     })
 };
 
 exports.signupUser = function(req, res){
 
     User.findOne({username: req.body.username}, function(err, user){
-        if(err) 
+        if(err)
         {
             console.log(err);
             return res.status(400).send(err);
@@ -85,7 +85,7 @@ exports.signupUser = function(req, res){
         newUser.password = bcrypt.hashSync(req.body.password, 10);
 
         newUser.save(function(err){
-            if(err) 
+            if(err)
             {
                 console.log(err)
                 res.status(400).send(err)
@@ -115,19 +115,19 @@ exports.getAllUser = function(req,res){
     })
 };
 exports.getCurrentUser = function(req,res){
-    
+
     console.log('backend get curr user')
     console.log(JSON.stringify(currSessionUser))
     User.findOne( {username: currSessionUser}, {password: 0}, function(err, user){
         if (err){
             console.log(err);
             return res.status(400).send(err)
-        } 
+        }
 
         if(!user){
             console.log('user not found');
             return res.status(404).send('user not found')
-        } 
+        }
 
         console.log('current user found is ' + JSON.stringify(user.name));
         return res.status(200).send(user)
@@ -165,7 +165,7 @@ exports.updateUser = function(req, res){
         if (err){
             console.log(err);
             return res.status(400).send(err)
-        } 
+        }
         else if(!user){
             console.log(err);
             return res.status(400).send(err)
@@ -174,12 +174,12 @@ exports.updateUser = function(req, res){
         //if the current username and the username you want to change it to are different
         if(user.username !== req.body.username)
         {
-            //see if there is already a user with that username 
+            //see if there is already a user with that username
             User.findOne( {username: req.body.username} , function(err, user){
                 if (err){
                     console.log(err);
                     return res.status(400).send(err)
-                } 
+                }
 
                 else if(user)
                 {
@@ -197,12 +197,12 @@ exports.updateUser = function(req, res){
                 if (err){
                     console.log(err);
                     return res.status(400).send(err)
-                } 
-              
+                }
+
                 else if(user) {
                     console.log('found based on email ' + user)
 
-                    return res.status(401).send(user)
+                    return res.status(401)
                 }
                 else {
                     console.log('no user or already taken email')
@@ -271,4 +271,3 @@ exports.deleteUser = function(req,res){
             }
     })
 };
-

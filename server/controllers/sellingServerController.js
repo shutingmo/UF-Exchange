@@ -2,12 +2,12 @@ var express = require('express'),
     mongoose = require('mongoose');
     Selling = require('../models/sellingServerModel.js');
 
-// Create a selling listing 
+// Create a selling listing
 exports.create = function(req, res) {
 
     /* Instantiate a Listing */
     var selling = new Selling(req.body);
-  
+
     /* Then save the listing */
     selling.save(function(err) {
       if(err) {
@@ -19,7 +19,7 @@ exports.create = function(req, res) {
     });
   };
 
-  //lists everything 
+  //lists everything
   exports.listAll = function(req, res){
     Selling.find({}, function(err,data){
         res.json(data);
@@ -28,7 +28,8 @@ exports.create = function(req, res) {
 
   //gets current selling item
   exports.read = function(req, res){
-      res.json(req.selling);
+    console.log('curr item ' + JSON.stringify(req.selling));
+    res.json(req.selling);
   }
 
   //updates selling item
@@ -49,3 +50,26 @@ exports.create = function(req, res) {
 
       res.json(selling);
   }
+
+  // exports.listingByID = function(req, res, id) {
+  //   Selling.find({itemId: id}).exec(function(err, data) {
+  //     if(err) {
+  //       res.status(400).send(err);
+  //     } else {
+  //       res.json(data);
+  //       //req.selling = selling;
+  //       //next();
+  //     }
+  //   });
+
+  exports.listingByID = function(req, res, next, id) {
+    console.log('back end controller id is ' + id);
+    Selling.findById(id).exec(function(err, selling) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.selling = selling;
+      next();
+    }
+  });
+};

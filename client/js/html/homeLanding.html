@@ -1,18 +1,306 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home landing Dummy Page</title>
+    <title>Home Landing</title>
 </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
 
-<body>
+<body ng-app="ufxApp">
 
+<div ng-controller="ItemController">
+
+
+    <!-- <h1>My name is {{$scope.user.name}}</h1> -->
     <h1>Welcome to the Home Landing Page</h1>
 
     <a href="login.html">
-        <button type="button">Login</button>       
+        <button type="button">Login</button>
+    </a>
+    <a href="/js/html/signup.html">
+        <button type="button">Signup</button>
     </a>
 
-    
+    <div class="row">
+    <div ng-repeat="items in items | filter: query">
+        <div class="w3-col l3 s6">
+          <div class="w3-container">
+            <div class="w3-display-container">
+            <img src="../images/add-item-icon.png" style="width:65%">
+            <p>{{items.title}}<br><b>${{items.price}}</b></p>
+             <div class="w3-display-middle w3-display-hover">
+                <button ng-click="getCurrentItem($index)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+        <style>
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #myImg:hover {opacity: 0.7;}
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* Caption of Modal Image */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Add Animation */
+        .modal-content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.1)}
+            to {transform: scale(1)}
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+        .shiftright {
+        text-align: center;
+        margin-right: 200px;
+        }
+        .shiftleft {
+        text-align: center;
+        margin-left: 200px;
+        }
+        .description {
+        text-align: left;
+        margin-left: 200px;
+        }
+        .checked {
+        color: orange;
+        }
+        .unchecked {
+        color: white;
+        }
+        </style>
+        <!-- <script>
+          returnDetailedInfo();
+        </script> -->
+
+        <!-- <div class="product">
+            <body>
+                  <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
+                  <img id="frontback" src="../images/iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
+                  <img id="buttons" src="../images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
+                    <h3 class="shiftright">
+                      {{detailedInfo.title}}
+                      <h4 class="shiftright">
+                        Price: ${{detailedInfo.price}} <br>
+                        Selling <br>
+                        <button>Buy Now</button>
+                        <button>Message Seller</button><br>
+                        <h5 class="shiftright">
+                          User: {{detailedInfo.seller.name}} <br>
+                          Rating:
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star unchecked"></span>
+                          <span class="fa fa-star unchecked"></span>
+                          <br>Date Posted: 10/29/2017 <br>
+                          Condition: {{detailedInfo.condition}} <br>
+                          Meeting Location: <br>
+                        </h5>
+                      </h4>
+                    </h3>
+
+                  </h2>
+            </body>
+            <br>
+
+            <section class="description">
+
+            <details>
+             <summary >Product Specs</summary>
+              <div>
+                ItemId: {{detailedInfo._id}} <br>
+                Category: {{detailedInfo.category}} <br>
+                Description: {{detailedInfo.description}}<br>
+              </div>
+            </details>
+
+
+            </section>
+
+          </div> -->
+
+
+
+
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <span class="close">×</span>
+          <img class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
+
+        <script>
+        /* Get the modal */
+        var modal = document.getElementById('myModal');
+
+        /* Get the image and insert it inside the modal - use its "alt" text as a caption */
+
+        var img1 = document.getElementById('side');
+        var img2 = document.getElementById('frontback');
+        var img3 = document.getElementById('buttons');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img1.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        img2.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        img3.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        </script>
+
+
+
+
+    <!-- <div ng-click="getCurrentItem()">
+      <a ng-href="http://localhost:3000/selling/{{items._id}}">
+        <button type="button">item info</button>
+      </a>
+    </div> -->
+    <!-- <div ng-click="getCurrentUserInfo()"> -->
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{vm.user._id}}">
+            <button type="button">user vm info</button>
+        </a> -->
+
+        <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+        <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+    <!-- </div> -->
+
+
+
+
+
+
+    <!-- <div ng-repeat="user in user | filter: query" ng-click="getCurrentUserInfo($index)"></div> -->
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{use._id}}">user info</a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user._id}}</a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">
+        <button type="button">user info</button>
+    </a> -->
+
+    <!-- <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.username}}</a>
+    <a ng-href="http://localhost:3000/account/getinfo/{{user._id}}">{{user.email}}</a> -->
+
+
+
+    <!-- </div> -->
+
+<!-- <h2>Post a Listing</h2> -->
+<!-- <button type="button"><a href="dummyIndex.html"></a>Click Me!</button> -->
+
+
+
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.js"></script>
+<script src="../app.js"></script>
+<script src="../factories/itemFactory.js"></script>
+<script src="../controllers/itemController.js"></script>
+
 
 </body>
 </html>
