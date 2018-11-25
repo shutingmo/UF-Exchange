@@ -17,9 +17,11 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
+    "install": "^0.12.2",
     "mongoose": "^4.13.17",
-    "morgan": "^1.6.1",
+    "morgan": "^1.9.1",
+    "npm": "^6.4.1",
     "request": "^2.67.0"
   },
   "devDependencies": {

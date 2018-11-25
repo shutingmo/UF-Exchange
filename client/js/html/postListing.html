@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+        
+
 </head>
 <html>
     <body ng-app="ufxApp"></body>
@@ -39,11 +46,11 @@
                         Location
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" ng-click ="setLocation('Century Tower')">Century Tower</a>
-                        <a class="dropdown-item" href="#" ng-click ="setLocation('Reitz Union')">Reitz Union</a>
-                        <a class="dropdown-item" href="#" ng-click ="setLocation('Hub')">Hub</a>
-                        <a class="dropdown-item" href="#" ng-click ="setLocation('Library West')">Library West</a>
-                        <a class="dropdown-item" href="#" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a>
+                        <a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a>
+                        <a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a>
+                        <a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a>
+                        <a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a>
+                        <a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a>
                     </div>
                 </div>
                 <br />
@@ -55,8 +62,12 @@
             </form>
         </div>
 
+        <br />
+        <div id='map' style='width: 400px; height: 300px;'></div>
+ 
         <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
         <script src="../app.js"></script>
+        <script src="../postListing.js"></script>
         <script src="../factories/itemFactory.js"></script>
         <script src="../controllers/itemController.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
