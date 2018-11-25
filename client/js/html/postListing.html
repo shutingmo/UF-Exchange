@@ -14,12 +14,30 @@
         <div ng-controller="ItemController">
             <form novalidate class="simple-form">
                 <h2>Add New Item</h2>
-                itemId: <input type="text" ng-model="newItem.itemId" /><br />
                 Title: <input type="text" ng-model="newItem.title" /><br />
-                Category: <input type="text" ng-model="newItem.category" /><br />
+
+                <!-- category dropdown -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Textbooks')">Textbooks</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Electronics')">Electronics</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Vehicles')">Vehicles</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Tickets')">Tickets</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Clothing')">Clothing</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Entertainment')">Entertainment</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Housing')">Housing</a>
+                        <a class="dropdown-item" href="#" ng-click ="setCategory('Miscellaneous')">Miscellaneous</a>
+                    </div>
+                </div>
+                <br />
+
                 Price: <input type="text" ng-model="newItem.price" /><br />
                 Description: <input type="text" ng-model="newItem.description" /><br />
-                <!-- Condition: <input type="text" ng-model="newItem.condition" /><br /> -->
+                
+                <!-- condition dropdown -->
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Condition
@@ -33,7 +51,7 @@
                     </div>
                 </div>
                 <br />
-                <!-- Location: <input type="text" ng-model="newItem.location" /><br /> -->
+                
                 Buyer: <input type="text" ng-model="newItem.buyer.name" /><br />
                 Buyer email: <input type="text" ng-model="newItem.buyer.email" /><br />
                 Seller: <input type="text" ng-model="newItem.seller.name" /><br />
@@ -41,6 +59,7 @@
                 Complete: <input type="text" ng-model="newItem.complete" /><br />
                 Flagged: <input type="text" ng-model="newItem.flagged" /><br />
 
+                <!-- location dropdown -->
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Location
