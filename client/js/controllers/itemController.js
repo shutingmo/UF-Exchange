@@ -38,8 +38,14 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
       console.log($scope.detailedInfo);
     }
 
+    $scope.setCategory = function(category) {
+      //setting the category from dropdown
+      $scope.newItem.category = category;
+      $scope.items.push($scope.newItem.category);
+    }
+
     $scope.setCondition = function(condition) {
-      //setting the location from dropdown
+      //setting the condition from dropdown
       $scope.newItem.condition = condition;
       $scope.items.push($scope.newItem.condition);
     }
