@@ -35,7 +35,6 @@ exports.create = function(req, res) {
   exports.update = function(req, res){
       var buying = req.buying;
 
-      buying.itemId = req.body.itemId;
       buying.title = req.body.title;
       buying.category = req.body.category;
       buying.price = req.body.price;

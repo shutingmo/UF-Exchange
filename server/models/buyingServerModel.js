@@ -4,11 +4,6 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var buyingSchema = new Schema({
-  itemId: {
-    type: Number,
-    required: true,
-    unique: true
-  },
   title: {
     type: String,
     required: true

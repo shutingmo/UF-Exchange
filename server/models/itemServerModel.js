@@ -4,18 +4,14 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var itemSchema = new Schema({
-  itemId: {
-    type: Number,
-    required: true,
-    unique: true
-  },
   title: {
     type: String,
     required: true
   },
   category: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Textbooks, Electronics, Vehicles, Tickets, Clothing, Entertainment, Housing, Miscellaneous']
   },
   price: {
     type: Number,
