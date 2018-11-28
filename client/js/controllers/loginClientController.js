@@ -6,7 +6,7 @@ angular.module('user').controller('loginController', ['$scope','userFactory',
             $scope.user.push($scope.returnUser);
             console.log(JSON.stringify($scope.returnUser));
            
-            userFactory.loginUser($scope.returnUser).then(function(res,err){
+            userFactory.loginUser($scope.returnUser).then(function(res,err, req){
                 console.log('in client controller');
 
                 if(res.status !== 200)

@@ -13,6 +13,10 @@
         <h1>Login</h1>
         <p>Please fill in this form to login into your account.</p>
         <hr>
+        
+        <div class = "error">
+            {{message}}
+        </div>
 
         Username: <input type="text" placeholder="Enter Username" ng-model="returnUser.username" required><br/>
 
@@ -43,8 +47,10 @@
 <script src="../app.js"></script>
 <script src="../factories/userFactory.js"></script>
 <script src="../controllers/loginClientController.js"></script>
-
-
+<!-- 
+<h3> Flash messages in Express 4 </h3>
+<p><a href="http://localhost:3000/addFlash">Click here</a> for a flash message using the express-flash module.</p>
+<p>Refresh to clear the flash message.</p> -->
 
 
 </body>

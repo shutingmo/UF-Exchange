@@ -4,6 +4,10 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
+    flash = require('express-flash'),
+    session = require('express-session'),
+    connectFlash = require('connect-flash')
+
 
     buyingRouter = require('../routes/buyingServerRoutes.js'),
     sellingRouter = require('../routes/sellingServerRoutes.js'),
@@ -21,6 +25,20 @@ module.exports.init = function() {
   var app = express();
 
   //enable request logging for development debugging
+  app.use(session({
+    secret : "secret string",
+    resave: true,
+    saveUninitialized: true
+  }));
+  
+  app.use(require('connect-flash')());
+  app.use(function (req, res, next){
+    res.locals.messages = require('express-messages')(req,res);
+    next();
+  });
+  // initialise the flash middleware
+  app.use(flash());
+
   app.use(morgan('dev'));
 
   //body parsing middleware
@@ -84,7 +102,18 @@ module.exports.init = function() {
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
 
+  
 
+  // app.get('/', function (req, res) {
+  //   req.flash('info', 'Welcome');
+  //   res.render('index', {
+  //     title: 'Home'
+  //   })
+  // });
+  // app.get('/addFlash', function (req, res) {
+  //   req.flash('info', 'Flash Message Added');
+  //   // res.redirect('/');
+  // });
 
   /**TODO
   Go to homepage for all routes not specified */
