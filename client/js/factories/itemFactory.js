@@ -6,34 +6,40 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         console.log('in fac id')
         return $http.get('http://localhost:3000/account/getinfo');
       },
-      getAll: function() {
+      getBuying: function() {
         return $http.get('http://localhost:3000/buying');
-      },
-
-      createBuying: function(listing) {
-        return $http.post('http://localhost:3000/buying', listing);
       },
 
       getSelling: function() {
         return $http.get('http://localhost:3000/selling');
       },
 
-      setId: function(listingId){
-        currId = listingId;
-      },
-
-      findItem: function(_id) {
-        return $http.get('http://localhost:3000/selling/' + _id);
+      createBuying: function(listing) {
+        return $http.post('http://localhost:3000/buying', listing);
       },
 
       createSelling: function(listing) {
         return $http.post('http://localhost:3000/selling', listing);
       },
 
-      delete: function(_id) {
+      setId: function(listingId){
+        currId = listingId;
+      },
 
+      findSellingItem: function(_id) {
+        return $http.get('http://localhost:3000/selling/' + _id);
+      },
+
+      findBuyingItem: function(_id) {
+        return $http.get('http://localhost:3000/buying/' + _id);
+      },
+
+      deleteSelling: function(_id) {
         return $http.delete('http://localhost:3000/selling/' + _id);
+      },
 
+      deleteBuying: function(_id) {
+        return $http.delete('http://localhost:3000/buying/' + _id);
       },
 
     };

@@ -12,10 +12,10 @@ var buying = require('../controllers/buyingServerController.js'),
     //   .post(buying.create);
 
     //If listing is found perform the following
-    router.route('/:id')
+    router.route('/:_id')
       .get(buying.read)
-      .put(buying.update);
-      // .delete(buying.delete);
+      .put(buying.update)
+      .delete(buying.delete);
 
       //Find whether the listing is in the inventory
     //  router.param('itemId', buying.listingByID);
@@ -31,5 +31,6 @@ var buying = require('../controllers/buyingServerController.js'),
        });
      };
      ********/
+    router.param('_id', buying.listingByID);
 
     module.exports = router;

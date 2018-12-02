@@ -23,7 +23,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
     <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-    <a onclick="showListings()" class="w3-bar-item w3-button">Manage Listings</a>
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+      Manage Listings <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+
+      <a onclick="showSellings()" class="w3-bar-item w3-button">Buy Listings</a>
+      <a onclick="showBuyings()" class="w3-bar-item w3-button">Sell Listings</a>
+    </div>
     <a onclick="showUsers()" class="w3-bar-item w3-button">Manage Users</a>
     <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
     <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
@@ -41,15 +48,32 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </nav>
 
 <script>
-  function showListings(){
+  function showSellings(){
     document.getElementById("placeholder1").style.display = 'none';
     document.getElementById("placeholder3").style.display = 'none';
+    document.getElementById("placeholder4").style.display = 'none';
     document.getElementById("placeholder2").style.display = 'block';
+  }
+  function showBuyings(){
+    document.getElementById("placeholder1").style.display = 'none';
+    document.getElementById("placeholder3").style.display = 'none';
+    document.getElementById("placeholder4").style.display = 'block';
+    document.getElementById("placeholder2").style.display = 'none';
   }
   function showUsers(){
     document.getElementById("placeholder1").style.display = 'none';
     document.getElementById("placeholder2").style.display = 'none';
+    document.getElementById("placeholder4").style.display = 'none';
     document.getElementById("placeholder3").style.display = 'block';
+  }
+
+  function myAccFunc() {
+      var x = document.getElementById("demoAcc");
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else {
+          x.className = x.className.replace(" w3-show", "");
+      }
   }
   </script>
   <style>
@@ -88,14 +112,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <div ng-controller="adminController" id="placeholder2" class="demo-placeholder">
     <div class="row">
-      <div ng-repeat="item in items | filter: q1">
+      <div ng-repeat="item in sellingItems | filter: q1">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
               <img src="../images/add-item-icon.png" style="width:65%">
               <p>{{item.title}}<br><b>${{item.price}}</b></p>
                <div class="w3-display-middle w3-display-hover">
-                  <button ng-click="deleteItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
+                  <button ng-click="deleteSellingItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
                 </div>
               </div>
             </div>
@@ -104,6 +128,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
       </div>
     </div>
+
+    <div ng-controller="adminController" id="placeholder4" class="demo-placeholder">
+      <div class="row">
+        <div ng-repeat="item in buyingItems | filter: q1">
+            <div class="w3-col l3 s6">
+              <div class="w3-container">
+                <div class="w3-display-container">
+                <img src="../images/add-item-icon.png" style="width:65%">
+                <p>{{item.title}}<br><b>${{item.price}}</b></p>
+                 <div class="w3-display-middle w3-display-hover">
+                    <button ng-click="deleteBuyingItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
 
     <div ng-controller="adminController" id="placeholder3" class="demo-placeholder">
       <div class="row">

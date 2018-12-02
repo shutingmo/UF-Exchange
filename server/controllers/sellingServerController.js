@@ -62,15 +62,6 @@ exports.create = function(req, res) {
         }
       });
     }
-    // /* Then save the listing */
-    // selling.save(function(err) {
-    //   if(err) {
-    //     console.log(err);
-    //     res.status(400).send(err);
-    //   } else {
-    //     res.json(selling);
-    //   }
-    // });
   };
 
   //lists everything
@@ -103,18 +94,6 @@ exports.create = function(req, res) {
 
       res.json(selling);
   }
-
-  // exports.listingByID = function(req, res, id) {
-  //   Selling.find({itemId: id}).exec(function(err, data) {
-  //     if(err) {
-  //       res.status(400).send(err);
-  //     } else {
-  //       res.json(data);
-  //       //req.selling = selling;
-  //       //next();
-  //     }
-  //   });
-  /* Delete a listing */
 
   exports.delete = function(req, res) {
     var selling = req.selling;
