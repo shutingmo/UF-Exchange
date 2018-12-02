@@ -1,63 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home landing Dummy Page</title>
-</head>
+<!DOCTYPE HTML>
+  <head>
+    <title>UFX</title>
+    <meta charset="utf-8" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/styles/main.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.w3-sidebar a {font-family: "Roboto", sans-serif}
-body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-</style>
+ 
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-<body ng-app="ufxApp">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+  <html>
+  <body ng-app="ufxApp" class="is-preload">
 
-    <h1>Welcome to the Home Landing Page</h1>
+    <!-- Header -->
+      <section id="header">
+        <div class="inner">
+          <h1><font size="7">UFX</font></h1>
+        
+          <ul class="actions special">
+              
+            <li> <a href="js/html/login.html" class="button scrolly">Log In / Sign Up</a></li>
 
-    <a href="/js/html/login.html">
-        <button type="button">Login</button>
-    </a>
-
-    <a href="/js/html/signup.html">
-        <button type="button">Signup</button>
-    </a>
-
-    <div>
-      <div>
-        <input type="text" placeholder="Search" ng-model="itemSearch">
-      </div>
-    </div>
-
-    <div ng-controller="ItemController">
-      <div class="row">
-        <div ng-repeat="items in items | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <div class="w3-display-container">
-                  <img src="/js/images/add-item-icon.png" style="width:30%">
-                    <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                     <div class="w3-display-middle w3-display-hover">
-                        <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                        <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
-                      </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          </ul>
         </div>
-      </div>
+  </section>
+  </div>
+</div>
+
 
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.js"></script>
-<script src="/js/app.js"></script>
-<script src="/js/factories/itemFactory.js"></script>
-<script src="/js/controllers/itemController.js"></script>
-</body>
+<script src="client/js/app.js"></script>
+<script src="client/js/factories/userFactory.js"></script>
+<script src="client/js/controllers/loginClientController.js"></script>
+  <script src="client/js/controllers/signupClientController.js"></script>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/jquery.scrolly.min.js"></script>
+      <script src="js/browser.min.js"></script>
+      <script src="js/breakpoints.min.js"></script>
+      <script src="js/util.js"></script>
+      <script src="js/main2.js"></script>
+      <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  </body>
 </html>
