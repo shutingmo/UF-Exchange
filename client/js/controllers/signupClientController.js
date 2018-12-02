@@ -21,7 +21,7 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
             // verify email address via AJAX call
             $.ajax({
                 url: 'http://apilayer.net/api/check?access_key=' + access_key + '&email=' + email_address,   
-                dataType: 'jsonp',
+                dataType: 'json',
                 success: function(json) {
 
                 // Access and use your preferred validation result objects
