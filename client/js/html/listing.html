@@ -129,7 +129,8 @@
                         <h4 class="shiftright">
                           Price: ${{detailedInfo.price}} <br>
                           Selling <br>
-                          <button>Buy Now</button>
+                          <button ng-click="sendMail()">Buy Now: Email User</button>
+
                           <!-- <button>Message Seller</button><br> -->
                           <h5 class="shiftright">
                             User: {{detailedInfo.seller.name}} <br>
@@ -141,7 +142,7 @@
                             <span class="fa fa-star unchecked"></span> -->
                             <!-- <br>Date Posted: 10/29/2017 <br> -->
                             Condition: {{detailedInfo.condition}} <br>
-                            Meeting Location: <br>
+                            Meeting Location: {{detailedInfo.location}} <br>
                           </h5>
                         </h4>
                       </h3>
@@ -156,7 +157,7 @@
               <details>
                <summary >Product Specs</summary>
                 <div>
-                  ItemId: {{detailedInfo._id}} <br>
+                  <!-- ItemId: {{detailedInfo._id}} <br> -->
                   Category: {{detailedInfo.category}} <br>
                   Description: {{detailedInfo.description}}<br>
                 </div>
