@@ -40,7 +40,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             console.log('logging you out...');
             userFactory.logout().then(function(err) {
                 if (err.status === 200)
-                    window.location.replace('../html/homeLanding.html');
+                    window.location.replace('../html/index.html');
                 else
                     console.log('couldn\'t log you out', err);
             })
@@ -53,7 +53,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
 
                 userFactory.delete().then(function(err) {
                     if (err.status === 200)
-                        window.location.replace('../html/homeLanding.html');
+                        window.location.replace('../html/index.html');
                     else
                         console.log('couldn\'t delete your account', err);
                 })
