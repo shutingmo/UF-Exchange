@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel='stylesheet' type='text/css' href='../css/login.css'>
+    
 </head>
 
 <body ng-app="ufxApp">
@@ -13,12 +14,17 @@
         <h1>Login</h1>
         <p>Please fill in this form to login into your account.</p>
         <hr>
+        
+        
+        <flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
 
         Username: <input type="text" placeholder="Enter Username" ng-model="returnUser.username" required><br/>
 
         Password: <input type="password" placeholder="Enter Password" ng-model="returnUser.password" required><br/>
 
+
         <button type="submit" class="loginbtn" ng-click="login()">Login</button>
+
         
         
         <a href="signup.html">
@@ -29,6 +35,8 @@
             <button type="button" class="cancelbtn">Cancel</button>     
         </a>
         <!-- </form> -->
+       
+
 
     </div>
 
@@ -39,12 +47,24 @@
    
 </div>
 
+<!-- <div ng-app="ufxApp" class="cont">
+        <div ng-controller="loginController">
+            <button class="btn btn-success" ng-click="success()">Success</button>
+            <button class="btn btn-info" ng-click="info()">Info</button>
+            <button class="btn btn-warning" ng-click="warning()">Warning</button>
+            <button class="btn btn-danger" ng-click="danger()">Danger</button>
+            <flash-message duration="5000"></flash-message>
+        </div>
+</div> -->
+
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../app.js"></script>
 <script src="../factories/userFactory.js"></script>
 <script src="../controllers/loginClientController.js"></script>
-
-
+<!-- 
+<h3> Flash messages in Express 4 </h3>
+<p><a href="http://localhost:3000/addFlash">Click here</a> for a flash message using the express-flash module.</p>
+<p>Refresh to clear the flash message.</p> -->
 
 
 </body>

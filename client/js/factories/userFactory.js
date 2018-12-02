@@ -1,4 +1,5 @@
-angular.module('user', []).factory('userFactory', function($http) {
+
+angular.module('ufxApp').factory('userFactory', function($http) {
     var userFactoryMethods = {
         signupUser: function(user){
             return $http.post('http://localhost:3000/signup', user);
@@ -7,7 +8,21 @@ angular.module('user', []).factory('userFactory', function($http) {
         loginUser: function(returnUser){
             console.log('in user factory ' + JSON.stringify(returnUser))
 
-            return $http.post('http://localhost:3000/login/auth', returnUser);
+            return $http.post('http://localhost:3000/login/auth', returnUser)
+                .success(
+                    function(res){
+                        console.log('Fac,res.data is '+ JSON.stringify(res.data))
+                        return res.data
+                    }
+                )
+                .error(
+                    function(status){
+                        console.log('status is ' + JSON.stringify(status))
+                        // alert('please work')
+                        return status
+                    }
+                )
+                ;
         },
 
         // getAllUsers: function(){
@@ -38,7 +53,8 @@ angular.module('user', []).factory('userFactory', function($http) {
         delete: function(){
             console.log('in process of deleting your account')
             return $http.delete('http://localhost:3000/account/delete')
-        }
+        },
+
 
     };
 

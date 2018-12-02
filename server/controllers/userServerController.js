@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('../models/userServerModel.js');
 var bcrypt = require('bcryptjs');
+var flash = require('express-flash');
 // var body = require('body-parser');
 
 // exports.getAllUsers = function(req, res){
@@ -32,14 +33,17 @@ exports.authenticateUser = function(req, res){
         {
             console.log('login complete');
             currSessionUser = req.body.username;
-            return res.status(200).send('login done');
+            res.status(200).send({message: 'test'});
         }
 
         else
         {
             console.log('Username or password is incorrect');
-            return res.status(401).send('Username or password is incorrect');
+            // req.flash('error', 'userame or password is wrong')
+            // return res.status(403).send();
+            res.status(401).send({message: 'nope'});
         }
+        // res.end();
 
     })
 };
