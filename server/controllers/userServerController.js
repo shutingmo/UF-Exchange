@@ -49,22 +49,58 @@ exports.authenticateUser = function(req, res){
 };
 
 exports.signupUser = function(req, res){
+    
+    checkEmailExists()
+    function checkEmailExists(){
+        User.findOne({email: req.body.email}, function(err, user){
+            if(err)
+            {
+                console.log(err);
+                return res.status(400).send(err);
+            }
+            if(user)
+            {
+                console.log('email already taken');
+                res.status(400).send('email ' + req.body.email + ' is already taken');
+            }
+            else{
+                checkUsernameExists();
+            }
+        })
+    }
 
-    User.findOne({username: req.body.username}, function(err, user){
-        if(err)
-        {
-            console.log(err);
-            return res.status(400).send(err);
-        }
-        if(user)
-        {
-            console.log('username already taken');
-            res.status(400).send('Username ' + req.body.username + ' is already taken');
-        }
-        else{
-            matchPasswords();
-        }
-    })
+    function checkUsernameExists(){
+        User.findOne({username: req.body.username}, function(err, user){
+            if(err)
+            {
+                console.log(err);
+                return res.status(400).send(err);
+            }
+            if(user)
+            {
+                console.log('username already taken');
+                res.status(400).send('Username ' + req.body.username + ' is already taken');
+            }
+            else{
+                matchPasswords();
+            }
+        })
+    }
+    // User.findOne({username: req.body.username}, function(err, user){
+    //     if(err)
+    //     {
+    //         console.log(err);
+    //         return res.status(400).send(err);
+    //     }
+    //     if(user)
+    //     {
+    //         console.log('username already taken');
+    //         res.status(400).send('Username ' + req.body.username + ' is already taken');
+    //     }
+    //     else{
+    //         matchPasswords();
+    //     }
+    // })
 
     // matchPasswords();
     function matchPasswords() {

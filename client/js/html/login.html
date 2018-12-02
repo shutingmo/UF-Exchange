@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel='stylesheet' type='text/css' href='../css/login.css'>
-    
+  
+    <link rel='stylesheet' type='text/css' href='mains.css'>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 </head>
 
-<body ng-app="ufxApp">
+<body ng-app="ufxApp" style="background:linear-gradient(0deg, #9dc66b 5%, #4fa49a 30%, #4361c2);">
 <div ng-controller="loginController">
         
-    <div class="container">
+ <div class="container login-container">
+                <div class="col-d-6 login-form-2">
         <!-- <form novalidate class="simple-form"> -->
 
-        <h1>Login</h1>
-        <p>Please fill in this form to login into your account.</p>
-        <hr>
-        
-        
+        <h3>Login</h3>
+      
         <flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
 
         Username: <input type="text" placeholder="Enter Username" ng-model="returnUser.username" required><br/>
 
         Password: <input type="password" placeholder="Enter Password" ng-model="returnUser.password" required><br/>
 
-
-        <button type="submit" class="loginbtn" ng-click="login()">Login</button>
+   <div style="text-align: center">
+        <button type="submit" class="btnSubmit" ng-click="login()">Login</button>
 
         
         
         <a href="signup.html">
-                <button type="button" class="signupbtn">Sign Up</button>       
+                <button type="button" class="btnSubmit">Sign Up</button>       
         </a>
         
         <a href="homeLanding.html">
-            <button type="button" class="cancelbtn">Cancel</button>     
+            <button type="button" class="btnSubmit">Cancel</button>     
         </a>
+    </div>
         <!-- </form> -->
        
 
-
+</div>
     </div>
 
     <!-- <div class="container" style="background-color:#f1f1f1">
