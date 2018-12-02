@@ -17,6 +17,9 @@ angular.module('items')
       sessionStorage.setItem('selected', itemId);
     }
 
+    var email;
+    var itemTitle;
+
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
       $scope.initial = function(id){
@@ -26,6 +29,18 @@ angular.module('items')
           var currItem = response.data;
           $scope.detailedInfo = currItem;
           console.log($scope.detailedInfo);
+
+          if(response.data.seller){
+            email = response.data.seller.email
+            itemTitle = response.data.title
+          }
+          else if(response.data.buyer){
+            email = response.data.buyer.email
+            itemTitle = response.data.title
+          }
+
+          console.log('email check is ' + email)
+
         }, function(error){
           console.log('Unable to retrieve selling items:', error);
         })
@@ -144,8 +159,18 @@ angular.module('items')
           console.log('Unable to delete listings', err);
         }
       });
-
-
     };
+
+    $scope.sendMail = function() {
+      // var link = "mailto:" + email
+      //         + "?cc=myCCadress@example.com"
+      //         + "&subject=" + escape("This is my subject")
+      //         + "&body=" + escape("hello")
+      // ;
+  
+      // window.location.href = link;
+      window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
+
+    }
   }
 ]);
