@@ -23,19 +23,40 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
     <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-    <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a>
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+    <a onclick="showListings()" class="w3-bar-item w3-button">Manage Listings</a>
+    <a onclick="showUsers()" class="w3-bar-item w3-button">Manage Users</a>
+    <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
+    <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
+    <!-- <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
       Listings <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+    </a> -->
+    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 
       <a href="#" class="w3-bar-item w3-button">Buy Listings</a>
       <a href="#" class="w3-bar-item w3-button">Sell Listings</a>
-    </div>
-    <a href="#" class="w3-bar-item w3-button">My Favorites</a>
+    </div> -->
+    <!-- <a href="#" class="w3-bar-item w3-button">My Favorites</a> -->
   </div>
 
 </nav>
+
+<script>
+  function showListings(){
+    document.getElementById("placeholder1").style.display = 'none';
+    document.getElementById("placeholder3").style.display = 'none';
+    document.getElementById("placeholder2").style.display = 'block';
+  }
+  function showUsers(){
+    document.getElementById("placeholder1").style.display = 'none';
+    document.getElementById("placeholder2").style.display = 'none';
+    document.getElementById("placeholder3").style.display = 'block';
+  }
+  </script>
+  <style>
+    .demo-placeholder {
+      display: none;
+    }
+  </style>
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
@@ -60,23 +81,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </p>
   </header>
 
-  <div>
-    <div>
-      <input type="text" placeholder="Search" ng-model="itemSearch">
-    </div>
+  <div id="placeholder1" align=center>
+    <h2>Welcome to Your Account</h2>
   </div>
 
 
-  <div ng-controller="ItemController">
+  <div ng-controller="adminController" id="placeholder2" class="demo-placeholder">
     <div class="row">
-      <div ng-repeat="items in items | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
+      <div ng-repeat="item in items | filter: q1">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
               <img src="../images/add-item-icon.png" style="width:65%">
-              <p>{{items.title}}<br><b>${{items.price}}</b></p>
+              <p>{{item.title}}<br><b>${{item.price}}</b></p>
                <div class="w3-display-middle w3-display-hover">
-                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                  <button ng-click="deleteItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
                 </div>
               </div>
             </div>
@@ -85,6 +104,25 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
       </div>
     </div>
+
+    <div ng-controller="adminController" id="placeholder3" class="demo-placeholder">
+      <div class="row">
+        <div ng-repeat="user in users | filter: q2">
+            <div class="w3-col l3 s6">
+              <div class="w3-container">
+                <div class="w3-display-container">
+                <img src="../images/user-icon.jpg" style="width:65%">
+                <p>{{user.name}}<br><br>{{user.username}}</br><br>{{user.email}}</br></p>
+                 <div class="w3-display-middle w3-display-hover">
+                    <button ng-click="deleteUser($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
   <!-- Footer -->
@@ -122,7 +160,7 @@ function myAccFunc() {
 }
 
 // Click on the "Jeans" link on page load to open the accordion for demo purposes
-document.getElementById("myBtn").click();
+// document.getElementById("myBtn").click();
 
 
 // Script to open and close sidebar
@@ -143,6 +181,7 @@ function w3_close() {
 <script src="../controllers/accountClientController.js"></script>
 <script src="../factories/itemFactory.js"></script>
 <script src="../controllers/itemController.js"></script>
+<script src="../controllers/adminController.js"></script>
 
 </body>
 </html>

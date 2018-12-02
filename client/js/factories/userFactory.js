@@ -41,6 +41,12 @@ angular.module('ufxApp').factory('userFactory', function($http) {
 
         },
 
+        getAllUser: function(){
+            console.log('in fac id')
+            return $http.get('http://localhost:3000/account/getinfo/admin');
+
+        },
+
         updateUser: function(updatedUser){
             return $http.post('http://localhost:3000/account/update', updatedUser);
         },
@@ -55,9 +61,11 @@ angular.module('ufxApp').factory('userFactory', function($http) {
             return $http.delete('http://localhost:3000/account/delete')
         },
 
+        deleteUser: function(_id) {
+          return $http.delete('http://localhost:3000/account/getinfo/admin/' + _id);
+        },
 
     };
 
-    return userFactoryMethods;  
+    return userFactoryMethods;
   });
-  

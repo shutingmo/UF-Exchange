@@ -275,3 +275,38 @@ exports.deleteUser = function(req,res){
             }
     })
 };
+
+exports.delete = function(req, res) {
+  console.log(req.user);
+  var user = req.user;
+  console.log(user);
+
+  /** TODO **/
+  /* Remove the article */
+
+  user.remove(function(err)
+  {
+    if (err)
+    {
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else
+    {
+      res.json(user);
+    }
+  })
+
+};
+
+exports.userByID = function(req, res, next, id) {
+  console.log('back end controller id is ' + id);
+  User.findById(id).exec(function(err, user) {
+  if(err) {
+    res.status(400).send(err);
+  } else {
+    req.user = user;
+    next();
+  }
+});
+};

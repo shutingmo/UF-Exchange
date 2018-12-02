@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Single Listing</title>
+    <title>Listing Details</title>
 </head>
-
 <body ng-app="ufxApp">
 
-<div ng-controller="ItemController">
 
     <h1>Listing</h1>
 
@@ -119,6 +117,8 @@
               returnDetailedInfo();
             </script> -->
 
+          <div ng-controller="ItemController">
+            <a ng-init="details()"></a>
             <div class="product">
               <body>
                     <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
@@ -130,16 +130,16 @@
                           Price: ${{detailedInfo.price}} <br>
                           Selling <br>
                           <button>Buy Now</button>
-                          <button>Message Seller</button><br>
+                          <!-- <button>Message Seller</button><br> -->
                           <h5 class="shiftright">
                             User: {{detailedInfo.seller.name}} <br>
-                            Rating:
+                            <!-- Rating:
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star unchecked"></span>
-                            <span class="fa fa-star unchecked"></span>
-                            <br>Date Posted: 10/29/2017 <br>
+                            <span class="fa fa-star unchecked"></span> -->
+                            <!-- <br>Date Posted: 10/29/2017 <br> -->
                             Condition: {{detailedInfo.condition}} <br>
                             Meeting Location: <br>
                           </h5>
