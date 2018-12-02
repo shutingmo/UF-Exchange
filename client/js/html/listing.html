@@ -128,12 +128,14 @@
                         {{detailedInfo.title}}
                         <h4 class="shiftright">
                           Price: ${{detailedInfo.price}} <br>
-                          Selling <br>
+                          <!-- Selling <br> -->
                           <button ng-click="sendMail()">Buy Now: Email User</button>
 
                           <!-- <button>Message Seller</button><br> -->
                           <h5 class="shiftright">
-                            User: {{detailedInfo.seller.name}} <br>
+                            <!-- User: {{detailedInfo.seller.name}} <br> -->
+                            Posted By: {{detailedInfo.seller.name}} <br>
+                            User is looking to: {{detailedInfo.status}} <br>
                             <!-- Rating:
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>

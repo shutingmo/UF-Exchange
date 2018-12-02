@@ -33,10 +33,12 @@ angular.module('items')
           if(response.data.seller){
             email = response.data.seller.email
             itemTitle = response.data.title
+            $scope.detailedInfo.status = 'Sell'
           }
           else if(response.data.buyer){
             email = response.data.buyer.email
             itemTitle = response.data.title
+            $scope.detailedInfo.status = 'Buy'
           }
 
           console.log('email check is ' + email)
