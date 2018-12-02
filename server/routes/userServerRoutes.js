@@ -16,12 +16,13 @@ router.route('/')
     .post(userCtrl.updateUser)
     .delete(userCtrl.deleteUser);
 
+router.route('/admin')
+  .get(userCtrl.getAllUser);
 
+router.route('/admin/:_id')
+  .delete(userCtrl.delete);
 
 // router.param('_id', userCtrl.userByID);
+ router.param('_id', userCtrl.userByID);
 
 module.exports = router;
-
-
-
-

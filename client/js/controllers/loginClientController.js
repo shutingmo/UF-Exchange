@@ -1,22 +1,22 @@
-// angular.module('user').controller('loginController', ['$scope','userFactory', 
+// angular.module('user').controller('loginController', ['$scope','userFactory',
 //     function($scope, userFactory){
-        
+
 //         $scope.login = function(){
 //             $scope.user = [];
 //             $scope.user.push($scope.returnUser);
 //             console.log(JSON.stringify($scope.returnUser));
-           
+
 //             userFactory.loginUser($scope.returnUser).then(function(res,err, req){
 //                 console.log('in client controller');
 
 //                 if(res.status !== 200)
 //                 {
 //                    console.log("\nunable to login user");
-//                 } 
+//                 }
 //                 else if (res.status === 200)
 //                 {
 //                     console.log('login was success, front end');
-                    
+
 //                     window.location.replace('../html/userLanding.html');
 //                 }
 //                 $scope.returnUser = {};
@@ -43,7 +43,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
         $scope.user = [];
         $scope.user.push($scope.returnUser);
         console.log(JSON.stringify($scope.returnUser));
-        
+
         userFactory.loginUser($scope.returnUser).then(function(res,err, req, status){
             console.log('in client controller');
 
@@ -56,15 +56,20 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                 console.log("\nunable to login user");
                 var message = '<strong>Error!</strong> Username or password is wrong';
                 Flash.create('success', message);
-            } 
+            }
             else if (res.status === 200)
             {
                 console.log('login was success, front end');
                 var message = '<strong>Success!</strong> Login was successful';
                 Flash.create('success', message);
-                
+
                 setTimeout(function(){
+                  if($scope.returnUser.username === 'administrator'){
+                    window.location.replace('../html/adminLanding.html');
+                  }
+                  else{
                     window.location.replace('../html/userLanding.html');
+                  }
                 }, 500);
             }
 
@@ -79,7 +84,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                 console.log("\nunable to login user");
                 var message = '<strong>Error!</strong> Username or password is wrong';
                 Flash.create('danger', message);
-            } 
+            }
         })
 
         // var message = '<strong>Well done!</strong> You successfully read this important alert message.';
@@ -104,15 +109,15 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
     /*! angular-flash - v2.2.5 - 2016-03-17
      * https://github.com/sachinchoolur/angular-flash
      * Copyright (c) 2016 Sachin; Licensed MIT */
-    
+
     'use strict';
-    
+
     var app = angular.module('ngFlash', []);
-    
+
     app.run(['$rootScope', function ($rootScope) {
         return $rootScope.flashes = [];
     }]);
-    
+
     app.directive('dynamic', ['$compile', function ($compile) {
         return {
             restrict: 'A',
@@ -125,7 +130,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
             }
         };
     }]);
-    
+
     app.directive('closeFlash', ['$compile', '$rootScope', 'Flash', function ($compile, $rootScope, Flash) {
         return {
             link: function link(scope, ele, attrs) {
@@ -137,7 +142,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
             }
         };
     }]);
-    
+
     app.directive('flashMessage', ['Flash', function (Flash) {
         return {
             restrict: 'E',
@@ -154,12 +159,12 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                     if (typeof scope.onDismiss !== 'function') return;
                     scope.onDismiss({ flash: flash });
                 }
-    
+
                 Flash.setOnDismiss(onDismiss);
             }
         };
     }]);
-    
+
     app.factory('Flash', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
         var dataFactory = {};
         var counter = 0;
@@ -167,7 +172,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
             if (typeof timeout !== 'number') return;
             dataFactory.defaultTimeout = timeout;
         };
-    
+
         dataFactory.defaultShowClose = true;
         dataFactory.setShowClose = function (value) {
             if (typeof value !== 'boolean') return;
@@ -229,7 +234,7 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                 return flash.id;
             }).indexOf(id);
         }
-    
+
         return dataFactory;
     }]);
     })()

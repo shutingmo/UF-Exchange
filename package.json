@@ -32,6 +32,9 @@
   },
   "devDependencies": {
     "should": "^7.1.1",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "express": "^4.16.4",
+    "html": "^1.0.0",
+    "morgan": "^1.9.1"
   }
 }

@@ -13,9 +13,9 @@ var selling = require('../controllers/sellingServerController.js'),
 
     //If listing is found perform the following
     router.route('/:_id')
-      .get(selling.read);
-//      .put(selling.update);
-//       .delete(selling.delete);
+      .get(selling.read)
+      .put(selling.update)
+      .delete(selling.delete);
 
       //Find whether the listing is in the inventory
     //  router.param('itemId', selling.listingByID);

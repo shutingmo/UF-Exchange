@@ -35,6 +35,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             })
         }
 
+
         $scope.logout = function() {
             console.log('logging you out...');
             userFactory.logout().then(function(err) {
@@ -62,6 +63,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
             }
 
         };
+
     }
 
 

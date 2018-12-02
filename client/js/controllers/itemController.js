@@ -1,54 +1,36 @@
-angular.module('items').controller('ItemController', ['$scope', 'itemFactory', 
-  function($scope, itemFactory) {
 
-  //   itemFactory.getCurrentUser().then(function(user){
-  //     console.log('client controller get cur user')
-  //     console.log(JSON.stringify(user.data))
-  //     var currUser = user.data;
-  //     $scope.currentuser = currUser;
-
-  //     console.log('Hi ' + JSON.stringify(currUser.name) + '!');
-  //     console.log('scope current user' + JSON.stringify($scope.currentuser) + '!');
-  //     console.log('current user email:' + JSON.stringify(currUser.email));
-
-  // }, function(error){
-  //     console.log('unable to get current user ', error)
-  // })
-    // var select = document.getElementById('cmbitems');
-    // select.onchange = function() {
-    //   input.value = select.value;
-    // }
-    
-
+angular.module('items')
+.controller('ItemController', ['$scope', '$location', '$window','itemFactory',
+  function($scope, $location, $window, itemFactory) {
     itemFactory.getSelling().then(function(response) {
       // console.log('response data is ' + JSON.stringify(response.data));
       $scope.items = response.data;
-      // console.log('$scope.user is ' + JSON.stringify($scope.items[0]));
-      // var listing = $scope.items.filter(items => items._id === $scope.items[0]._id);
-      // $scope.items._id = listing[0]._id;
-      // $scope.items.title = listing[0].title;
-      // $scope.items.price = listing[0].price;
-      // $scope.items.condition = listing[0].condition;
-      // $scope.items.category = listing[0].category;
-      // $scope.items.seller = listing[0].seller;
+      // console.log("Check1");
+
     }, function(error) {
       console.log('Unable to retrieve selling items:', error);
     });
 
-    $scope.detailedInfo = undefined;
+    $scope.getCurrentItem = function(items){
+      var itemId = items._id;
+      console.log(items);
+      sessionStorage.setItem('selected', itemId);
+    }
 
-    $scope.getCurrentItem = function(index){
-      var listing = $scope.items.filter(items => items._id === $scope.items[index]._id);
-      // $scope.items._id = listing[0]._id;
-      // $scope.items.title = listing[0].title;
-      // $scope.items.price = listing[0].price;
-      // $scope.items.condition = listing[0].condition;
-      // $scope.items.category = listing[0].category;
-      // $scope.items.seller = listing[0].seller;
-      //console.log('Unable to retrieve selling items:', error);
-      // var listing = $scope.items.filter(items => items._id === $scope.items[index]._id);
-      $scope.detailedInfo = listing[0];
-      console.log($scope.detailedInfo);
+    $scope.details = function(){
+      var selectedItem = sessionStorage.getItem('selected');
+      $scope.initial = function(id){
+        console.log("initial check");
+        itemFactory.findItem(id).then(function(response){
+          console.log(JSON.stringify(response.data));
+          var currItem = response.data;
+          $scope.detailedInfo = currItem;
+          console.log($scope.detailedInfo);
+        }, function(error){
+          console.log('Unable to retrieve selling items:', error);
+        })
+      }
+      $scope.initial(selectedItem);
     }
 
     // $scope.setSeller = function() {
@@ -74,7 +56,7 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
     }
 
     $scope.uploadImg = function(img){
-      
+
     }
 
     $scope.saveBuying = function() {
@@ -86,8 +68,8 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
         if(res.status !== 200)
         {
             console.log("\nunable to add listing");
-        } 
-      
+        }
+
         $scope.newItem = {};
 
       });
@@ -102,7 +84,7 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
         if(res.status !== 200)
         {
             console.log("\nunable to add listing");
-        } 
+        }
 
         $scope.newItem = {};
 
@@ -120,8 +102,8 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
         if(res.status !== 200)
         {
             console.log("\nunable to add listing");
-        } 
-      
+        }
+
         $scope.newItem = {};
 
       });
@@ -137,7 +119,7 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
         if(res.status !== 200)
         {
             console.log("\nunable to add listing");
-        } 
+        }
 
         $scope.newItem = {};
 
@@ -145,5 +127,25 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
       });
     }
 
+    $scope.deleteItem = function(index) {
+     /**TODO
+        Delete the article using the Listings factory. If the removal is successful,
+    navigate back to 'listing.list'. Otherwise, display the error.
+       */
+      var listingId = $scope.items[index]._id;
+      $scope.items.splice(index,1);
+
+      itemFactory.delete(listingId).then(function(err)
+      {
+
+        if (err)
+        {
+          $scope.errorMessage = "Error. Listing not deleted";
+          console.log('Unable to delete listings', err);
+        }
+      });
+
+
+    };
   }
 ]);
