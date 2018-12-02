@@ -1,12 +1,25 @@
-angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
+angular.module('items').controller('ItemController', ['$scope', 'itemFactory', 
   function($scope, itemFactory) {
-    /* Get all the items, then bind it to the scope */
-    // Items.getAll().then(function(response) {
-    //   $scope.items = response.data;
-    //   //console.log($scope.items._id);
-    // }, function(error) {
-    //   console.log('Unable to retrieve items:', error);
-    // })
+
+  //   itemFactory.getCurrentUser().then(function(user){
+  //     console.log('client controller get cur user')
+  //     console.log(JSON.stringify(user.data))
+  //     var currUser = user.data;
+  //     $scope.currentuser = currUser;
+
+  //     console.log('Hi ' + JSON.stringify(currUser.name) + '!');
+  //     console.log('scope current user' + JSON.stringify($scope.currentuser) + '!');
+  //     console.log('current user email:' + JSON.stringify(currUser.email));
+
+  // }, function(error){
+  //     console.log('unable to get current user ', error)
+  // })
+    // var select = document.getElementById('cmbitems');
+    // select.onchange = function() {
+    //   input.value = select.value;
+    // }
+    
+
     itemFactory.getSelling().then(function(response) {
       // console.log('response data is ' + JSON.stringify(response.data));
       $scope.items = response.data;
@@ -38,6 +51,10 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
       console.log($scope.detailedInfo);
     }
 
+    // $scope.setSeller = function() {
+    //   console.log(itemFactory.getCurrentUser().email);
+    // }
+
     $scope.setCategory = function(category) {
       //setting the category from dropdown
       $scope.newItem.category = category;
@@ -56,21 +73,19 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
       $scope.items.push($scope.newItem.location);
     }
 
+    $scope.uploadImg = function(img){
+      
+    }
+
     $scope.saveBuying = function() {
       $scope.items.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
       itemFactory.createBuying($scope.newItem).then(function(res,err)
       {
-        // if(err)
-        // {
-        //   $scope.errorMessage = "Error. Listing not successfully added";
-        //   console.log('Unable to add listing', err);
-        // }
-
         if(res.status !== 200)
         {
-            console.log("\nunable to add listing", err);
+            console.log("\nunable to add listing");
         } 
       
         $scope.newItem = {};
@@ -82,6 +97,41 @@ angular.module('items').controller('ItemController', ['$scope', 'itemFactory',
       $scope.items.push($scope.newItem);
 
       console.log(JSON.stringify($scope.newItem));
+      itemFactory.createSelling($scope.newItem).then(function(res,err)
+      {
+        if(res.status !== 200)
+        {
+            console.log("\nunable to add listing");
+        } 
+
+        $scope.newItem = {};
+
+
+      });
+    }
+
+    $scope.setBuyer = function() {
+      $scope.items.push($scope.newItem);
+      // $scope.newItem.buyer.name = 'cynthia';
+      // $scope.newItem.buyer.email = 'momowhales';
+      console.log('scope.newItem in set buyer is ' + JSON.stringify($scope.newItem))
+      itemFactory.createBuying($scope.newItem).then(function(res,err)
+      {
+        if(res.status !== 200)
+        {
+            console.log("\nunable to add listing");
+        } 
+      
+        $scope.newItem = {};
+
+      });
+
+    }
+
+    $scope.setSeller = function(){
+      $scope.items.push($scope.newItem);
+
+      console.log('scope.newItem in set seller is ' + JSON.stringify($scope.newItem))
       itemFactory.createSelling($scope.newItem).then(function(res,err)
       {
         if(res.status !== 200)

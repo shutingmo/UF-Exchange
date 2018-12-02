@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose');
     Buying = require('../models/buyingServerModel.js');
+    User = require('../models/userServerModel.js');
 
 // Create a buying listing 
 exports.create = function(req, res) {
@@ -8,15 +9,59 @@ exports.create = function(req, res) {
     /* Instantiate a Listing */
     var buying = new Buying(req.body);
   
-    /* Then save the listing */
-    buying.save(function(err) {
+    console.log('buying backend controller req.body is ' + JSON.stringify(req.body))
+    console.log('buying document is ' + JSON.stringify(buying))
+
+    console.log('curr session user is ' + currSessionUser)
+    console.log('curr session user name is ' + currSessionUser.name)
+    console.log('curr session user email is ' + currSessionUser.email)
+
+    var buyerName;
+    var buyerEmail;
+
+    User.findOne({username:currSessionUser}, function(err, user) {
+      // console.log('the user found is ' + JSON.stringify(user));
       if(err) {
         console.log(err);
-        res.status(400).send(err);
-      } else {
-        res.json(buying);
+        return res.status(400).send(err);
       }
-    });
+      if(!user){
+        console.log('user not found')
+      }
+
+      if(user){
+        console.log('BUY BE: user found is ' + JSON.stringify(user))
+
+        // console.log('buying before we put in buyer info is ' + JSON.stringify(buyer))
+        buyerName = user.name;
+        buyerEmail = user.email;
+
+        console.log('buyer name is ' + buyerName)
+        console.log('buyer email is ' + buyerEmail)
+
+        saveToDB();
+      }
+    })
+
+    function saveToDB(){
+      console.log('buying.buyer.name before we set is ' + buying.buyer.name)
+      console.log('buying.buyer.email before we set is ' + buying.buyer.email)
+
+      buying.buyer.name = buyerName;
+      buying.buyer.email = buyerEmail;
+
+      console.log('buying.buyer.name after we set is ' + buying.buyer.name)
+      console.log('buying.buyer.email after we set is ' + buying.buyer.email)
+
+      buying.save(function(err) {
+        if(err) {
+          console.log(err);
+          res.status(400).send(err);
+        } else {
+          res.json(buying);
+        }
+      });
+    }
   };
 
   //lists everything 

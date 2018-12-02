@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose');
     Selling = require('../models/sellingServerModel.js');
+    User = require('../models/userServerModel.js');
 
 // Create a selling listing
 exports.create = function(req, res) {
@@ -8,15 +9,68 @@ exports.create = function(req, res) {
     /* Instantiate a Listing */
     var selling = new Selling(req.body);
 
-    /* Then save the listing */
-    selling.save(function(err) {
+    console.log('selling backend controller req.body is ' + JSON.stringify(req.body))
+    console.log('selling document is ' + JSON.stringify(selling))
+
+    console.log('curr session user is ' + currSessionUser)
+    console.log('curr session user name is ' + currSessionUser.name)
+    console.log('curr session user email is ' + currSessionUser.email)
+
+    var sellerName;
+    var sellerEmail;
+
+    User.findOne({username:currSessionUser}, function(err, user) {
+      // console.log('the user found is ' + JSON.stringify(user));
       if(err) {
         console.log(err);
-        res.status(400).send(err);
-      } else {
-        res.json(selling);
+        return res.status(400).send(err);
       }
-    });
+      if(!user){
+        console.log('user not found')
+      }
+
+      if(user){
+        console.log('SELL BE: user found is ' + JSON.stringify(user))
+
+        // console.log('buying before we put in buyer info is ' + JSON.stringify(buyer))
+        sellerName = user.name;
+        sellerEmail = user.email;
+
+        console.log('seller name is ' + sellerName)
+        console.log('seller email is ' + sellerEmail)
+
+        saveToDB();
+      }
+    })
+
+    function saveToDB(){
+      console.log('selling.seller.name before we set is ' + selling.seller.name)
+      console.log('selling.seller.email before we set is ' + selling.seller.email)
+
+      selling.seller.name = sellerName;
+      selling.seller.email = sellerEmail;
+
+      console.log('selling.seller.name after we set is ' + selling.seller.name)
+      console.log('selling.seller.email after we set is ' + selling.seller.email)
+
+      selling.save(function(err) {
+        if(err) {
+          console.log(err);
+          res.status(400).send(err);
+        } else {
+          res.json(selling);
+        }
+      });
+    }
+    // /* Then save the listing */
+    // selling.save(function(err) {
+    //   if(err) {
+    //     console.log(err);
+    //     res.status(400).send(err);
+    //   } else {
+    //     res.json(selling);
+    //   }
+    // });
   };
 
   //lists everything

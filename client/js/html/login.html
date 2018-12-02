@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel='stylesheet' type='text/css' href='../css/login.css'>
+    
 </head>
 
 <body ng-app="ufxApp">
@@ -14,15 +15,16 @@
         <p>Please fill in this form to login into your account.</p>
         <hr>
         
-        <div class = "error">
-            {{message}}
-        </div>
+        
+        <flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
 
         Username: <input type="text" placeholder="Enter Username" ng-model="returnUser.username" required><br/>
 
         Password: <input type="password" placeholder="Enter Password" ng-model="returnUser.password" required><br/>
 
+
         <button type="submit" class="loginbtn" ng-click="login()">Login</button>
+
         
         
         <a href="signup.html">
@@ -33,6 +35,8 @@
             <button type="button" class="cancelbtn">Cancel</button>     
         </a>
         <!-- </form> -->
+       
+
 
     </div>
 
@@ -42,6 +46,16 @@
     </div> -->
    
 </div>
+
+<!-- <div ng-app="ufxApp" class="cont">
+        <div ng-controller="loginController">
+            <button class="btn btn-success" ng-click="success()">Success</button>
+            <button class="btn btn-info" ng-click="info()">Info</button>
+            <button class="btn btn-warning" ng-click="warning()">Warning</button>
+            <button class="btn btn-danger" ng-click="danger()">Danger</button>
+            <flash-message duration="5000"></flash-message>
+        </div>
+</div> -->
 
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../app.js"></script>
