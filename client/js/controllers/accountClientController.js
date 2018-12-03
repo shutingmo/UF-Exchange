@@ -1,10 +1,11 @@
 angular.module('user').controller('accountController', ['$scope','userFactory',
     function($scope, userFactory){
 
+        var currUser;
         userFactory.getCurrentUser().then(function(user){
             console.log('client controller get cur user')
             console.log(JSON.stringify(user.data))
-            var currUser = user.data;
+            currUser = user.data;
             $scope.currentuser = currUser;
 
             console.log('Hi ' + JSON.stringify(currUser.name) + '!');
@@ -13,6 +14,8 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         }, function(error){
             console.log('unable to get current user ', error)
         })
+
+        
 
         $scope.update = function(){
             console.log('front end update user')
