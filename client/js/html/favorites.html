@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<title>UFX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left:30vh;
+    padding-bottom: 0px;
+    overflow: hidden;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #f1f1f1;
+}
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style> -->
+
+<body ng-app="ufxApp">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <p style="color:grey"><font size=6>UFX</font></p>
+    </div>
+
+    <a href="#" class="w3-bar-item w3-button">My Favorites</a>
+    <div ng-controller="accountController">
+      <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
+    </div>
+
+     <ul class="nav navbar-nav navbar-right">
+      <div ng-controller="accountController">
+      <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
+      </div>
+    </ul>
+ 
+    </form>
+
+  </div>
+
+     
+    </div>
+
+
+<div ng-controller="ItemController">
+    <div class="container" style="margin-top: 0;">
+
+
+
+        <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
+        <span class="input-group-btn">
+        
+        </span>
+        </div>
+               
+            
+            <ul class="nav navbar-nav navbar-right">
+        
+              <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
+              <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
+            </ul>
+          </div>
+</nav>
+
+</div>
+
+
+<!-- Top menu on small screens -->
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:200px">
+
+  <!-- Push down content on small screens -->
+
+  <div ng-controller="accountController">
+
+    <!-- <p>
+        Search: <input type="text" ng-model="itemSearchBar" placeholder="enter search here" />
+    </p>
+
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>  -->
+
+    
+    <div class="row">
+      <div ng-repeat="x in favs | orderBy: title" ng-click="getCurrentItem(x)">
+          <div class="w3-col l3 s6">
+            <div class="w3-container">
+              <div class="w3-display-container">
+                <img src="../images/add-item-icon.png" style="width:65%">
+                <p>{{x.title}}<br><b>${{x.price}}</b></p>
+                <div class="w3-display-middle w3-display-hover">
+                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Newsletter Modal -->
+<div id="newsletter" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">NEWSLETTER</h2>
+      <p>Join our mailing list to receive updates on new arrivals and special offers.</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
+      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Accordion
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+// document.getElementById("myBtn").click();
+
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="../app.js"></script>
+<script src="../factories/userFactory.js"></script>
+<script src="../controllers/accountClientController.js"></script>
+<script src="../factories/itemFactory.js"></script>
+<script src="../controllers/itemController.js"></script>
+
+</body>
+</html>

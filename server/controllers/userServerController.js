@@ -294,8 +294,6 @@ exports.logoutUser = function(req, res) {
     return res.status(200).send("Logged out!");
 };
 
-
-
 exports.deleteUser = function(req,res){
     console.log('delete user ' + JSON.stringify(currSessionUser));
 
@@ -335,6 +333,25 @@ exports.delete = function(req, res) {
 
 };
 
+exports.getUserFavs = function(req,res){
+    console.log('in get user favs ' + currSessionUser)
+    
+    User.findOne({username: currSessionUser}, 'favorite', function(err, user){
+        if (err){
+            console.log(err);
+            return res.status(400).send(err)
+        }
+
+        if(!user){
+            console.log('user not found');
+            return res.status(404).send('user not found')
+        }
+
+        console.log('current user found is ' + JSON.stringify(user));
+        return res.status(200).send(user)
+        }
+    );
+}
 exports.userByID = function(req, res, next, id) {
   console.log('back end controller id is ' + id);
   User.findById(id).exec(function(err, user) {

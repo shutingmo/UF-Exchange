@@ -29,6 +29,22 @@ img.resize {
   max-height:50%;
 }
 
+/* .button {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin:10px
+} */
+
+.small-btn {
+    width: 100px;
+    height: 25px;
+    padding: 10px;
+    margin:10px
+}
 
 /* W3.CSS 4.12 Novemberr 2018 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
@@ -307,6 +323,7 @@ button {
     width: 100%;
 }
 
+
 button:hover {
     opacity: 0.8;
 }
@@ -368,3 +385,4 @@ span.psw {
     }
 
 }
+

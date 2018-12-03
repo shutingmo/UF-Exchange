@@ -42,6 +42,23 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.delete('http://localhost:3000/buying/' + _id);
       },
 
+      flagItem: function(flagged){
+        console.log('in flac item fac')
+        return $http.post('http://localhost:3000/selling/flagItem', flagged);
+      },
+
+      flagUser: function(flagged){
+        console.log('in flac item fac')
+        return $http.post('http://localhost:3000/selling/flagUser', flagged);
+      },
+
+      favorite: function(like){
+        console.log('in fav item fac')
+
+        return $http.post('http://localhost:3000/selling/favorite', like);
+
+      }
+
     };
 
     return methods;
