@@ -184,9 +184,12 @@ angular.module('items')
     $scope.filterItems = function(category){
       console.log('check 1')
       $scope.itemSearch = {};
+      $scope.itemSearchBar = "";
 
       if ($scope.itemSearch.category === category) {
         $scope.itemSearch = {};
+        $scope.itemSearchBar = "";
+
       }
       else {
         $scope.itemSearch.category = category;
