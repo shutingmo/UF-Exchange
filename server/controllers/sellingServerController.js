@@ -127,7 +127,7 @@ var express = require('express'),
           else{
           console.log('fav item woohoo')
           return res.status(200).send('successful fav')
-          }   
+          }
         })
 
       }

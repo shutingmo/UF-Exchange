@@ -9,16 +9,16 @@ var selling = require('../controllers/sellingServerController.js'),
 
 
     router.route('/flagItem')
-      .post(selling.flagItem)
+      .post(selling.flagItem);
 
     router.route('/flagUser')
-      .post(selling.flagUser)
+      .post(selling.flagUser);
 
     router.route('/favorite')
-      .post(selling.favoriteSelling)
-    
+      .post(selling.favoriteSelling);
+
     router.route('/buyNow')
-      .post(selling.buyItemNow)
+      .post(selling.buyItemNow);
     //Navigate to userDashboard then click create listing
     // router.route('/postListing')
     //   .post(selling.create);
@@ -29,7 +29,7 @@ var selling = require('../controllers/sellingServerController.js'),
       .put(selling.update)
       .delete(selling.delete);
 
-    
+
       //Find whether the listing is in the inventory
     //  router.param('itemId', selling.listingByID);
 

@@ -2,17 +2,12 @@
 angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
-    
+
     $scope.listings = [];
 
     itemFactory.getSelling().then(function(response) {
-
-      console.log('response data in item controller is ' + JSON.stringify(response.data));
-      $scope.items = response.data;
-      $scope.listings = response.data;
-      console.log('scope listings is ' + JSON.stringify($scope.listings))
-
-
+      // console.log('response data is ' + JSON.stringify(response.data));
+      $scope.sellingItems = response.data;
       // console.log("Check1");
 
     }, function(error) {
@@ -119,7 +114,7 @@ angular.module('items')
     }
 
     $scope.uploadImg = function(img){
-      
+
     }
 
     $scope.saveBuying = function() {
@@ -215,7 +210,7 @@ angular.module('items')
       //         + "&subject=" + escape("This is my subject")
       //         + "&body=" + escape("hello")
       // ;
-  
+
       // window.location.href = link;
       window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
 
@@ -241,7 +236,7 @@ angular.module('items')
     $scope.flagListing = function(){
       var flagItem = sessionStorage.getItem('selected');
       console.log('flag item is ' + flagItem)
-      
+
       itemFactory.findItem(flagItem).then(function(response){
         console.log(JSON.stringify(response.data));
         // flaggedItem = response.data;
@@ -313,11 +308,11 @@ angular.module('items')
           itemFactory.buyItemNow(response.data).then(function(res){
             if(res.status !== 200)
             {
-              console.log("\nunable to fav item");
+              console.log("\nunable to buy item");
             }
             else if (res.status === 200)
             {
-              console.log('fav was success, front end');
+              console.log('buy was success, front end');
             }
 
           })

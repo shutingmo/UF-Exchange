@@ -4,7 +4,10 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
       userFactory.getAllUser().then(function(response) {
         // console.log('response data is ' + JSON.stringify(response.data));
         $scope.users = response.data;
+        var users = $scope.users;
+        // $scope.users = users.filter(user => user.banned == 1);
         console.log($scope.users);
+      
         // console.log("Check1");
 
       }, function(error) {

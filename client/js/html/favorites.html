@@ -29,7 +29,7 @@ li a {
     color: black;
     text-align: center;
     padding: 14px 16px;
-    
+
     text-decoration: none;
 }
 
@@ -60,12 +60,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
       </div>
     </ul>
- 
+
     </form>
 
   </div>
 
-     
+
     </div>
 
 
@@ -76,13 +76,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
         <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
         <span class="input-group-btn">
-        
+
         </span>
         </div>
-               
-            
+
+
             <ul class="nav navbar-nav navbar-right">
-        
+
               <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
               <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
             </ul>
@@ -108,13 +108,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>  -->
 
-    
-    <div class="row">
+
+    <div class="row" id="placeholder6">>
       <div ng-repeat="x in favs | orderBy: title" ng-click="getCurrentItem(x)">
           <div class="w3-col l3 s6">
             <div class="w3-container">

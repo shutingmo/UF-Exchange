@@ -81,9 +81,9 @@ var userSchema = new Schema({
     type: [itemSchema],
     'default' : []
   },
-  orders:{
+  orders: {
     type: [itemSchema],
-    'default':[]
+    'default' : []
   },
   rating: {
     type: Number

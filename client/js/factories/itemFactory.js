@@ -51,6 +51,11 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.post('http://localhost:3000/selling/flagItem', flagged);
       },
 
+      buyItemNow: function(buy){
+        console.log('in buy now item fac')
+        return $http.post('http://localhost:3000/selling/buyNow', buy);
+      },
+
       flagUser: function(flagged){
         console.log('in flac item fac')
         return $http.post('http://localhost:3000/selling/flagUser', flagged);

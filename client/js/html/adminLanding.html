@@ -112,7 +112,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <div ng-controller="adminController" id="placeholder2" class="demo-placeholder">
     <div class="row">
-      <div ng-repeat="item in sellingItems | filter: q1">
+      <div ng-repeat="item in sellingItems | filter: {flagged: true}">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
@@ -131,7 +131,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
     <div ng-controller="adminController" id="placeholder4" class="demo-placeholder">
       <div class="row">
-        <div ng-repeat="item in buyingItems | filter: q1">
+        <div ng-repeat="item in buyingItems | filter: {flagged: true}">
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">
@@ -151,7 +151,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
     <div ng-controller="adminController" id="placeholder3" class="demo-placeholder">
       <div class="row">
-        <div ng-repeat="user in users | filter: q2">
+        <div ng-repeat="user in users | filter: {banned: true}">
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">

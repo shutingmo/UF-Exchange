@@ -47,24 +47,27 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="navbar-header">
         <a href="userLanding.html">
             <p style="color:grey"><font size=6>UFX</font></p>
-        </a>    
+        </a>
     </div>
 
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-    <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a>
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      My Posted Listings <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+    <div> <a href="account.html" class="w3-bar-item w3-button">My Account</a></div>
+    <div> <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a></div>
+    <div> <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Buy Listings</a></div>
+    <div> <a onclick="showMySellings()" class="w3-bar-item w3-button">My Sell Listings</a></div>
+    <div> <a onclick="showMyFavorites()" class="w3-bar-item w3-button">My Favorites</a></div>
+    <div> <a onclick="showMyOrders()" class="w3-bar-item w3-button">My Orders</a></div>
 
-      <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a>
-      <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a>
-      
-    <a href="#" class="w3-bar-item w3-button">My Favorites</a>
     <div ng-controller="accountController">
       <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
     </div>
+    <ul class="nav navbar-nav navbar-right">
+     <div ng-controller="accountController">
+     <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
+     </div>
+   </ul>
+
+    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 
      <ul class="nav navbar-nav navbar-right">
       <div ng-controller="accountController">
@@ -74,35 +77,34 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
     </form>
 
-  </div>
+    </div> -->
 
 
     </div>
 
 
-<div ng-controller="ItemController">
-    <div class="container" style="margin-top: 0;">
+    <div ng-controller="ItemController">
+        <div class="container" style="margin-top: 0;">
 
 
 
-        <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
-        <span class="input-group-btn">
-        
-        </span>
-        </div>
-               
-            
-            <ul class="nav navbar-nav navbar-right">
-        
-              <li><a href="myOrders.html" class="navbar-brand"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-              <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>
-              <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
-              <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
-            </ul>
+            <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
+            <span class="input-group-btn">
+
+            </span>
+            </div>
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+                  <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>
+
+                  <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
+                  <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
+                </ul>
           </div>
-        </nav>
+      </nav>
 
-</div>
 
 <!-- Top menu on small screens -->
 
@@ -120,18 +122,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button> 
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
 
-    
-    <div class="row">
-      <div ng-repeat="items in items | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+    <div>
+      <a onclick="showSelling()" class="w3-bar-item w3-button">Selling Listings</a>
+      <a onclick="showBuying()" class="w3-bar-item w3-button">Buying Listings</a>
+    </div>
+
+    <div class="row" id="placeholder1">
+      <div ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img src="../images/add-item-icon.png" style="width:65%">
+                <img src="../images/add-item-icon.png" style="width:30%">
                 <p>{{items.title}}<br><b>${{items.price}}</b></p>
                 <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
@@ -141,12 +147,9 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           </div>
         </div>
       </div>
-    </div>
 
-
-    <div ng-controller="ItemController"  id="placeholder2" class="demo-placeholder">
-      <div class="row">
-        <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
+      <div class="row demo-placeholder" id="placeholder2" >
+        <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">
@@ -162,57 +165,93 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           </div>
 
         </div>
-      </div>
 
-
-
-    <div ng-controller="accountController">
-        <div ng-controller="ItemController"  id="placeholder3" class="demo-placeholder">
-          <div class="row">
-            <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
-                <div class="w3-col l3 s6">
-                  <div class="w3-container">
-                    <div class="w3-display-container">
-                      <img src="/js/images/add-item-icon.png" style="width:30%">
-                        <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                         <div class="w3-display-middle w3-display-hover">
-                            <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                            <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
-                          </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div ng-controller="ItemController"  id="placeholder4" class="demo-placeholder">
-            <div class="row">
-              <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
-                  <div class="w3-col l3 s6">
-                    <div class="w3-container">
-                      <div class="w3-display-container">
-                        <img src="/js/images/add-item-icon.png" style="width:30%">
-                          <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                           <div class="w3-display-middle w3-display-hover">
-                              <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                              <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
-                            </div>
+        <div ng-controller="accountController">
+              <div class="row demo-placeholder" id="placeholder3">
+                <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                    <div class="w3-col l3 s6">
+                      <div class="w3-container">
+                        <div class="w3-display-container">
+                          <img src="/js/images/add-item-icon.png" style="width:30%">
+                            <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                             <div class="w3-display-middle w3-display-hover">
+                                <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                                <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
+                              </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
 
+                <div class="row demo-placeholder" id="placeholder4" >
+                  <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                      <div class="w3-col l3 s6">
+                        <div class="w3-container">
+                          <div class="w3-display-container">
+                            <img src="/js/images/add-item-icon.png" style="width:30%">
+                              <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                               <div class="w3-display-middle w3-display-hover">
+                                  <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                                  <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row demo-placeholder" id="placeholder5">
+                    <div ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                        <div class="w3-col l3 s6">
+                          <div class="w3-container">
+                            <div class="w3-display-container">
+                              <img src="/js/images/add-item-icon.png" style="width:30%">
+                                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                                 <div class="w3-display-middle w3-display-hover">
+                                    <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                                    <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="row demo-placeholder" id="placeholder6">
+                      <div ng-repeat="x in favs | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(x)">
+                          <div class="w3-col l3 s6">
+                            <div class="w3-container">
+                              <div class="w3-display-container">
+                                <img src="../images/add-item-icon.png" style="width:30%">
+                                <p>{{x.title}}<br><b>${{x.price}}</b></p>
+                                <div class="w3-display-middle w3-display-hover">
+                                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
               </div>
-            </div>
-          </div>
+
+
+
+    </div>
+
+
 
     <script>
       function showSelling(){
         document.getElementById("placeholder2").style.display = 'none';
         document.getElementById("placeholder3").style.display = 'none';
         document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'none';
         document.getElementById("placeholder1").style.display = 'block';
 
       }
@@ -220,19 +259,41 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         document.getElementById("placeholder1").style.display = 'none';
         document.getElementById("placeholder3").style.display = 'none';
         document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'none';
         document.getElementById("placeholder2").style.display = 'block';
       }
       function showMySellings(){
         document.getElementById("placeholder1").style.display = 'none';
         document.getElementById("placeholder2").style.display = 'none';
         document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'none';
         document.getElementById("placeholder3").style.display = 'block';
       }
       function showMyBuyings(){
         document.getElementById("placeholder1").style.display = 'none';
         document.getElementById("placeholder2").style.display = 'none';
         document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'none';
         document.getElementById("placeholder4").style.display = 'block';
+      }
+      function showMyOrders(){
+        document.getElementById("placeholder1").style.display = 'none';
+        document.getElementById("placeholder2").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'block';
+      }
+      function showMyFavorites(){
+        document.getElementById("placeholder1").style.display = 'none';
+        document.getElementById("placeholder2").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder5").style.display = 'none';
+        document.getElementById("placeholder6").style.display = 'block';
       }
 
       </script>
@@ -241,7 +302,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           display: none;
         }
       </style>
-
 
   <!-- Footer -->
 
