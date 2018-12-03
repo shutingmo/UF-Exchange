@@ -16,6 +16,9 @@ var selling = require('../controllers/sellingServerController.js'),
 
     router.route('/favorite')
       .post(selling.favoriteSelling)
+    
+    router.route('/buyNow')
+      .post(selling.buyItemNow)
     //Navigate to userDashboard then click create listing
     // router.route('/postListing')
     //   .post(selling.create);

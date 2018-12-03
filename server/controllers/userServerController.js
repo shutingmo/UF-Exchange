@@ -336,7 +336,7 @@ exports.delete = function(req, res) {
 exports.getUserFavs = function(req,res){
     console.log('in get user favs ' + currSessionUser)
     
-    User.findOne({username: currSessionUser}, 'favorite', function(err, user){
+    User.findOne({username: currSessionUser}, 'favorite orders', function(err, user){
         if (err){
             console.log(err);
             return res.status(400).send(err)

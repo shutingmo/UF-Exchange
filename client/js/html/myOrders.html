@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
+<!-- <style>
 ul {
     list-style-type: none;
     margin: 0;
@@ -38,7 +38,7 @@ li a:hover {
 }
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-</style>
+</style> -->
 
 <body ng-app="ufxApp">
 
@@ -80,14 +80,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
                
             
             <ul class="nav navbar-nav navbar-right">
-        
-              <li><a href="myOrders.html" class="navbar-brand"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-              <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>
-              <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
-              <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
+                <li><a href="myOrders.html" class="navbar-brand"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>  
+                <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
+                <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
             </ul>
           </div>
-        </nav>
+</nav>
 
 </div>
 
@@ -99,28 +98,15 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Push down content on small screens -->
 
-  <div ng-controller="ItemController">
-
-    <p>
-        Search: <input type="text" ng-model="itemSearchBar" placeholder="enter search here" />
-    </p>
-
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button> 
-
+  <div ng-controller="accountController">
     
     <div class="row">
-      <div ng-repeat="items in items | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+      <div ng-repeat="order in userOrders | orderBy: title" ng-click="getCurrentItem(order)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
                 <img src="../images/add-item-icon.png" style="width:65%">
-                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                <p>{{order.title}}<br><b>${{order.price}}</b></p>
                 <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
                 </div>
