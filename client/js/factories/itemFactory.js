@@ -26,6 +26,10 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         currId = listingId;
       },
 
+      findItem: function(_id) {
+        return $http.get('http://localhost:3000/selling/' + _id);
+      },
+
       findSellingItem: function(_id) {
         return $http.get('http://localhost:3000/selling/' + _id);
       },

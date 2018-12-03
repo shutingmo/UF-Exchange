@@ -8,7 +8,7 @@ var path = require('path'),
     session = require('express-session'),
     connectFlash = require('connect-flash'),
     multer = require('multer'), 
-    upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'}) 
+    // upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'}) 
 
 
 
