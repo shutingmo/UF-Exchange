@@ -76,23 +76,31 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
     </div>
+
+
+<div ng-controller="ItemController">
     <div class="container" style="margin-top: 0;">
 
 
-<input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
-<span class="input-group-btn">
 
-</span>
+        <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
+        <span class="input-group-btn">
+        
+        </span>
+        </div>
+               
+            
+            <ul class="nav navbar-nav navbar-right">
+        
+              <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>
+
+              <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
+              <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
 </div>
-
-
-    <ul class="nav navbar-nav navbar-right">
-
-      <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
-      <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
-    </ul>
-  </div>
-</nav>
 
 <!-- Top menu on small screens -->
 
@@ -101,40 +109,38 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Push down content on small screens -->
 
+  <div ng-controller="ItemController">
 
-  <ul style="padding-bottom: 50px">
-   <li><a class="active" href="#te">Textbooks</a></li>
-  <li><a href="#ee">Electronics</a></li>
-  <li><a href="#v">Vehicles</a></li>
-  <li><a href="#t">Tickets</a></li>
-  <li><a href="#c">Clothing</a></li>
-  <li><a href="#e">Entertainment</a></li>
-  <li><a href="#h">Housing</a></li>
-    <li><a href="#m">Miscellaneous</a></li>
-</ul>
+    <p>
+        Search: <input type="text" ng-model="itemSearchBar" placeholder="enter search here" />
+    </p>
 
-  <a onclick="showSelling()" class="w3-bar-item w3-button">Selling Listings</a>
-  <a onclick="showBuying()" class="w3-bar-item w3-button">Buying Listings</a>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
+    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button> 
 
-  <div ng-controller="ItemController"  id="placeholder1">
+    
     <div class="row">
-      <div ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
+      <div ng-repeat="items in items | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img src="/js/images/add-item-icon.png" style="width:30%">
-                  <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                   <div class="w3-display-middle w3-display-hover">
-                      <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                      <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
-                    </div>
+                <img src="../images/add-item-icon.png" style="width:65%">
+                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                <div class="w3-display-middle w3-display-hover">
+                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
+
 
     <div ng-controller="ItemController"  id="placeholder2" class="demo-placeholder">
       <div class="row">

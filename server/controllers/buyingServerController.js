@@ -2,6 +2,8 @@ var express = require('express'),
     mongoose = require('mongoose');
     Buying = require('../models/buyingServerModel.js');
     User = require('../models/userServerModel.js');
+    fs = require('fs');
+    multer = require('multer');
 
 // Create a buying listing
 exports.create = function(req, res) {
@@ -18,6 +20,8 @@ exports.create = function(req, res) {
 
     var buyerName;
     var buyerEmail;
+
+  
 
     User.findOne({username:currSessionUser}, function(err, user) {
       // console.log('the user found is ' + JSON.stringify(user));
