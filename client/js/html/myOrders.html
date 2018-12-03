@@ -17,13 +17,10 @@ ul {
     padding-left:30vh;
     padding-bottom: 0px;
     overflow: hidden;
-
 }
-
 li {
     float: left;
 }
-
 li a {
     display: block;
     color: black;
@@ -32,7 +29,6 @@ li a {
     
     text-decoration: none;
 }
-
 li a:hover {
     background-color: #f1f1f1;
 }
@@ -45,32 +41,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-    <p style="color:grey"><font size=6>UFX</font></p>
+        <a href="userLanding.html">
+            <p style="color:grey"><font size=6>UFX</font></p>
+        </a>
+        
     </div>
 
-
-
-<body ng-app="ufxApp">
-
-<nav class="navbar" style="background:linear-gradient(0deg, #9dc66b 5%, #4fa49a 30%, #4361c2)">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <p style="color:white"><font size=6>UFX</font></p>
-    </div>
-
-    <div class="w3-padding-64 w3-large w3-text-white" style="font-weight:bold">
-    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-    <a href="myOrders.html" class="w3-bar-item w3-button" ng-click="addOrder()">My Orders</a>
-    <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a>
-
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      My Posted Listings <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-
-      <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a>
-      <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a>
-      
     <a href="#" class="w3-bar-item w3-button">My Favorites</a>
     <div ng-controller="accountController">
       <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
@@ -82,7 +58,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       </div>
     </ul>
  
-
     </form>
 
   </div>
@@ -114,26 +89,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 </div>
 
-
-
-    </div>
-    <div class="container" style="margin-top: 0;">
-
-
-<input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
-<span class="input-group-btn">
-
-</span>
-</div>
-
-
-    <ul class="nav navbar-nav navbar-right">
-
-      <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
-      <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
-    </ul>
-  </div>
-</nav>
 
 <!-- Top menu on small screens -->
 
@@ -185,17 +140,13 @@ function myAccFunc() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
-
 // Click on the "Jeans" link on page load to open the accordion for demo purposes
 // document.getElementById("myBtn").click();
-
-
 // Script to open and close sidebar
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
 }
-
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
