@@ -11,6 +11,8 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         console.log('scope current user' + JSON.stringify($scope.currentuser) + '!');
 
         getUserFavs()
+
+        // getUserOrders()
     }, function(error){
         console.log('unable to get current user ', error)
     })
@@ -26,11 +28,23 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
 
             console.log($scope.favs)
 
-        }, function(err){
+            console.log('get user orders fe is '+JSON.stringify(res.data.orders))
+            $scope.userOrders = res.data.orders
+            console.log($scope.userOrders)
 
+        }, function(err){
+            console.log('unable to get user my orders ', error)
         })
     }
-    
+
+    function getUserOrders(){
+        console.log('fe get user orders')
+        userFactory.getUserOrders().then(function(res){
+            console.log('get user orders fe is '+JSON.stringify(res.data.orders))
+
+            $scope.myOrders = res.data.orders
+        })
+    }
 
     $scope.update = function(){
         console.log('front end update user')

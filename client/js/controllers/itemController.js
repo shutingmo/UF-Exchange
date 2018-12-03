@@ -304,7 +304,28 @@ angular.module('items')
     }
 
     $scope.buyNow = function(){
+      var buyItem = sessionStorage.getItem('selected');
+      console.log('fe buy now item '+ buyItem)
+      itemFactory.findItem(buyItem).then(function(response){
+        console.log(JSON.stringify(response.data));
 
+        if(response){
+          itemFactory.buyItemNow(response.data).then(function(res){
+            if(res.status !== 200)
+            {
+              console.log("\nunable to fav item");
+            }
+            else if (res.status === 200)
+            {
+              console.log('fav was success, front end');
+            }
+
+          })
+        }
+
+      }, function(error){
+        console.log('Unable to retrieve selling items:', error);
+      })
     }
 
     $scope.favorite = function(){

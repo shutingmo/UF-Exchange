@@ -132,7 +132,6 @@ var express = require('express'),
 
       }
 
-
   }
 
   exports.flagUser = function(req, res){
@@ -150,7 +149,29 @@ var express = require('express'),
           return res.status(200).send('successful flag')
       }
     })
-}
+  }
+
+  exports.buyItemNow = function(req, res){
+    console.log('in buynow selling be')
+    console.log(JSON.stringify(req.body))
+    console.log(currSessionUser)
+
+    if(currSessionUser)
+    {
+      User.updateOne({username: currSessionUser}, {$push: { "orders": req.body}}, function(err){
+        if(err)
+        {
+        console.log('unable to buy item' + err)
+        return res.status(400).send(err)
+        }
+        else{
+        console.log('buynow item woohoo')
+        return res.status(200).send('successful buy now')
+        }   
+      })
+
+    }
+  }
 
   // exports.listingByID = function(req, res, id) {
   //   Selling.find({itemId: id}).exec(function(err, data) {

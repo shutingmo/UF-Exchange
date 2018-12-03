@@ -60,7 +60,11 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         console.log('in fav item fac')
 
         return $http.post('http://localhost:3000/selling/favorite', like);
+      },
 
+      buyItemNow: function(buy){
+        console.log('in buy now item fac')
+        return $http.post('http://localhost:3000/selling/buyNow', buy);
       }
 
     };
