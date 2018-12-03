@@ -8,9 +8,14 @@ var selling = require('../controllers/sellingServerController.js'),
       .post(selling.create);
 
 
-    router.route('/flag')
-      .post(selling.update)
+    router.route('/flagItem')
+      .post(selling.flagItem)
 
+    router.route('/flagUser')
+      .post(selling.flagUser)
+
+    router.route('/favorite')
+      .post(selling.favoriteSelling)
     //Navigate to userDashboard then click create listing
     // router.route('/postListing')
     //   .post(selling.create);

@@ -4,7 +4,7 @@ var express = require('express'),
     User = require('../models/userServerModel.js');
 
 // Create a selling listing
-exports.create = function(req, res) {
+  exports.create = function(req, res) {
 
     /* Instantiate a Listing */
     var selling = new Selling(req.body);
@@ -88,7 +88,23 @@ exports.create = function(req, res) {
 
   //updates selling item
   exports.update = function(req, res){
-      console.log('in update be')
+    console.log('in update be')
+    console.log(JSON.stringify(req.body))
+
+    // Selling.updateOne({_id: req.body._id}, { $set: { flagged: 'true' }}, function(err){
+    //   if(err)
+    //   {
+    //       console.log('unable to flag')
+    //       return res.status(400).send(err)
+    //   }
+    //   else{
+    //       console.log('flagged woohoo')
+    //       return res.status(200).send('successful flag')
+    //   }
+    // })
+  }
+  exports.flagItem = function(req, res){
+      console.log('in flag item update be')
       console.log(JSON.stringify(req.body))
 
       Selling.updateOne({_id: req.body._id}, { $set: { flagged: 'true' }}, function(err){
@@ -98,24 +114,52 @@ exports.create = function(req, res) {
             return res.status(400).send(err)
         }
         else{
-            console.log('flagged woohoo')
+            console.log('flagged item woohoo')
             return res.status(200).send('successful flag')
         }
       })
-
-      // selling.title = req.body.title;
-      // selling.category = req.body.category;
-      // selling.price = req.body.price;
-      // selling.description = req.body.description;
-      // selling.condition = req.body.condition;
-      // selling.location = req.body.location;
-      // selling.complete = req.body.complete;
-      // selling.buyer = req.body.buyer;
-      // selling.seller = req.body.seller;
-      // selling.flagged = req.body.flagged;
-
-      // res.json(selling);
   }
+
+  exports.favoriteSelling = function(req,res){
+      console.log('in fav selling be')
+      console.log(JSON.stringify(req.body))
+      console.log(currSessionUser)
+
+      if(currSessionUser)
+      {
+        User.updateOne({username: currSessionUser}, {$push: { "favorite": req.body._id}}, function(err){
+          if(err)
+          {
+          console.log('unable to fav item' + err)
+          return res.status(400).send(err)
+          }
+          else{
+          console.log('fav item woohoo')
+          return res.status(200).send('successful fav')
+          }   
+        })
+
+      }
+
+
+  }
+
+  exports.flagUser = function(req, res){
+    console.log('in flag user update be')
+    console.log(JSON.stringify(req.body.seller.email))
+
+    User.updateOne({email: req.body.seller.email}, { $set: { banned: 'true' }}, function(err){
+      if(err)
+      {
+          console.log('unable to flag user')
+          return res.status(400).send(err)
+      }
+      else{
+          console.log('flagged user woohoo')
+          return res.status(200).send('successful flag')
+      }
+    })
+}
 
   // exports.listingByID = function(req, res, id) {
   //   Selling.find({itemId: id}).exec(function(err, data) {

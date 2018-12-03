@@ -23,7 +23,7 @@ var userSchema = new Schema({
     required: true
   },
   favorite: {
-    type: [Number],
+    type: [String],
     'default' : []
   },
   rating: {
