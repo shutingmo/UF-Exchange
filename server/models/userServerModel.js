@@ -2,7 +2,62 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-/* Create your schema */
+    /* Create your schema */
+var itemSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['Textbooks, Electronics, Vehicles, Tickets, Clothing, Entertainment, Housing, Miscellaneous']
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  condition: {
+  type: String,
+  required: true,
+  enum: ['New', 'Like New', 'Good', 'Fair', 'Poor']
+  },
+  location: {
+  type: String,
+  required: true,
+  enum: ['Century Tower', 'Reitz Union', 'Hub', 'Library West', 'Southwest Rec']
+  //How to add constraint among 5 locations
+  },
+  listingType: {
+    type: String,
+    required: true,
+    enum: ['selling', 'buying']
+    //How to add constraint of either selling or buying listing
+  },
+  complete: {
+    type: Boolean,
+    default: 'false'
+  },
+  buyer: {
+    name: String,
+    email: String,
+  },
+  seller: {
+    name: String,
+    email: String,
+  },
+  posted_at: Date,
+  flagged: {
+    type: Boolean,
+    default: 'false'
+  },
+  // edited_at: Date
+});
+
 var userSchema = new Schema({
   name: {
     type: String,
@@ -23,7 +78,7 @@ var userSchema = new Schema({
     required: true
   },
   favorite: {
-    type: [String],
+    type: [itemSchema],
     'default' : []
   },
   rating: {

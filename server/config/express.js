@@ -82,6 +82,8 @@ module.exports.init = function() {
 
   app.use('/account/delete', userRouter);
 
+  // app.use('/account/getFavs', userRouter);
+
 
 
 

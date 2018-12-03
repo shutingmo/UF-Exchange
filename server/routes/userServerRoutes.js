@@ -12,9 +12,12 @@ var router = express.Router();
 //     .get(userCtrl.getCurrentUser)
 
 router.route('/')
-    .get(userCtrl.getCurrentUser)
-    .post(userCtrl.updateUser)
-    .delete(userCtrl.deleteUser);
+  .get(userCtrl.getCurrentUser)
+  .post(userCtrl.updateUser)
+  .delete(userCtrl.deleteUser);
+
+router.route('/getFavs')
+  .get(userCtrl.getUserFavs)
 
 router.route('/admin')
   .get(userCtrl.getAllUser);

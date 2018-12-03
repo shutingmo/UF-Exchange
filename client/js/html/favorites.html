@@ -113,12 +113,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
     
     <div class="row">
-      <div ng-repeat="x in favs | orderBy: title" ng-click="getCurrentItem(items)">
+      <div ng-repeat="x in favs | orderBy: title" ng-click="getCurrentItem(x)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
                 <img src="../images/add-item-icon.png" style="width:65%">
-                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                <p>{{x.title}}<br><b>${{x.price}}</b></p>
                 <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
                 </div>

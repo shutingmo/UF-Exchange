@@ -266,20 +266,20 @@ angular.module('items')
     }
 
     $scope.favorite = function(){
-      var flagItem = sessionStorage.getItem('selected');
-
-      itemFactory.findItem(flagItem).then(function(response){
-        console.log(JSON.stringify(response.data._id));
+      var favItem = sessionStorage.getItem('selected');
+      console.log('fe favorites '+ favItem)
+      itemFactory.findItem(favItem).then(function(response){
+        console.log(JSON.stringify(response.data));
 
         if(response){
           itemFactory.favorite(response.data).then(function(res){
             if(res.status !== 200)
             {
-              console.log("\nunable to flag user");
+              console.log("\nunable to fav item");
             }
             else if (res.status === 200)
             {
-              console.log('flag was success, front end');
+              console.log('fav was success, front end');
             }
 
           })

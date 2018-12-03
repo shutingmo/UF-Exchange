@@ -127,7 +127,7 @@ var express = require('express'),
 
       if(currSessionUser)
       {
-        User.updateOne({username: currSessionUser}, {$push: { "favorite": req.body._id}}, function(err){
+        User.updateOne({username: currSessionUser}, {$push: { "favorite": req.body}}, function(err){
           if(err)
           {
           console.log('unable to fav item' + err)

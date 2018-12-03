@@ -44,8 +44,6 @@ img.resize {
     height: 25px;
     padding: 10px;
     margin:10px
-
-
 }
 
 /* W3.CSS 4.12 Novemberr 2018 by Jan Egil and Borge Refsnes */
@@ -324,6 +322,7 @@ button {
     cursor: pointer;
     width: 100%;
 }
+
 
 button:hover {
     opacity: 0.8;
