@@ -6,7 +6,10 @@ var path = require('path'),
     config = require('./config'),
     flash = require('express-flash'),
     session = require('express-session'),
-    connectFlash = require('connect-flash')
+    connectFlash = require('connect-flash'),
+    multer = require('multer'), 
+    upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'}) 
+
 
 
     buyingRouter = require('../routes/buyingServerRoutes.js'),
@@ -24,20 +27,27 @@ module.exports.init = function() {
   //initialize app
   var app = express();
 
-  //enable request logging for development debugging
-  app.use(session({
-    secret : "secret string",
-    resave: true,
-    saveUninitialized: true
-  }));
+  // app.use(multer({ dest: "/uploads/",
+  //   rename: function (fieldname, filename) {
+  //     return filename;
+  //   },
+  //  }));
+
   
-  app.use(require('connect-flash')());
-  app.use(function (req, res, next){
-    res.locals.messages = require('express-messages')(req,res);
-    next();
-  });
-  // initialise the flash middleware
-  app.use(flash());
+  //enable request logging for development debugging
+  // app.use(session({
+  //   secret : "secret string",
+  //   resave: true,
+  //   saveUninitialized: true
+  // }));
+  
+  // app.use(require('connect-flash')());
+  // app.use(function (req, res, next){
+  //   res.locals.messages = require('express-messages')(req,res);
+  //   next();
+  // });
+  // // initialise the flash middleware
+  // app.use(flash());
 
   app.use(morgan('dev'));
 

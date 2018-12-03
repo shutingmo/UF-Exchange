@@ -2,9 +2,14 @@
 angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
+    
+    $scope.listings = [];
+
     itemFactory.getSelling().then(function(response) {
-      // console.log('response data is ' + JSON.stringify(response.data));
+      console.log('response data in item controller is ' + JSON.stringify(response.data));
       $scope.items = response.data;
+      $scope.listings = response.data;
+      console.log('scope listings is ' + JSON.stringify($scope.listings))
       // console.log("Check1");
 
     }, function(error) {
@@ -71,7 +76,7 @@ angular.module('items')
     }
 
     $scope.uploadImg = function(img){
-
+      
     }
 
     $scope.saveBuying = function() {
@@ -171,6 +176,18 @@ angular.module('items')
       // window.location.href = link;
       window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
 
+    }
+
+    $scope.theFilter = {};
+
+    $scope.filterItems = function(category){
+      console.log('check 1')
+      if ($scope.theFilter.category === category) {
+        $scope.theFilter = {};
+      }
+      else {
+        $scope.theFilter.category = category;
+      }
     }
   }
 ]);

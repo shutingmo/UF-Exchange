@@ -90,18 +90,27 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Push down content on small screens -->
  
-
-  <ul style="padding-bottom: 50px"> 
-   <li><a class="active" href="#te">Textbooks</a></li>
-  <li><a href="#ee">Electronics</a></li>
-  <li><a href="#v">Vehicles</a></li>
-  <li><a href="#t">Tickets</a></li>
-  <li><a href="#c">Clothing</a></li>
-  <li><a href="#e">Entertainment</a></li>
-  <li><a href="#h">Housing</a></li>
-    <li><a href="#m">Miscellaneous</a></li>
-</ul>
-
+  <div ng-controller="ItemController">
+    <!-- <ul style="padding-bottom: 50px"> 
+        <li><a class ="bar" ng-click="filterItems('Textbooks')">Textbooks</a></li>
+        <li><a class ="bar" ng-click="filterItems('Electronics')">Electronics</a></li>
+        <li><a class ="bar" ng-click="filterItems('Vehicles')">Vehicles</a></li>   
+    </ul> -->
+    <button class ="btn btn-secondary" ng-click="filterItems('')">Show All</button>
+    <button class ="btn btn-secondary" ng-click="filterItems('Textbooks')">Textbooks</button>
+    <button class ="btn btn-secondary" ng-click="filterItems('Electronics')">Electronics</button>
+    <button class ="btn btn-secondary" ng-click="filterItems('Vehicles')">Vehicles</button>  
+    
+    <table>
+        <tbody>
+          <tr ng-repeat="x in listings | filter:theFilter">
+            <td>{{ x.title }}</td>
+            <td>{{ x.price }}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  
 
   <div ng-controller="ItemController">
     <div class="row">
@@ -109,28 +118,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-              <img src="../images/add-item-icon.png" style="width:65%">
-              <p>{{items.title}}<br><b>${{items.price}}</b></p>
-               <div class="w3-display-middle w3-display-hover">
+                <img src="../images/add-item-icon.png" style="width:65%">
+                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
-  <!-- Footer -->
-
-
-
-
-
-
-  <!-- End page content -->
 </div>
 
 <!-- Newsletter Modal -->
