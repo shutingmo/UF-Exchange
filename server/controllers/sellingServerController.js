@@ -62,15 +62,6 @@ var express = require('express'),
         }
       });
     }
-    // /* Then save the listing */
-    // selling.save(function(err) {
-    //   if(err) {
-    //     console.log(err);
-    //     res.status(400).send(err);
-    //   } else {
-    //     res.json(selling);
-    //   }
-    // });
   };
 
   //lists everything

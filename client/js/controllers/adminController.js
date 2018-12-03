@@ -13,15 +13,20 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
 
       itemFactory.getSelling().then(function(response) {
         // console.log('response data is ' + JSON.stringify(response.data));
-        $scope.items = response.data;
-        console.log($scope.items);
+        $scope.sellingItems = response.data;
         // console.log("Check1");
 
       }, function(error) {
         console.log('Unable to retrieve selling items:', error);
       });
 
-
+      itemFactory.getBuying().then(function(response) {
+        // console.log('response data is ' + JSON.stringify(response.data));
+        $scope.buyingItems = response.data;
+        // console.log("Check1");
+      }, function(error) {
+        console.log('Unable to retrieve buying items:', error);
+      });
 
 
       $scope.deleteUser = function(index) {
@@ -32,55 +37,52 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
         var userId = $scope.users[index]._id;
         $scope.users.splice(index,1);
 
-        userFactory.deleteUser(userId).then(function(err)
-        {
+        userFactory.deleteUser(userId).then(function(response){
+            console.log("Success");
 
-          if (err)
-          {
-            $scope.errorMessage = "Error. Listing not deleted";
-            console.log('Unable to delete listings', err);
-          }
-        });
+          }, function(error) {
+            console.log('Unable to retrieve users:', error);
+          });
 
         };
 
-        $scope.deleteItem = function(index) {
+        $scope.deleteSellingItem = function(index) {
          /**TODO
             Delete the article using the Listings factory. If the removal is successful,
         navigate back to 'listing.list'. Otherwise, display the error.
            */
-          var listingId = $scope.items[index]._id;
-          $scope.items.splice(index,1);
+          var listingId = $scope.sellingItems[index]._id;
+          $scope.sellingItems.splice(index,1);
 
-          itemFactory.delete(listingId).then(function(err)
+          itemFactory.deleteSelling(listingId).then(function(response)
           {
 
-            if (err)
-            {
-              $scope.errorMessage = "Error. Listing not deleted";
-              console.log('Unable to delete listings', err);
-            }
+            console.log("Success");
+
+          }, function(error) {
+            console.log('Unable to retrieve selling items:', error);
           });
-
-          // Listings.getAll().then(function(response) {
-          //   $scope.listings = response.data;
-          // }, function(error) {
-          //   console.log('Unable to retrieve listings:', error);
-          // });
-
-
 
         };
 
+        $scope.deleteBuyingItem = function(index) {
+         /**TODO
+            Delete the article using the Listings factory. If the removal is successful,
+        navigate back to 'listing.list'. Otherwise, display the error.
+           */
+          var listingId = $scope.buyingItems[index]._id;
+          $scope.buyingItems.splice(index,1);
 
+          itemFactory.deleteBuying(listingId).then(function(err)
+          {
 
-          // Listings.getAll().then(function(response) {
-          //   $scope.listings = response.data;
-          // }, function(error) {
-          //   console.log('Unable to retrieve listings:', error);
-          // });
+            console.log("Success");
 
+          }, function(error) {
+            console.log('Unable to retrieve selling items:', error);
+          });
 
+        };
 
 
       }
