@@ -7,6 +7,10 @@ var selling = require('../controllers/sellingServerController.js'),
       .get(selling.listAll)
       .post(selling.create);
 
+
+    router.route('/flag')
+      .post(selling.update)
+
     //Navigate to userDashboard then click create listing
     // router.route('/postListing')
     //   .post(selling.create);
@@ -17,6 +21,7 @@ var selling = require('../controllers/sellingServerController.js'),
       .put(selling.update)
       .delete(selling.delete);
 
+    
       //Find whether the listing is in the inventory
     //  router.param('itemId', selling.listingByID);
 

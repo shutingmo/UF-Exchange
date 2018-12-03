@@ -24,6 +24,7 @@ angular.module('items')
 
     var email;
     var itemTitle;
+    var currItem;
 
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
@@ -31,7 +32,7 @@ angular.module('items')
         console.log("initial check");
         itemFactory.findItem(id).then(function(response){
           console.log(JSON.stringify(response.data));
-          var currItem = response.data;
+          currItem = response.data;
           $scope.detailedInfo = currItem;
           console.log($scope.detailedInfo);
 
@@ -178,16 +179,51 @@ angular.module('items')
 
     }
 
-    $scope.theFilter = {};
+    // $scope.theFilter = {};
 
     $scope.filterItems = function(category){
       console.log('check 1')
-      if ($scope.theFilter.category === category) {
-        $scope.theFilter = {};
+      $scope.itemSearch = {};
+
+      if ($scope.itemSearch.category === category) {
+        $scope.itemSearch = {};
       }
       else {
-        $scope.theFilter.category = category;
+        $scope.itemSearch.category = category;
       }
+    }
+
+    $scope.flagListing = function(){
+      var flagItem = sessionStorage.getItem('selected');
+      console.log('flag item is ' + flagItem)
+      
+      itemFactory.findItem(flagItem).then(function(response){
+        console.log(JSON.stringify(response.data));
+        // flaggedItem = response.data;
+        // $scope.detailedInfo = flaggedItem;
+        // console.log($scope.detailedInfo);
+        if(response){
+          response.data.flagged = true;
+
+          console.log(response.data.flagged)
+          console.log(response)
+
+          itemFactory.flagItem(response.data).then(function(res){
+            if(res.status !== 200)
+            {
+              console.log("\nunable to flag user");
+            }
+            else if (res.status === 200)
+            {
+              console.log('flag was success, front end');
+            }
+
+          })
+        }
+
+      }, function(error){
+        console.log('Unable to retrieve selling items:', error);
+      })
     }
   }
 ]);

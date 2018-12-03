@@ -88,20 +88,33 @@ exports.create = function(req, res) {
 
   //updates selling item
   exports.update = function(req, res){
-      var selling = req.selling;
+      console.log('in update be')
+      console.log(JSON.stringify(req.body))
 
-      selling.title = req.body.title;
-      selling.category = req.body.category;
-      selling.price = req.body.price;
-      selling.description = req.body.description;
-      selling.condition = req.body.condition;
-      selling.location = req.body.location;
-      selling.complete = req.body.complete;
-      selling.buyer = req.body.buyer;
-      selling.seller = req.body.seller;
-      selling.flagged = req.body.flagged;
+      Selling.updateOne({_id: req.body._id}, { $set: { flagged: 'true' }}, function(err){
+        if(err)
+        {
+            console.log('unable to flag')
+            return res.status(400).send(err)
+        }
+        else{
+            console.log('flagged woohoo')
+            return res.status(200).send('successful flag')
+        }
+      })
 
-      res.json(selling);
+      // selling.title = req.body.title;
+      // selling.category = req.body.category;
+      // selling.price = req.body.price;
+      // selling.description = req.body.description;
+      // selling.condition = req.body.condition;
+      // selling.location = req.body.location;
+      // selling.complete = req.body.complete;
+      // selling.buyer = req.body.buyer;
+      // selling.seller = req.body.seller;
+      // selling.flagged = req.body.flagged;
+
+      // res.json(selling);
   }
 
   // exports.listingByID = function(req, res, id) {
