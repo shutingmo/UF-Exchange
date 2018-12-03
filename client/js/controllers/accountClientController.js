@@ -85,7 +85,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
 
             userFactory.delete().then(function(err) {
                 if (err.status === 200)
-                    window.location.replace('../html/homeLanding.html');
+                    window.location.replace('../html/index.html');
                 else
                     console.log('couldn\'t delete your account', err);
             })

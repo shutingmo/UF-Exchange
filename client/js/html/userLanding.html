@@ -29,7 +29,7 @@ li a {
     color: black;
     text-align: center;
     padding: 14px 16px;
-    
+
     text-decoration: none;
 }
 
@@ -48,6 +48,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <p style="color:grey"><font size=6>UFX</font></p>
     </div>
 
+    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
+    <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a>
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+      My Posted Listings <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+
+      <a onclick="showMySellings()" class="w3-bar-item w3-button">My Buy Listings</a>
+      <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Sell Listings</a>
+      
     <a href="#" class="w3-bar-item w3-button">My Favorites</a>
     <div ng-controller="accountController">
       <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
@@ -58,12 +69,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
       </div>
     </ul>
- 
+
     </form>
 
   </div>
 
-     
+
     </div>
 
 
@@ -90,7 +101,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </nav>
 
 </div>
-
 
 <!-- Top menu on small screens -->
 
@@ -130,6 +140,115 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </div>
       </div>
     </div>
+
+
+    <div ng-controller="ItemController"  id="placeholder2" class="demo-placeholder">
+      <div class="row">
+        <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch" ng-click="getCurrentItem(items)">
+            <div class="w3-col l3 s6">
+              <div class="w3-container">
+                <div class="w3-display-container">
+                  <img src="/js/images/add-item-icon.png" style="width:30%">
+                    <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                     <div class="w3-display-middle w3-display-hover">
+                        <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                        <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    <div ng-controller="accountController">
+        <div ng-controller="ItemController"  id="placeholder3" class="demo-placeholder">
+          <div class="row">
+            <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
+                <div class="w3-col l3 s6">
+                  <div class="w3-container">
+                    <div class="w3-display-container">
+                      <img src="/js/images/add-item-icon.png" style="width:30%">
+                        <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                         <div class="w3-display-middle w3-display-hover">
+                            <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                            <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div ng-controller="ItemController"  id="placeholder4" class="demo-placeholder">
+            <div class="row">
+              <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email" ng-click="getCurrentItem(items)">
+                  <div class="w3-col l3 s6">
+                    <div class="w3-container">
+                      <div class="w3-display-container">
+                        <img src="/js/images/add-item-icon.png" style="width:30%">
+                          <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                           <div class="w3-display-middle w3-display-hover">
+                              <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
+                              <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+    <script>
+      function showSelling(){
+        document.getElementById("placeholder2").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder1").style.display = 'block';
+
+      }
+      function showBuying(){
+        document.getElementById("placeholder1").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder2").style.display = 'block';
+      }
+      function showMySellings(){
+        document.getElementById("placeholder1").style.display = 'none';
+        document.getElementById("placeholder2").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'block';
+      }
+      function showMyBuyings(){
+        document.getElementById("placeholder1").style.display = 'none';
+        document.getElementById("placeholder2").style.display = 'none';
+        document.getElementById("placeholder3").style.display = 'none';
+        document.getElementById("placeholder4").style.display = 'block';
+      }
+
+      </script>
+      <style>
+        .demo-placeholder {
+          display: none;
+        }
+      </style>
+
+
+  <!-- Footer -->
+
+
+
+
+
+
+  <!-- End page content -->
 </div>
 
 <!-- Newsletter Modal -->

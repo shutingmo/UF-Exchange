@@ -5,12 +5,12 @@ var express = require('express'),
     fs = require('fs');
     multer = require('multer');
 
-// Create a buying listing 
+// Create a buying listing
 exports.create = function(req, res) {
 
     /* Instantiate a Listing */
     var buying = new Buying(req.body);
-  
+
     console.log('buying backend controller req.body is ' + JSON.stringify(req.body))
     console.log('buying document is ' + JSON.stringify(buying))
 
@@ -68,7 +68,7 @@ exports.create = function(req, res) {
     }
   };
 
-  //lists everything 
+  //lists everything
   exports.listAll = function(req, res){
     Buying.find({}, function(err,data){
         res.json(data);
@@ -97,3 +97,36 @@ exports.create = function(req, res) {
 
       res.json(buying);
   }
+
+  exports.delete = function(req, res) {
+    var buying = req.buying;
+
+    /** TODO **/
+    /* Remove the article */
+
+    buying.remove(function(err)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.status(400).send(err);
+      }
+      else
+      {
+        res.json(buying);
+      }
+    })
+
+  };
+
+  exports.listingByID = function(req, res, next, id) {
+    console.log('back end controller id is ' + id);
+    Buying.findById(id).exec(function(err, buying) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.buying = buying;
+      next();
+    }
+  });
+};
