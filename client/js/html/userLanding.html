@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+
+    <!-- <script>
+        $('.dropdown-toggle').dropdown();
+        $('#divNewNotifications li').on('click', function() {
+            $('#dropdown_title').html($(this).find('a').html());
+            });
+    </script> -->
+
+
+
+
+</head>
+
 <html>
 <title>UFX</title>
 <meta charset="UTF-8">
@@ -40,6 +66,140 @@ li a:hover {
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
 
+
+
+
+
+<!-- modal for bootstrap -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:100%;">
+        <div class="modal-content" style = "width: 100%">
+            <div class="modal-header">
+                <h5 class="modal-title" style = "width: 100%" id="exampleModalLabel">Create New Listing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <html>
+                <body ng-app="ufxApp"></body>
+                <div ng-controller="ItemController">
+                    <form novalidate class="simple-form">
+                        <button type="button" ng-click = "setBuyer()" class="btn btn-info">I Am Looking To Buy</button>
+                        <button type="button" ng-click = "setSeller()" class="btn btn-info">I Am Looking To Sell</button> <br />
+                        <h2>Add New Item</h2>
+                        Title: <input type="text" ng-model="newItem.title" /><br />
+
+                        <!-- category dropdown -->
+                        <div class="btn-group">
+                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="dropdown_title1">Category</span>
+                            </a>
+
+                            <div ID="divNewNotifications1" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Textbooks')">Textbooks</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Electronics')">Electronics</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Vehicles')">Vehicles</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Tickets')">Tickets</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Clothing')">Clothing</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Entertainment')">Entertainment</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Housing')">Housing</a></li>
+                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Miscellaneous')">Miscellaneous</a></li>
+                            </div>
+                        </div>
+                        <br />
+
+                        Price: <input type="text" ng-model="newItem.price" /><br />
+                        Description: <input type="text" ng-model="newItem.description" /><br />
+
+                        <!-- condition dropdown -->
+                        <div class="btn-group">
+                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="dropdown_title2">Condition</span>
+                                <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
+                                        Location
+                                </button> -->
+                            </a>
+
+                            <div ID="divNewNotifications2" class="dropdown-menu">
+                                <li><a class="dropdown-item" id="new" href="#" ng-click ="setCondition('New')">New</a></li>
+                                <li><a class="dropdown-item" id="likenew" href="#" ng-click ="setCondition('Like New')">Like New</a></li>
+                                <li><a class="dropdown-item" id="good" href="#" ng-click ="setCondition('Good')">Good</a></li>
+                                <li><a class="dropdown-item" id="fair" href="#" ng-click ="setCondition('Fair')">Fair</a></li>
+                                <li><a class="dropdown-item" id="poor" href="#" ng-click ="setCondition('Poor')">Poor</a></li>
+
+                            </div>
+                        </div>
+                        <br />
+
+                        <!-- location dropdown -->
+                        <br />
+                        <div class="btn-group">
+                            <!-- <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Location
+                            </button>
+                            <div class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
+                                <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
+                                <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
+                                <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
+                                <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
+                            </div> -->
+                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="dropdown_title3">Location</span>
+                                <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
+                                        Location
+                                </button> -->
+                            </a>
+
+                            <div ID="divNewNotifications3" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
+                                <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
+                                <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
+                                <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
+                                <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
+
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </form>
+                </div>
+
+                <br />
+                <div id='map' style='width: 400px; height: 300px;'></div>
+
+                <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+                <script src="../app.js"></script>
+                <script src="../postListing.js"></script>
+                <script src="../factories/itemFactory.js"></script>
+                <script src="../controllers/itemController.js"></script>
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+                </html>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- closed modal div -->
+
+
+
+
+
+
+
+
+
+
 <body ng-app="ufxApp">
 
 <nav class="navbar navbar-inverse">
@@ -51,8 +211,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </div>
 
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <div> <a href="account.html" class="w3-bar-item w3-button">My Account</a></div>
-    <div> <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a></div>
+
+    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
+        <a class="w3-bar-item w3-button" data-toggle="modal" data-target="#exampleModal">Create New Listing</a>
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+    </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+
     <div> <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Buy Listings</a></div>
     <div> <a onclick="showMySellings()" class="w3-bar-item w3-button">My Sell Listings</a></div>
     <div> <a onclick="showMyFavorites()" class="w3-bar-item w3-button">My Favorites</a></div>
@@ -359,6 +524,26 @@ function w3_close() {
 <script src="../controllers/accountClientController.js"></script>
 <script src="../factories/itemFactory.js"></script>
 <script src="../controllers/itemController.js"></script>
+
+<script>
+            $('.dropdown-toggle').dropdown();
+            $('#divNewNotifications1 li').on('click', function() {
+                $('#dropdown_title1').html($(this).find('a').html());
+
+            });
+
+            $('#divNewNotifications2 li').on('click', function() {
+                $('#dropdown_title2').html($(this).find('a').html());
+
+            });
+
+            $('#divNewNotifications3 li').on('click', function() {
+                $('#dropdown_title3').html($(this).find('a').html());
+
+            });
+
+        </script>
+
 
 </body>
 </html>
