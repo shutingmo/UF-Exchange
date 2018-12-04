@@ -6,7 +6,7 @@ angular.module('items')
     $scope.listings = [];
 
     itemFactory.getSelling().then(function(response) {
-      // console.log('response data is ' + JSON.stringify(response.data));
+      console.log('response data in get selling is ' + JSON.stringify(response.data));
       $scope.sellingItems = response.data;
       // console.log("Check1");
 
@@ -15,12 +15,31 @@ angular.module('items')
     });
 
     itemFactory.getBuying().then(function(response) {
-      // console.log('response data is ' + JSON.stringify(response.data));
+      console.log('response data in get buying is ' + JSON.stringify(response.data));
       $scope.buyingItems = response.data;
       // console.log("Check1");
     }, function(error) {
       console.log('Unable to retrieve buying items:', error);
     });
+
+    $scope.reinitialize = function(){
+      itemFactory.getSelling().then(function(response) {
+        console.log('reinit with this selling data ' + JSON.stringify(response.data));
+        $scope.sellingItems = response.data;
+        // console.log("Check1");
+  
+      }, function(error) {
+        console.log('Unable to retrieve selling items:', error);
+      });
+  
+      itemFactory.getBuying().then(function(response) {
+        console.log('reinit with this buying data ' + JSON.stringify(response.data));
+        $scope.buyingItems = response.data;
+        // console.log("Check1");
+      }, function(error) {
+        console.log('Unable to retrieve buying items:', error);
+      });
+    }
 
     $scope.getCurrentItem = function(items){
       var itemId = items._id;
