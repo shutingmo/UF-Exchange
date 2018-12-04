@@ -1,65 +1,154 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-    <link rel='stylesheet' type='text/css' href='../css/signup.css'>
-    <link rel='stylesheet' type='text/css' href='mains.css'>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>UFX &mdash; </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" />
+	<meta name="keywords" />
+	<meta name="author"/>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-</head>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
 
-<body ng-app="ufxApp" style="background:linear-gradient(0deg, #9dc66b 5%, #4fa49a 30%, #4361c2)">
-<div ng-controller="accountController">
-
-  <div class="container">
-    <form novalidate class="simple-form">
-
-
-      <h1>Update Your User Account</h1>
-      <p>Please fill in this form to update your account.</p>
-      <hr>
-
-      <h1>Hi {{currentuser.name}} </h1>
-
-      Name: <input type="text" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
-
-      Username: <input type="text" placeholder={{currentuser.username}} ng-model="updatedUser.username"  required><br/>
-
-      Email: <input type="text" placeholder={{currentuser.email}} ng-model="updatedUser.email"  required><br/>
-
-      Password: <input type="password" placeholder="Enter Password" ng-model="updatedUser.password"  required><br/>
-
-      Retype Password: <input type="password" placeholder="Retype Password" ng-model="updatedUser.retypePassword"  required><br/>
-
-    </form>
-
-    <div class="clearfix">
-      <button type="submit" class="signupbtn" ng-click="update()">Update</button>
-
-      <button type="submit" class="deletebtn" ng-click="delete()">Delete Account</button>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="js/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="js/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="js/css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="js/css/superfish.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="js/css/magnific-popup.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="js/css/bootstrap-datepicker.min.css">
+	<!-- CS Select -->
+	<link rel="stylesheet" href="js/css/cs-select.css">
+	<link rel="stylesheet" href="js/css/cs-skin-border.css">
+	
+	<link rel="stylesheet" href="../css/acct.css">
 
 
-      <a href="userLanding.html">
-          <button type="button" class="cancelbtn">Cancel</button>
-      </a>
+	<!-- Modernizr JS -->
+	<!-- <script src="js/modernizr-2.6.2.min.js"></script> -->
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 
+	</head>
+	<body ng-app="ufxApp">
+		<div id="fh5co-wrapper">
+		<div id="fh5co-page">
+
+		<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+          <h2 style="color:white" id="fh5co-logo">Update Your User Account</h2>
+		 		</div>
+			</div>
+		</header>
+
+		<div class="fh5co-hero">
+			<div class="fh5co-overlay"></div>
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+				<div class="desc3">
+					<div class="container">
+						<div class="row" id="acct">
+              <div class="row" ng-controller="accountController">
+                <form novalidate class="simple-form">
+
+                  <h4 style="color:white">Hello {{currentuser.name}} </h4>
+
+                  <div class="input-field">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
+                  </div>
+
+                  <div class="input-field">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" placeholder={{currentuser.username}} ng-model="updatedUser.username" required><br/>
+                  </div>
+
+                  <div class="input-field">
+                      <label for="username">Email:</label>
+                      <input type="text" class="form-control" placeholder={{currentuser.email}} ng-model="updatedUser.email" required /><br />
+                  </div>
+
+                  <div class="input-field">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control"  placeholder="Enter Password" ng-model="updatedUser.password" required/><br />
+                  </div>
+
+                  <div class="input-field">
+                      <label for="password">Retype Password:</label>
+                      <input type="password" class="form-control" placeholder="Retype Password" ng-model="updatedUser.retypePassword" required/><br />
+                  </div>
+                  </form>
+
+                <br />
+                <div class="col-xs-12">
+                  <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
+                  <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
+                  <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
-  </div>
+		</div>
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
+	<!-- END fh5co-page -->
 
+	</div>
+	<!-- END fh5co-wrapper -->
+
+  <!-- jQuery -->
+
+	<script src="js/morejs/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/morejs/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/morejs/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/morejs/jquery.waypoints.min.js"></script>
+	<script src="js/morejs/sticky.js"></script>
+
+	<!-- Stellar -->
+	<script src="js/morejs/jquery.stellar.min.js"></script>
+	<!-- Superfish -->
+	<script src="js/morejs/hoverIntent.js"></script>
+	<script src="js/morejs/superfish.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/morejs/jquery.magnific-popup.min.js"></script>
+	<script src="js/morejs/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/morejs/bootstrap-datepicker.min.js"></script>
+	<!-- CS Select -->
+	<script src="js/morejs/classie.js"></script>
+	<script src="js/morejs/selectFx.js"></script>
+	
+	<!-- Main JS -->
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-  <script src="../app.js"></script>
+  <script src="/js/app.js"></script>
   <script src="../factories/userFactory.js"></script>
   <script src="../controllers/accountClientController.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 
-  </div>
-</div>
-</body>
+	</body>
 </html>
+

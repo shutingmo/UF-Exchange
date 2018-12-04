@@ -68,7 +68,8 @@ app.controller('loginController', ['$rootScope', '$scope', 'Flash', '$timeout', 
                     window.location.replace('../html/adminLanding.html');
                   }
                   else{
-                    window.location.replace('../html/userLanding.html');
+                      console.log('check')
+                    window.location.replace('js/html/userLanding.html');
                   }
                 }, 500);
             }

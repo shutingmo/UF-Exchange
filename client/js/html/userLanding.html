@@ -3,36 +3,21 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='../css/newUserLanding.css'>
     <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
-
-    <!-- <script>
-        $('.dropdown-toggle').dropdown();
-        $('#divNewNotifications li').on('click', function() {
-            $('#dropdown_title').html($(this).find('a').html());
-            });
-    </script> -->
-
-
-
-
 </head>
 
 <html>
 <title>UFX</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="main.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="newUserLanding.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -43,15 +28,14 @@ ul {
     padding-left:30vh;
     padding-bottom: 0px;
     overflow: hidden;
-
 }
 
 li {
-    float: left;
+  display: inline;
 }
 
 li a {
-    display: block;
+    /* display:inline; */
     color: black;
     text-align: center;
     padding: 14px 16px;
@@ -62,8 +46,8 @@ li a {
 li a:hover {
     background-color: #f1f1f1;
 }
-.w3-sidebar a {font-family: "Roboto", sans-serif}
-body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+/* .w3-sidebar a {font-family: "Roboto", sans-serif} */
+/* body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;} */
 </style>
 
 
@@ -82,107 +66,105 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             </div>
             <div class="modal-body">
 
+            <html>
+            <body ng-app="ufxApp"></body>
+            <div ng-controller="ItemController">
+              <form novalidate class="simple-form">
+                Title: <input type="text" ng-model="newItem.title" /><br />
 
+                <!-- category dropdown -->
+                <div class="btn-group">
+                  <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span id="dropdown_title1">Category</span>
+                  </a>
 
-
-                <html>
-                <body ng-app="ufxApp"></body>
-                <div ng-controller="ItemController">
-                    <form novalidate class="simple-form">
-                        <button type="button" ng-click = "setBuyer()" class="btn btn-info">I Am Looking To Buy</button>
-                        <button type="button" ng-click = "setSeller()" class="btn btn-info">I Am Looking To Sell</button> <br />
-                        <h2>Add New Item</h2>
-                        Title: <input type="text" ng-model="newItem.title" /><br />
-
-                        <!-- category dropdown -->
-                        <div class="btn-group">
-                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="dropdown_title1">Category</span>
-                            </a>
-
-                            <div ID="divNewNotifications1" class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Textbooks')">Textbooks</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Electronics')">Electronics</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Vehicles')">Vehicles</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Tickets')">Tickets</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Clothing')">Clothing</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Entertainment')">Entertainment</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Housing')">Housing</a></li>
-                                <li><a class="dropdown-item" href="#" ng-click ="setCategory('Miscellaneous')">Miscellaneous</a></li>
-                            </div>
-                        </div>
-                        <br />
-
-                        Price: <input type="text" ng-model="newItem.price" /><br />
-                        Description: <input type="text" ng-model="newItem.description" /><br />
-
-                        <!-- condition dropdown -->
-                        <div class="btn-group">
-                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="dropdown_title2">Condition</span>
-                                <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
-                                        Location
-                                </button> -->
-                            </a>
-
-                            <div ID="divNewNotifications2" class="dropdown-menu">
-                                <li><a class="dropdown-item" id="new" href="#" ng-click ="setCondition('New')">New</a></li>
-                                <li><a class="dropdown-item" id="likenew" href="#" ng-click ="setCondition('Like New')">Like New</a></li>
-                                <li><a class="dropdown-item" id="good" href="#" ng-click ="setCondition('Good')">Good</a></li>
-                                <li><a class="dropdown-item" id="fair" href="#" ng-click ="setCondition('Fair')">Fair</a></li>
-                                <li><a class="dropdown-item" id="poor" href="#" ng-click ="setCondition('Poor')">Poor</a></li>
-
-                            </div>
-                        </div>
-                        <br />
-
-                        <!-- location dropdown -->
-                        <br />
-                        <div class="btn-group">
-                            <!-- <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Location
-                            </button>
-                            <div class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
-                                <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
-                                <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
-                                <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
-                                <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
-                            </div> -->
-                            <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="dropdown_title3">Location</span>
-                                <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
-                                        Location
-                                </button> -->
-                            </a>
-
-                            <div ID="divNewNotifications3" class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
-                                <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
-                                <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
-                                <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
-                                <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
-
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-                    </form>
+                  <div ID="divNewNotifications1" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Textbooks')">Textbooks</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Electronics')">Electronics</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Vehicles')">Vehicles</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Tickets')">Tickets</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Clothing')">Clothing</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Entertainment')">Entertainment</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Housing')">Housing</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click ="setCategory('Miscellaneous')">Miscellaneous</a></li>
+                  </div>
                 </div>
-
                 <br />
-                <div id='map' style='width: 400px; height: 300px;'></div>
 
-                <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-                <script src="../app.js"></script>
-                <script src="../postListing.js"></script>
-                <script src="../factories/itemFactory.js"></script>
-                <script src="../controllers/itemController.js"></script>
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+                Price: <input type="text" ng-model="newItem.price" /><br />
+                Description: <input type="text" ng-model="newItem.description" /><br />
 
-                </html>
+                <!-- condition dropdown -->
+                <div class="btn-group">
+                  <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span id="dropdown_title2">Condition</span>
+                      <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
+                              Location
+                      </button> -->
+                  </a>
+
+                  <div ID="divNewNotifications2" class="dropdown-menu">
+                    <li><a class="dropdown-item" id="new" href="#" ng-click ="setCondition('New')">New</a></li>
+                    <li><a class="dropdown-item" id="likenew" href="#" ng-click ="setCondition('Like New')">Like New</a></li>
+                    <li><a class="dropdown-item" id="good" href="#" ng-click ="setCondition('Good')">Good</a></li>
+                    <li><a class="dropdown-item" id="fair" href="#" ng-click ="setCondition('Fair')">Fair</a></li>
+                    <li><a class="dropdown-item" id="poor" href="#" ng-click ="setCondition('Poor')">Poor</a></li>
+                  </div>
+                </div>
+                <br />
+
+                    <!-- location dropdown -->
+                    <br />
+                    <div class="btn-group">
+                        <!-- <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Location
+                        </button>
+                        <div class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
+                            <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
+                            <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
+                            <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
+                            <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
+                        </div> -->
+                        <a class="btn btn-secondary btn-sm dropdown-toggle" style="color: #fff" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="dropdown_title3">Location</span>
+                            <!-- <button class="btn btn-secondary btn-sm"  aria-haspopup="true" aria-expanded="false" >
+                                    Location
+                            </button> -->
+                        </a>
+
+                        <div ID="divNewNotifications3" class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id = "ct" ng-click ="setLocation('Century Tower')">Century Tower</a></li>
+                            <li><a class="dropdown-item" href="#" id = "ru" ng-click ="setLocation('Reitz Union')">Reitz Union</a></li>
+                            <li><a class="dropdown-item" href="#" id = "hub" ng-click ="setLocation('Hub')">Hub</a></li>
+                            <li><a class="dropdown-item" href="#" id = "lw" ng-click ="setLocation('Library West')">Library West</a></li>
+                            <li><a class="dropdown-item" href="#" id = "sw" ng-click ="setLocation('Southwest Rec')">Southwest Rec</a></li>
+
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                    <button type="button" ng-click = "setBuyer()" class="btn btn-info">I Am Looking To Buy</button>
+                    <button type="button" ng-click = "setSeller()" class="btn btn-info">I Am Looking To Sell</button> <br />
+
+                    <br />
+                </form>
+            </div>
+
+            <br />
+            <div id='map' style='width: 400px; height: 300px;'></div>
+
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            <script src="../app.js"></script>
+            <script src="../postListing.js"></script>
+            <script src="../factories/itemFactory.js"></script>
+            <script src="../controllers/itemController.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+            </html>
             </div>
         </div>
     </div>
@@ -194,82 +176,193 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 
+<!-- account modal2 div -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Your User Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <body ng-app="ufxApp">
+
+
+              <!--  <div id="fh5co-wrapper">
+                    <div id="fh5co-page">
+-->
+
+                        <!--<div class="fh5co-hero">-->
+                            <!--<div class="fh5co-overlay"></div>-->
+                            <!--<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">-->
+                                <!--<div class="desc3">-->
+                                    <div class="container"  style="width:100%" >
+
+                                            <div class="row" ng-controller="accountController">
+                                                <form novalidate class="simple-form"  style="width:100%">
+
+                                                    <h4 style="color:black">Hello {{currentuser.name}} </h4>
+
+                                                    <div class="input-field">
+                                                        <label for="name">Name:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="username">Username:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.username}} ng-model="updatedUser.username" required><br/>
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="username">Email:</label>
+                                                        <input type="text" class="form-control" placeholder={{currentuser.email}} ng-model="updatedUser.email" required /><br />
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="password">Password:</label>
+                                                        <input type="password" class="form-control"  placeholder="Enter Password" ng-model="updatedUser.password" required/><br />
+                                                    </div>
+
+                                                    <div class="input-field">
+                                                        <label for="password">Retype Password:</label>
+                                                        <input type="password" class="form-control" placeholder="Retype Password" ng-model="updatedUser.retypePassword" required/><br />
+                                                    </div>
+                                                </form>
 
 
 
+
+
+                                                <br />
+                                                <div class="col-xs-12">
+                                                    <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
+                                                    <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
+                                                    <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+               <!-- </div>-->
+
+                <!-- END fh5co-page -->
+
+            </div>
+            <!-- END fh5co-wrapper -->
+
+            <!-- jQuery -->
+
+            <script src="js/morejs/jquery.min.js"></script>
+            <!-- jQuery Easing -->
+            <script src="js/morejs/jquery.easing.1.3.js"></script>
+            <!-- Bootstrap -->
+            <script src="js/morejs/bootstrap.min.js"></script>
+            <!-- Waypoints -->
+            <script src="js/morejs/jquery.waypoints.min.js"></script>
+            <script src="js/morejs/sticky.js"></script>
+
+            <!-- Stellar -->
+            <script src="js/morejs/jquery.stellar.min.js"></script>
+            <!-- Superfish -->
+            <script src="js/morejs/hoverIntent.js"></script>
+            <script src="js/morejs/superfish.js"></script>
+            <!-- Magnific Popup -->
+            <script src="js/morejs/jquery.magnific-popup.min.js"></script>
+            <script src="js/morejs/magnific-popup-options.js"></script>
+            <!-- Date Picker -->
+            <script src="js/morejs/bootstrap-datepicker.min.js"></script>
+            <!-- CS Select -->
+            <script src="js/morejs/classie.js"></script>
+            <script src="js/morejs/selectFx.js"></script>
+
+            <!-- Main JS -->
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            <script src="/js/app.js"></script>
+            <script src="../factories/userFactory.js"></script>
+            <script src="../controllers/accountClientController.js"></script>
+            <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+            </div>
+            </body>
+
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- closed account modal2 div -->
 
 
 
 <body ng-app="ufxApp">
+  <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
+    <div class="container" >
+      <div class="nav-header">
+        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+        <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+        <nav id="fh5co-menu-wrap" role="navigation">
+          <!-- <p>
+              <input type="text" class="form-control" ng-model="itemSearchBar" id="search" placeholder="Search for...">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <a href="userLanding.html">
-            <p style="color:grey"><font size=6>UFX</font></p>
-        </a>
-    </div>
+          </p> -->
+          <ul class="sf-menu" id="fh5co-primary-menu">
+            <!-- <div id="user"> -->
+                <!-- <li><p style="color:#F78536"><font size=3>Hi {{currentuser.name}}!</font></p></li> -->
+            <!-- </div> -->
 
-    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
+            <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
+            <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
 
-    <a href="account.html" class="w3-bar-item w3-button">My Account</a>
-        <a class="w3-bar-item w3-button" data-toggle="modal" data-target="#exampleModal">Create New Listing</a>
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
 
-    <div> <a onclick="showMyBuyings()" class="w3-bar-item w3-button">My Buy Listings</a></div>
-    <div> <a onclick="showMySellings()" class="w3-bar-item w3-button">My Sell Listings</a></div>
-    <div> <a onclick="showMyFavorites()" class="w3-bar-item w3-button">My Favorites</a></div>
-    <div> <a onclick="showMyOrders()" class="w3-bar-item w3-button">My Orders</a></div>
+            <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+                          <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
-    <div ng-controller="accountController">
-      <a href="#" class="w3-bar-item w3-button" ng-click="logout()">Logout</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-     <div ng-controller="accountController">
-     <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
-     </div>
-   </ul>
-
-    <!-- <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-
-     <ul class="nav navbar-nav navbar-right">
-      <div ng-controller="accountController">
-      <p style="color:grey"><font size=6>Hi {{currentuser.name}}!</font></p>
+          </ul>
+        </nav>
       </div>
-    </ul>
+    </div> 
 
-    </form>
+    <!-- <a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div>
+    <a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a> -->
+  </header>
 
-    </div> -->
+  <br />
 
+  <!--   ***************************************************************************** THIS ONE THE SEARCH BAR WORKS   ***************************************************************************** -->
 
-    </div>
+		<!-- <header id="fh5co-header-section" class="sticky-banner"> 
+      <div class="container" ng-controller="accountController">
+          <div class="nav-header">
+          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+          <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+            <nav id="fh5co-menu-wrap" role="navigation">
 
-
-    <div ng-controller="ItemController">
-        <div class="container" style="margin-top: 0;">
-
-
-
-            <input id="1" class="form-control" type="text" name="search"  ng-model="itemSearch" placeholder="Search for an item..." required/>
-            <span class="input-group-btn">
-
-            </span>
-            </div>
-
-
-                <ul class="nav navbar-nav navbar-right">
-
-                  <li><a href="favorites.html" class="navbar-brand"><span class="glyphicon glyphicon-heart"></span></a></li>
-
-                  <li><a href="postListing.html" class="navbar-brand"><span class="glyphicon glyphicon-plus"></span></a></li>
-                  <li><a href="account.html" class="navbar-brand"><span class="glyphicon glyphicon glyphicon-cog"></span></a></li>
-                </ul>
+              <input type="text" class="form-control" ng-model="itemSearchBar" placeholder="Search for...">
+      
+              <ul class="sf-menu" id="fh5co-primary-menu">
+                <li><p style="color:#F78536"><font size=2>Hi {{currentuser.name}}!</font></p></li>
+                <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
+                <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
+                <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
+                <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+                <li><a href="#" class="w3-bar-item w3-button" style="color:#F78536" ng-click="logout()">Logout</a></li>
+                <li><a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div></li>
+                <li><a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a></li>
+              </ul>
+            </nav>
           </div>
-      </nav>
-
+        </div>
+      </header> -->
 
 <!-- Top menu on small screens -->
 
@@ -279,30 +372,36 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <!-- Push down content on small screens -->
 
   <div ng-controller="ItemController">
-
     <p>
-        Search: <input type="text" ng-model="itemSearchBar" placeholder="enter search here" />
+      <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
     </p>
+    <div>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('')">Show All</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Textbooks')">Textbooks</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Electronics')">Electronics</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Vehicles')">Vehicles</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Clothing')">Clothing</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Entertainment')">Entertainment</button>
+      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
+      <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
+    </div>
 
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>
-    <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
+    <br />
 
     <div>
       <a onclick="showSelling()" class="w3-bar-item w3-button">Selling Listings</a>
       <a onclick="showBuying()" class="w3-bar-item w3-button">Buying Listings</a>
     </div>
 
+    <br />
+
+
     <div class="row" id="placeholder1">
       <div ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img src="../images/add-item-icon.png" style="width:30%">
+                <img src="../images/add-item-icon.png" style="width:30%" class="imgBorder">
                 <p>{{items.title}}<br><b>${{items.price}}</b></p>
                 <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
@@ -318,7 +417,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">
-                  <img src="/js/images/add-item-icon.png" style="width:30%">
+                  <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
                     <p>{{items.title}}<br><b>${{items.price}}</b></p>
                      <div class="w3-display-middle w3-display-hover">
                         <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
@@ -337,7 +436,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
                     <div class="w3-col l3 s6">
                       <div class="w3-container">
                         <div class="w3-display-container">
-                          <img src="/js/images/add-item-icon.png" style="width:30%">
+                          <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
                             <p>{{items.title}}<br><b>${{items.price}}</b></p>
                              <div class="w3-display-middle w3-display-hover">
                                 <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
@@ -355,7 +454,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
                       <div class="w3-col l3 s6">
                         <div class="w3-container">
                           <div class="w3-display-container">
-                            <img src="/js/images/add-item-icon.png" style="width:30%">
+                            <img src="/js/images/add-item-icon.png" style="width:30%" class="imgBorder">
                               <p>{{items.title}}<br><b>${{items.price}}</b></p>
                                <div class="w3-display-middle w3-display-hover">
                                   <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
@@ -403,13 +502,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
                       </div>
 
               </div>
-
-
-
     </div>
-
-
-
+    
     <script>
       function showSelling(){
         document.getElementById("placeholder2").style.display = 'none';
@@ -470,53 +564,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Footer -->
 
-
-
-
-
-
   <!-- End page content -->
 </div>
-
-<!-- Newsletter Modal -->
-<div id="newsletter" class="w3-modal">
-  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
-    <div class="w3-container w3-white w3-center">
-      <i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">NEWSLETTER</h2>
-      <p>Join our mailing list to receive updates on new arrivals and special offers.</p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
-      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Subscribe</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// Accordion
-function myAccFunc() {
-    var x = document.getElementById("demoAcc");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
-// Click on the "Jeans" link on page load to open the accordion for demo purposes
-// document.getElementById("myBtn").click();
-
-
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
-
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-</script>
 
 <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 <script src="../app.js"></script>
@@ -524,26 +573,6 @@ function w3_close() {
 <script src="../controllers/accountClientController.js"></script>
 <script src="../factories/itemFactory.js"></script>
 <script src="../controllers/itemController.js"></script>
-
-<script>
-            $('.dropdown-toggle').dropdown();
-            $('#divNewNotifications1 li').on('click', function() {
-                $('#dropdown_title1').html($(this).find('a').html());
-
-            });
-
-            $('#divNewNotifications2 li').on('click', function() {
-                $('#dropdown_title2').html($(this).find('a').html());
-
-            });
-
-            $('#divNewNotifications3 li').on('click', function() {
-                $('#dropdown_title3').html($(this).find('a').html());
-
-            });
-
-        </script>
-
 
 </body>
 </html>
