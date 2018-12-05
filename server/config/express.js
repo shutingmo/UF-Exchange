@@ -154,10 +154,13 @@ app.post('/upload', upload.single('file'), (req, res) => {
     sellingItem.save(function(err) {
       if(err) {
         console.log(err);
-        // res.status(400).send(err);
+        res.status(400).send(err);
+        // res.render('index', {files: false}, {link:"../../client/js/html/userlanding.html"})
       } else {
-        // res.json(selling);
+        res.status(200).send();
         console.log('did save selling item with image')
+        // res.render('index', {files: req.file}, {link:"../../client/js/html/userlanding.html"})
+
       }
     });
   }
@@ -175,9 +178,13 @@ app.post('/upload', upload.single('file'), (req, res) => {
       if(err) {
         console.log(err);
         // res.status(400).send(err);
+        // res.render('index', {files: false}, {link:"../../client/js/html/userlanding.html"})
+
       } else {
         // res.json(selling);
         console.log('did save buying item with image')
+        // res.render('index', {files: req.file}, {link:"../../client/js/html/userlanding.html"})
+
       }
     });
   }

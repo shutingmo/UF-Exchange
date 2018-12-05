@@ -14,7 +14,7 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
 
             $scope.user.push($scope.newUser);
 
-            /*set endpoint and your access key
+            // /*set endpoint and your access key
             var access_key = '8bd4fd632f2efd01f3b72e91479b7be5';
             var email_address = $scope.newUser.email;
 
@@ -30,6 +30,8 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
                     console.log(json.score);
 
                     if(json.format_valid === 'true' && json.smtp_check === 'true'){
+
+                        console.log('hello')
                         userFactory.signupUser($scope.newUser).then(function(res, err){
        
                             if(res.status !== 200)
@@ -50,7 +52,7 @@ angular.module('user').controller('signupController', ['$scope','userFactory',
                         alert('enter a valid email address')
                     }
                 }
-            });*/
+            });
 
             userFactory.signupUser($scope.newUser).then(function(res, err){
 
