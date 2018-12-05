@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>UFX &mdash; </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" />
+	<meta name="keywords" />
+	<meta name="author"/>
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="js/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="js/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="js/css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="js/css/superfish.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="js/css/magnific-popup.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="js/css/bootstrap-datepicker.min.css">
+	<!-- CS Select -->
+	<link rel="stylesheet" href="js/css/cs-select.css">
+	<link rel="stylesheet" href="js/css/cs-skin-border.css">
+	
+	<link rel="stylesheet" href="../css/acct.css">
+
+
+	<!-- Modernizr JS -->
+	<!-- <script src="js/modernizr-2.6.2.min.js"></script> -->
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body ng-app="ufxApp">
+		<div id="fh5co-wrapper">
+		<div id="fh5co-page">
+
+		<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+          <h2 style="color:white" id="fh5co-logo">Update Your User Account</h2>
+		 		</div>
+			</div>
+		</header>
+
+		<div class="fh5co-hero">
+			<div class="fh5co-overlay"></div>
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+				<div class="desc3">
+					<div class="container">
+						<div class="row" id="acct">
+              <div class="row" ng-controller="accountController">
+                <form novalidate class="simple-form">
+
+                  <h4 style="color:white">Hello {{currentuser.name}} </h4>
+
+                  <div class="input-field">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" placeholder={{currentuser.name}} ng-model="updatedUser.name" required><br/>
+                  </div>
+
+                  <div class="input-field">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" placeholder={{currentuser.username}} ng-model="updatedUser.username" required><br/>
+                  </div>
+
+                  <div class="input-field">
+                      <label for="username">Email:</label>
+                      <input type="text" class="form-control" placeholder={{currentuser.email}} ng-model="updatedUser.email" required /><br />
+                  </div>
+
+                  <div class="input-field">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control"  placeholder="Enter Password" ng-model="updatedUser.password" required/><br />
+                  </div>
+
+                  <div class="input-field">
+                      <label for="password">Retype Password:</label>
+                      <input type="password" class="form-control" placeholder="Retype Password" ng-model="updatedUser.retypePassword" required/><br />
+                  </div>
+                  </form>
+
+                <br />
+                <div class="col-xs-12">
+                  <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
+                  <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
+                  <a href="adminLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+		</div>
+
+	<!-- END fh5co-page -->
+
+	</div>
+	<!-- END fh5co-wrapper -->
+
+  <!-- jQuery -->
+
+	<script src="js/morejs/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/morejs/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/morejs/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/morejs/jquery.waypoints.min.js"></script>
+	<script src="js/morejs/sticky.js"></script>
+
+	<!-- Stellar -->
+	<script src="js/morejs/jquery.stellar.min.js"></script>
+	<!-- Superfish -->
+	<script src="js/morejs/hoverIntent.js"></script>
+	<script src="js/morejs/superfish.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/morejs/jquery.magnific-popup.min.js"></script>
+	<script src="js/morejs/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/morejs/bootstrap-datepicker.min.js"></script>
+	<!-- CS Select -->
+	<script src="js/morejs/classie.js"></script>
+	<script src="js/morejs/selectFx.js"></script>
+	
+	<!-- Main JS -->
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="../factories/userFactory.js"></script>
+  <script src="../controllers/accountClientController.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+
+	</body>
+</html>
+

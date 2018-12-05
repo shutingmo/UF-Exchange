@@ -1,5 +1,32 @@
 * {
+  text-decoration: none;
+}
+
+.w3-main {
   text-transform: uppercase;
+}
+
+#gray {
+  background-color: #393E46;
+  margin-left: -200px;
+}
+
+#catGray {
+  margin-left: 250px;
+
+}
+
+#showListings {
+  margin-left: 300px;
+  color: white;
+}
+
+#sell {
+  margin-right: 70px;
+}
+
+#spacing {
+  padding: 40px;
 }
 
 ul {
@@ -23,9 +50,9 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+/* li a:hover {
   background-color: #f1f1f1;
-}
+} */
 
 ul > li > a:hover > .glyphicon {
   color: #00AD7C;
@@ -38,7 +65,8 @@ ul > li > a:hover > .glyphicon {
 #search {
   width: 50%;
   vertical-align: center;
-  margin-top: -100px;
+  /* margin-top: -100px; */
+  margin-left: 390px;
 }
 
 /* image hover + buy now  */
@@ -220,7 +248,7 @@ ul #user li{
     left: 0;
     width: 100%;
     z-index: 1022;
-    background: #fff;
+    background:#393E46;
   }
   
   .nav-header {
@@ -258,7 +286,8 @@ ul #user li{
     color: #F78536;
   }
   #fh5co-logo a:hover, #fh5co-logo a:focus {
-    color: #F78536 !important;
+    text-decoration: none;
+    color: #fff !important;
   }
   #fh5co-menu-wrap {
     position: relative;
@@ -398,3 +427,30 @@ ul #user li{
   .btn{
       color: #F78536"
   }
+
+    /* Responsive */
+@media (max-width: 940px) {
+  .container {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+ 
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+ 
+  .left-column img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+ 
+@media (max-width: 535px) {
+  .left-column img {
+    width: 220px;
+    top: -85px;
+  }
+}

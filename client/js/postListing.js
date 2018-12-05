@@ -82,42 +82,42 @@ geojson.features.forEach(function(marker) {
     console.log('added');
 });
 
-//zooms into century tower location when picked from dropdown
-document.getElementById('ct').addEventListener('click', function () {
-    map.flyTo({
-        center: [ -82.343272, 29.649086],
-        zoom: 18
-    });
-});
+// zooms into century tower location when picked from dropdown
+// document.getElementById('ct').addEventListener('click', function () {
+//     map.flyTo({
+//         center: [ -82.343272, 29.649086],
+//         zoom: 18
+//     });
+// });
 
- //zooms into reitz location when picked from dropdown  
-document.getElementById('ru').addEventListener('click', function () {
-    map.flyTo({
-        center: [-82.347936, 29.646815],
-        zoom: 18
-    });
-});
+//  //zooms into reitz location when picked from dropdown  
+// document.getElementById('ru').addEventListener('click', function () {
+//     map.flyTo({
+//         center: [-82.347936, 29.646815],
+//         zoom: 18
+//     });
+// });
 
-//zooms into the hub location when picked from dropdown
-document.getElementById('hub').addEventListener('click', function () {
-    map.flyTo({
-        center: [-82.345553, 29.648422],
-        zoom: 18
-    });
-});
+// //zooms into the hub location when picked from dropdown
+// document.getElementById('hub').addEventListener('click', function () {
+//     map.flyTo({
+//         center: [-82.345553, 29.648422],
+//         zoom: 18
+//     });
+// });
 
-//zooms into lib west location when picked from dropdown
-document.getElementById('lw').addEventListener('click', function () {
-    map.flyTo({
-        center: [-82.342879, 29.651775],
-        zoom: 18
-    });
-});
+// //zooms into lib west location when picked from dropdown
+// document.getElementById('lw').addEventListener('click', function () {
+//     map.flyTo({
+//         center: [-82.342879, 29.651775],
+//         zoom: 18
+//     });
+// });
 
-//zooms into southwest rec location when picked from dropdown
-document.getElementById('sw').addEventListener('click', function () {
-    map.flyTo({
-        center: [-82.368337, 29.638665],
-        zoom: 18
-    });
-});
+// //zooms into southwest rec location when picked from dropdown
+// document.getElementById('sw').addEventListener('click', function () {
+//     map.flyTo({
+//         center: [-82.368337, 29.638665],
+//         zoom: 18
+//     });
+// });

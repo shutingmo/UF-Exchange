@@ -188,9 +188,8 @@
 
                       <br />
                       <div class="col-xs-12">
-                          <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="update()" value="Update">
-                          <input id="acctBtn" type="submit" class="btn btn-primary btn-block" ng-click="delete()" value="Delete">
-                          <a href="userLanding.html"><input id="acctBtn" type="submit" class="btn btn-primary btn-block"  value="Cancel"></a>
+                          <input id="acctBtn" type="submit" class="btn btn-info" ng-click="update()" value="Update">
+                          <input id="acctBtn" type="submit" class="btn btn-info" ng-click="delete()" value="Delete">
                       </div>
                     </div>
                       </div>
@@ -231,13 +230,8 @@
             <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
             </div>
             </body>
-
-        <div class="modal-footer">
-
-        </div>
     </div>
 </div>
-
 
 <!-- closed account modal2 div -->
 
@@ -246,7 +240,7 @@
     <div class="container" >
       <div class="nav-header">
         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-        <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+        <h1 id="fh5co-logo"><a onclick="showSelling()">UFX</a></h1>
         <nav id="fh5co-menu-wrap" role="navigation">
           <!-- <p>
               <input type="text" class="form-control" ng-model="itemSearchBar" id="search" placeholder="Search for...">
@@ -257,13 +251,11 @@
                 <!-- <li><p style="color:#F78536"><font size=3>Hi {{currentuser.name}}!</font></p></li> -->
             <!-- </div> -->
 
-            <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
-            <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
-            <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-
-
-            <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
-                          <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
+            <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
+            <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
+            <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
+            <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
+            <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
           </ul>
         </nav>
@@ -274,35 +266,7 @@
     <a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a> -->
   </header>
 
-  <br />
-
-  <!--   ***************************************************************************** THIS ONE THE SEARCH BAR WORKS   ***************************************************************************** -->
-
-		<!-- <header id="fh5co-header-section" class="sticky-banner"> 
-      <div class="container" ng-controller="accountController">
-          <div class="nav-header">
-          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-          <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
-            <nav id="fh5co-menu-wrap" role="navigation">
-
-              <input type="text" class="form-control" ng-model="itemSearchBar" placeholder="Search for...">
-      
-              <ul class="sf-menu" id="fh5co-primary-menu">
-                <li><p style="color:#F78536"><font size=2>Hi {{currentuser.name}}!</font></p></li>
-                <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
-                <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
-                <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#F78536"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-                <li><a href="account.html" class="navbar-brand" style="color:#F78536"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
-                <li><a href="#" class="w3-bar-item w3-button" style="color:#F78536" ng-click="logout()">Logout</a></li>
-                <li><a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div></li>
-                <li><a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header> -->
-
-<!-- Top menu on small screens -->
+  <!-- <br /> -->
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px">
@@ -310,148 +274,164 @@
   <!-- Push down content on small screens -->
 
   <div ng-controller="ItemController">
-    <p>
-      <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
-    </p>
-    <div>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('')">Show All</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Textbooks')">Textbooks</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Electronics')">Electronics</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Vehicles')">Vehicles</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Clothing')">Clothing</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Entertainment')">Entertainment</button>
-      <button id= "catBtn" class ="btn btn-secondary small-btn" style="background-color:#F78536" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
-      <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
+      <div id="gray" >
+          <p>
+            <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
+          </p>
+      <div id="catGray">
+        <button id= "catBtn" class ="btn btn-secondary small-btn"  ng-click="filterItems('')">Show All</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Clothing')">Clothing</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button>
+        <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
+      </div>
+      <br />
     </div>
+
 
     <br />
 
-    <div class="onoffswitch">
-        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-        <label class="onoffswitch-label" for="myonoffswitch">
-            <span class="onoffswitch-inner"></span>
-            <span class="onoffswitch-switch"></span>
-        </label>
+    <div id="showListings">
+      <a onclick="showSelling()" id="sell" style="background-color:#F78536" class ="btn btn-secondary small-btn" >Show Selling Listings</a>
+      <a onclick="showBuying()" style="background-color:#F78536" class ="btn btn-secondary small-btn" >Show Buying Listings</a>
     </div>
-
-    <div>
-      <a onclick="showSelling()" class="w3-bar-item w3-button">Selling Listings</a>
-      <a onclick="showBuying()" class="w3-bar-item w3-button">Buying Listings</a>
-    </div>
-
+  
     <br />
 
-
-    <div class="row" id="placeholder1">
-      <div ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+    <div id="placeholder1">
+      <div class="row">
+        <div id="spacing" ng-repeat="items in sellingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <a href="/js/html/newListing.html">
-                  <img src="../images/add-item-icon.png" style="width:100%" class="imgHov">
-                </a>
-                <!-- <div class="middle">
-                  <div class="text">
-                    <a href="/js/html/listing.html"></a>Buy Now</a>
+                <div class="card" style="width:150px">
+                    <a href="/js/html/newListing.html">
+                      <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                      <div class="card-body">
+                        <h4 class="card-title">{{items.title}}</h4>
+                        <p class="card-text" >${{items.price}}</p>
+                      </div>
+                    </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="placeholder2">
+        <div class="row">
+          <div id="spacing" ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+            <div class="w3-col l3 s6">
+              <div class="w3-container">
+                <div class="w3-display-container">
+                  <div class="card" style="width:150px">
+                      <a href="/js/html/newListing.html">
+                        <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                          <h4 class="card-title">{{items.title}}</h4>
+                          <p class="card-text" >${{items.price}}</p>
+                        </div>
+                      </a>
                   </div>
-                </div> -->
-                <p>{{items.title}}<br><b>${{items.price}}</b></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row demo-placeholder" id="placeholder2" >
-        <div ng-repeat="items in buyingItems | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <div class="w3-display-container">
-                  <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
-                    <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                     <div class="w3-display-middle w3-display-hover">
-                        <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                        <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
+        <div ng-controller="accountController">
+          <div id="placeholder3">
+            <div id="spacing" ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+              <div class="w3-col l3 s6">
+                <div class="w3-container">
+                  <div class="w3-display-container">
+                      <div class="card" style="width:150px">
+                          <a href="/js/html/newListing.html">
+                            <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                              <h4 class="card-title">{{items.title}}</h4>
+                              <p class="card-text" >${{items.price}}</p>
+                            </div>
+                          </a>
                       </div>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
 
-        </div>
+          <div class="row demo-placeholder" id="placeholder4" >
+            <div id="spacing" ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+              <div class="w3-col l3 s6">
+                <div class="w3-container">
+                  <div class="w3-display-container">
+                      <div class="card" style="width:150px">
+                          <a href="/js/html/newListing.html">
+                            <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                              <h4 class="card-title">{{items.title}}</h4>
+                              <p class="card-text" >${{items.price}}</p>
+                            </div>
+                          </a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
 
-        <div ng-controller="accountController">
-              <div class="row demo-placeholder" id="placeholder3">
-                <div ng-repeat="items in sellingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+
+          <div id="placeholder5">
+              <div class="row">
+                <div id="spacing" ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                  <div class="w3-col l3 s6">
+                    <div class="w3-container">
+                      <div class="w3-display-container">
+                        <div class="card" style="width:150px">
+                            <a href="/js/html/newListing.html">
+                              <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                              <div class="card-body">
+                                <h4 class="card-title">{{items.title}}</h4>
+                                <p class="card-text" >${{items.price}}</p>
+                              </div>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="placeholder6">
+                <div class="row">
+                  <div id="spacing" ng-repeat="x in favs| orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
                     <div class="w3-col l3 s6">
                       <div class="w3-container">
                         <div class="w3-display-container">
-                          <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
-                            <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                             <div class="w3-display-middle w3-display-hover">
-                                <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                                <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
-                              </div>
+                          <div class="card" style="width:150px">
+                              <a href="/js/html/newListing.html">
+                                <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                                <div class="card-body">
+                                  <h4 class="card-title">{{x.title}}</h4>
+                                  <p class="card-text" >${{x.price}}</p>
+                                </div>
+                              </a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
-
-                <div class="row demo-placeholder" id="placeholder4" >
-                  <div ng-repeat="items in buyingItems | orderBy: title | filter: currentuser.email | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
-                      <div class="w3-col l3 s6">
-                        <div class="w3-container">
-                          <div class="w3-display-container">
-                            <img src="/js/images/add-item-icon.png" style="width:30%" class="imgHov">
-                              <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                               <div class="w3-display-middle w3-display-hover">
-                                  <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                                  <a href="/js/html/listing.html" class="w3-button w3-black">Edit <i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="row demo-placeholder" id="placeholder5">
-                    <div ng-repeat="items in userOrders | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
-                        <div class="w3-col l3 s6">
-                          <div class="w3-container">
-                            <div class="w3-display-container">
-                              <img src="/js/images/add-item-icon.png" style="width:30%">
-                                <p>{{items.title}}<br><b>${{items.price}}</b></p>
-                                 <div class="w3-display-middle w3-display-hover">
-                                    <!-- <button ng-click="getCurrentItem(items)" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button> -->
-                                    <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
-                                  </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="row demo-placeholder" id="placeholder6">
-                      <div ng-repeat="x in favs | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(x)">
-                          <div class="w3-col l3 s6">
-                            <div class="w3-container">
-                              <div class="w3-display-container">
-                                <img src="../images/add-item-icon.png" style="width:30%">
-                                <p>{{x.title}}<br><b>${{x.price}}</b></p>
-                                <div class="w3-display-middle w3-display-hover">
-                                  <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
               </div>
+
     </div>
     
     <script>
