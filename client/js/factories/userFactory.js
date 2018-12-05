@@ -48,7 +48,21 @@ angular.module('ufxApp').factory('userFactory', function($http) {
         uploadImage: function(file){
             console.log('checking in upload fac' + file)
             // return $http.post('http://localhost:3000/upload',file);
-            return $http.post('http://localhost:3000/imageupload');
+            return $http.post('http://localhost:3000/imageupload')
+            .success(
+                function(res){
+                    console.log('Fac,res.data is '+ JSON.stringify(res))
+                    // return res.data
+                }
+            )
+            .error(
+                function(status){
+                    console.log('status is ' + JSON.stringify(status))
+                    // alert('please work')
+                    // return status
+                }
+            )
+            ;
     
         },
 

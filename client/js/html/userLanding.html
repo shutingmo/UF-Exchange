@@ -253,9 +253,7 @@
             <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
             <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
             <!-- <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li> -->
-
             <li><a ng-click="postItem()"class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
-
             <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
             <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
@@ -263,9 +261,6 @@
         </nav>
       </div>
     </div> 
-
-    <!-- <a onclick="showMyBuyings()" class="w3-bar-item w3-button" style="color:#F78536">My Buy Listings</a></div>
-    <a onclick="showMySellings()" class="w3-bar-item w3-button" style="color:#F78536">My Sell Listings</a> -->
   </header>
 
   <!-- <br /> -->
@@ -281,7 +276,7 @@
             <input type="text" class="form-control" id="search" ng-model="itemSearchBar" placeholder="enter search here" />
           </p>
       <div id="catGray">
-        <button id= "catBtn" class ="btn btn-secondary small-btn"  ng-click="filterItems('')">Show All</button>
+        <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('')">Show All</button>
         <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Textbooks')">Textbooks</button>
         <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Electronics')">Electronics</button>
         <button id= "catBtn" class ="btn btn-secondary small-btn" ng-click="filterItems('Vehicles')">Vehicles</button>
@@ -291,11 +286,7 @@
         <!-- include dropdown for filter of selling listings, buying listings, my buying, my selling -->
       </div>
       <br />
-    </div>
-
-
-    <br />
-
+    </div><br />
 
     <div id="showListings">
       <a onclick="showSelling()" id="sell" style="background-color:#F78536" class ="btn btn-secondary small-btn" >Show Selling Listings</a>

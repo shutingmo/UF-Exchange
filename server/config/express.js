@@ -161,10 +161,10 @@ app.post('/upload', upload.single('file'), (req, res) => {
       } else {
         // res.status(200).send();
         console.log('did save selling item with image')
+
         // res.redirect('/')
         // res.render('index', {files: req.file}, {link:"../../client/js/html/userlanding.html"})
         res.render('index', {files: req.file})
-
       }
     });
   }
