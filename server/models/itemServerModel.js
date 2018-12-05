@@ -3,7 +3,15 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
+// var imageSchema = new Schema({
+  
+// })
+
 var itemSchema = new Schema({
+  image: {
+    type: Object,
+    default: []
+  },
   title: {
     type: String,
     required: true
@@ -11,7 +19,7 @@ var itemSchema = new Schema({
   category: {
     type: String,
     required: true,
-    enum: ['Textbooks, Electronics, Vehicles, Tickets, Clothing, Entertainment, Housing, Miscellaneous']
+    enum: ['Textbooks', 'Electronics', 'Vehicles', 'Tickets', 'Clothing', 'Entertainment', 'Housing', 'Miscellaneous']
   },
   price: {
     type: Number,

@@ -4,6 +4,10 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var sellingSchema = new Schema({
+  image: {
+    type: Object,
+    default: []
+  },
   title: {
     type: String,
     required: true

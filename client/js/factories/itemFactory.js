@@ -10,6 +10,13 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.get('http://localhost:3000/buying');
       },
 
+      uploadImage: function(file){
+        console.log('checking in upload fac' + file)
+        // return $http.post('http://localhost:3000/upload',file);
+        return $http.post('http://localhost:3000/imageupload');
+
+      },
+
       getSelling: function() {
         return $http.get('http://localhost:3000/selling');
       },
@@ -65,6 +72,20 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
       buyItemNow: function(buy){
         console.log('in buy now item fac')
         return $http.post('http://localhost:3000/selling/buyNow', buy);
+      },
+
+      getCurrentImageID: function(imageID){
+        console.log('in curr image item fac')
+        console.log(imageID)
+        return $http.get('http://localhost:3000/image/' + imageID);
+
+      },
+
+      getCurrentImageFilename: function(filename){
+        console.log('in curr image item fac')
+        console.log(filename)
+        return $http.get('http://localhost:3000/image/' + filename);
+
       }
 
     };

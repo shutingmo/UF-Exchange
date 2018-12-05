@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <!-- <script src="https://code.angularjs.org/1.4.3/angular.js"></script> -->
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
+  <style>
+    img {
+      width: 100%;
+    }
+  </style>
+  <title>Mongo File Uploads</title>
+</head>
+
+<body ng-app="ufxApp">
+
+
+   
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto">
+        <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+          <div class="field">
+              <label for="status">Type of Item</label>
+              <select name="status">
+                  <% var statuses = ["I want to Buy", "I want to Sell"]; %>
+                  <% for(var i = 0; i <= statuses.length-1; i++) { %>
+                    <option value='<%= statuses[i] %>'><%= statuses[i] %></option>
+                  <% } %>
+              </select>
+          </div>
+
+          <div class="field">
+              <label for="title">Title</label>
+              <input name="title" type="text" placeholder="Title" />
+          </div>
+
+          <div class="field">
+              <label for="category">Category</label>
+              <select name="category">
+                  <% var categories = ["Textbooks", "Electronics", "Vehicles", "Tickets", "Clothing", "Entertainment", "Housing", "Miscellaneous"]; %>
+                  <% for(var i = 0; i <= categories.length-1; i++) { %>
+                    <option value='<%= categories[i] %>'><%= categories[i] %></option>
+                  <% } %>
+              </select>
+          </div>
+
+          <div class="field">
+            <label for="price">Price</label>
+            <input name="price" type="number" placeholder="Price" />
+          </div> 
+          
+          <div class="field">
+            <label for="description">Description</label><br />
+            <!-- <input name="description" type="text" placeholder="Description" /> -->
+            <textarea rows="4" name="description" type="text" placeholder="Description"></textarea>
+          </div> 
+
+          <div class="field">
+              <label for="condition">Condition</label>
+              <select name="condition">
+                  <% var conditions = ["New", "Like New", "Good", "Fair", "Poor"]; %>
+                  <% for(var i = 0; i <= conditions.length-1; i++) { %>
+                    <option value='<%= conditions[i] %>'><%= conditions[i] %></option>
+                  <% } %>
+              </select>
+          </div>
+
+          <div class="field">
+              <label for="location">Location</label>
+              <select name="location">
+                  <% var locations = ["Century Tower", "Reitz Union", "Hub", "Library West", "Southwest Rec"]; %>
+                  <% for(var i = 0; i <= locations.length-1; i++) { %>
+                    <option id='Hub' value='<%= locations[i] %>'><%= locations[i] %></option>
+                  <% } %>
+              </select>
+          </div>
+        
+          <div class="custom-file mb-3">
+            <input type="file" name="file" id="file" class="custom-file-input">
+            <label for="file" class="custom-file-label">Choose File</label>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+        </form>
+        <hr>
+        <% if(files){ %>
+          <% files.forEach(function(file) { %>
+            <div class="card card-body mb-3">
+              <% if(file.isImage) { %>
+                <img src="image/<%= file.filename %>" alt="">
+                <% } else { %>
+                  <a href = "/files/<%= file.filename %>" target = "_blank"><%= file.filename %></a>
+                    <% } %>
+                      <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                        <button class="btn btn-danger btn-block mt-4">Delete</button>
+                      </form>
+            </div>
+            <% }) %>
+              <% } else { %>
+                <p>No files to show</p>
+                <% } %>
+      </div>
+    </div>
+  </div>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+  <!-- <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibG1hbmNoaWsiLCJhIjoiY2pvdGl1cW9zMTFyeDNxbmg5MGFnam53aiJ9.9VK_ROK_ae2DQcXntmWjWQ'; 
+
+var geojson = {
+type: 'FeatureCollection',
+features: [{
+    type: 'Feature',
+    geometry: {
+    type: 'Point',
+    coordinates: [ -82.343272, 29.649086]
+    },
+    properties: {
+    title: 'Mapbox',
+    description: 'Century Tower'
+    }
+},
+{
+    type: 'Feature',
+    geometry: {
+    type: 'Point',
+    coordinates: [-82.347936, 29.646815]
+    },
+    properties: {
+    title: 'Mapbox',
+    description: 'Reitz Union'
+    }
+},
+{
+    type: 'Feature',
+    geometry: {
+    type: 'Point',
+    coordinates: [-82.345553, 29.648422]
+    },
+    properties: {
+    title: 'Mapbox',
+    description: 'The Hub'
+    }
+},
+{
+    type: 'Feature',
+    geometry: {
+    type: 'Point',
+    coordinates: [-82.342879, 29.651775]
+    },
+    properties: {
+    title: 'Mapbox',
+    description: 'Library West'
+    }
+},
+{
+    type: 'Feature',
+    geometry: {
+    type: 'Point',
+    coordinates: [-82.368337, 29.638665]
+    },
+    properties: {
+    title: 'Mapbox',
+    description: 'Southwest Rec'
+    }
+}]
+};
+
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/lmanchik/cjotivsc886s12spgiwk56899',
+center: [-82.341,29.644],
+zoom: 12
+});
+
+geojson.features.forEach(function(marker) {
+
+    // create a HTML element for each feature
+    var el = document.createElement('div');
+    el.className = 'marker';           
+
+    // make a marker for each feature and add to the map
+    new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 20 }) // add popups
+    .setHTML('<p>' + marker.properties.description + '</p>'))
+    .addTo(map);
+
+    console.log('added');
+});
+
+//zooms into century tower location when picked from dropdown
+document.getElementById('Century Tower').addEventListener('click', function () {
+    map.flyTo({
+        center: [ -82.343272, 29.649086],
+        zoom: 18
+    });
+});
+
+ //zooms into reitz location when picked from dropdown  
+document.getElementById('Reitz Union').addEventListener('click', function () {
+    map.flyTo({
+        center: [-82.347936, 29.646815],
+        zoom: 18
+    });
+});
+
+//zooms into the hub location when picked from dropdown
+document.getElementById('Hub').addEventListener('click', function () {
+    map.flyTo({
+        center: [-82.345553, 29.648422],
+        zoom: 18
+    });
+});
+
+//zooms into lib west location when picked from dropdown
+document.getElementById('Library West').addEventListener('click', function () {
+    map.flyTo({
+        center: [-82.342879, 29.651775],
+        zoom: 18
+    });
+});
+
+//zooms into southwest rec location when picked from dropdown
+document.getElementById('Southwest Rec').addEventListener('click', function () {
+    map.flyTo({
+        center: [-82.368337, 29.638665],
+        zoom: 18
+    });
+});
+  
+  
+  
+  </script> -->
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="postListing.js"></script> -->
+  <!-- <script src="../client/js/postListing.js"></script> -->
+
+
+  <!-- <script src="https://code.angularjs.org/1.4.3/angular.js"></script> -->
+
+  <!-- <script src="/client/js/app.js"></script>
+  <script src="/client/js/postListing.js"></script>
+  <script src="/client/js/factories/itemFactory.js"></script> -->
+  <!-- <script src="itemController.js"></script> -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script>
+      $('.dropdown-toggle').dropdown();
+      $('#divNewNotifications1 li').on('click', function() {
+          $('#dropdown_title1').html($(this).find('a').html());
+
+      });
+
+      $('#divNewNotifications2 li').on('click', function() {
+          $('#dropdown_title2').html($(this).find('a').html());
+
+      });
+
+      $('#divNewNotifications3 li').on('click', function() {
+          $('#dropdown_title3').html($(this).find('a').html());
+
+      });
+      
+  </script>
+<!-- 
+  <div id='map'></div>
+  <script>
+  L.mapbox.accessToken = 'pk.eyJ1IjoibG1hbmNoaWsiLCJhIjoiY2pvdGl1cW9zMTFyeDNxbmg5MGFnam53aiJ9.9VK_ROK_ae2DQcXntmWjWQ';
+  var map = L.mapbox.map('map', 'mapbox.streets')
+      .setView([40, -74.50], 9);
+ 
+  </script> -->
+
+
+</body>
+
+</html>
