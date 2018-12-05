@@ -45,6 +45,13 @@ angular.module('ufxApp').factory('userFactory', function($http) {
 
         },
 
+        uploadImage: function(file){
+            console.log('checking in upload fac' + file)
+            // return $http.post('http://localhost:3000/upload',file);
+            return $http.post('http://localhost:3000/imageupload');
+    
+        },
+
         getAllUser: function(){
             console.log('in fac id')
             return $http.get('http://localhost:3000/account/getinfo/admin');

@@ -20,12 +20,12 @@ html, body {
 
   /* Columns */
 .left-column {
-    width: 50%;
+    width: 70%;
     position: relative;
   }
    
   .right-column {
-    width: 50%;
+    width: 70%;
     margin-top: 60px;
   }
 

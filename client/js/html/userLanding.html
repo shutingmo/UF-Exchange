@@ -252,7 +252,10 @@
 
             <li><a onclick="showMyFavorites()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-heart" title="my favorites"></span></a></li>
             <li><a onclick="showMyOrders()" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-shopping-cart" title="my orders"></span></a></li>
-            <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
+            <!-- <li><a class="navbar-brand" data-toggle="modal" data-target="#exampleModal" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li> -->
+
+            <li><a ng-click="postItem()"class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon-plus" title="create a listing"></span></a></li>
+
             <li><a data-toggle="modal" data-target="#exampleModal2" class="navbar-brand" style="color:#fff"><span class="glyphicon glyphicon glyphicon-cog" title="settings"></span></a></li>
             <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
 
@@ -310,7 +313,7 @@
                 <div class="card" style="width:150px">
                     <a href="/js/html/newListing.html">
                         <img class="card-img-top" ng-if="items.image.filename" 
-                          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%; ">
                         <img class="card-img-top" ng-hide="items.image.filename" 
                           src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                       <div class="card-body">

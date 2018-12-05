@@ -19,6 +19,18 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
 
     // $scope.favs = [];
 
+    $scope.postItem = function(){
+        console.log('checking post item with ejs')
+        userFactory.uploadImage().then(function(response){
+          console.log('response from post item is ' + JSON.stringify(response.config.url))
+          window.location.replace(response.config.url)
+        },function(error){
+          console.log('Unable to retrieve buying items:', error);
+  
+        })
+  
+      }
+
     function getUserFavs(){
         console.log('fe get user favs')
         userFactory.getUserFavorites().then(function(res){

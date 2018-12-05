@@ -98,7 +98,7 @@ angular.module('items')
                   $scope.detailedInfo = currItem;
                   console.log($scope.detailedInfo);
 
-                  console.log('found buying item, image is ' + response.data.image.id)
+                  console.log('found buying item, image is ' + res.data.image.id)
                   
                   itemFactory.getCurrentImage().then(function(response){
       
@@ -416,4 +416,5 @@ angular.module('items')
       })
     }
   }
+}
 ]);
