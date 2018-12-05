@@ -403,7 +403,7 @@
                         <div class="card" style="width:150px">
                             <a href="/js/html/newListing.html">
                               <img class="card-img-top" ng-if="items.image.filename" 
-                                data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                                data-ng-src="http://localhost:3000/image/{{items.data.image.filename}}" alt="Card image" style="width:100%">
                               <img class="card-img-top" ng-hide="items.image.filename" 
                                 src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                               <div class="card-body">
@@ -427,7 +427,11 @@
                         <div class="w3-display-container">
                           <div class="card" style="width:150px">
                               <a href="/js/html/newListing.html">
-                                <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                                <img class="card-img-top" ng-if="x.image.filename" 
+                                  data-ng-src="http://localhost:3000/image/{{x.image.filename}}" alt="Card image" style="width:100%">
+                                <img class="card-img-top" ng-hide="x.image.filename" 
+                                  src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                              
                                 <div class="card-body">
                                   <h4 class="card-title">{{x.title}}</h4>
                                   <p class="card-text" >${{x.price}}</p>

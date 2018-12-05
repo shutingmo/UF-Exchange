@@ -114,11 +114,13 @@ var express = require('express'),
   exports.favoriteSelling = function(req,res){
       console.log('in fav selling be')
       console.log(JSON.stringify(req.body))
+
       console.log(currSessionUser)
+
 
       if(currSessionUser)
       {
-        User.updateOne({username: currSessionUser}, {$push: { "favorite": req.body}}, function(err){
+        User.updateOne({username: currSessionUser}, {$push: { "favorite": req.body},}, function(err){
           if(err)
           {
           console.log('unable to fav item' + err)

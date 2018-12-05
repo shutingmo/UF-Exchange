@@ -84,15 +84,89 @@ angular.module('items')
     //   $scope.initial(selectedItem);
     // }
 
+    // $scope.details = function(){
+    //   var selectedItem = sessionStorage.getItem('selected');
+    //   $scope.initial = function(id){
+    //     console.log("initial check");
+    //     itemFactory.findSellingItem(id).then(function(response){
+    //         if(response.data === null){
+    //             console.log("IN IF STATEMENT");
+    //             console.log(id);
+    //             itemFactory.findBuyingItem(id).then(function(response){
+    //               console.log(response.data);
+    //               var currItem = response.data;
+    //               $scope.detailedInfo = currItem;
+    //               console.log($scope.detailedInfo);
+
+    //               console.log('found buying item, image is ' + response.data.image.id)
+                  
+    //               itemFactory.getCurrentImageFilename(response.data.image.filename).then(function(response){
+    //                 // console.log('resposne in fe item controller ' + JSON.stringify(response))
+    //                 console.log(response.config.url)
+      
+    //                 // $scope.response.config.url = response.config.url;
+    //                 $scope.response = response.config.url;
+    //                 console.log($scope.response)
+    //                 // $scope.response.config.url = "http://localhost:3000/image/"+detailedInfo.image.filename;
+      
+    //                 // window.location.replace(response.config.url)
+      
+    //               })
+
+    //             }, function(error){
+    //               console.log('Unable to retrieve buying items:', error);
+    //             });
+    //             return;
+    //         }
+    //         console.log("Out of If");
+    //         var currItem = response.data;
+    //         $scope.detailedInfo = currItem;
+    //         console.log($scope.detailedInfo);
+
+    //         console.log('found selling item, image is ' + JSON.stringify(response.data.image.id))
+
+    //         // itemFactory.getCurrentImageID(response.data.image.id).then(function(response){
+              
+    //         // })
+
+    //         itemFactory.getCurrentImageFilename(response.data.image.filename).then(function(response){
+    //           // console.log('resposne in fe item controller ' + JSON.stringify(response))
+    //           console.log(response.config.url)
+
+    //           // $scope.response.config.url = response.config.url;
+    //           $scope.response = response.config.url;
+    //           console.log($scope.response)
+    //           // $scope.response.config.url = "http://localhost:3000/image/"+detailedInfo.image.filename;
+
+    //           // window.location.replace(response.config.url)
+
+    //         })
+
+    //         if(response.data.seller){
+    //           email = response.data.seller.email
+    //           itemTitle = response.data.title
+    //         }
+    //         else if(response.data.buyer){
+    //           email = response.data.buyer.email
+    //           itemTitle = response.data.title
+    //         }
+    //         }, function(error){
+    //             console.log('Unable to retrieve buying items:', error);
+    //         })
+    //     }
+    //     $scope.initial(selectedItem);
+    //   }
+    
+
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
-      $scope.initial = function(id){
+      
         console.log("initial check");
-        itemFactory.findSellingItem(id).then(function(response){
+        itemFactory.findSellingItem(selectedItem).then(function(response){
             if(response.data === null){
                 console.log("IN IF STATEMENT");
-                console.log(id);
-                itemFactory.findBuyingItem(id).then(function(response){
+                // console.log(id);
+                itemFactory.findBuyingItem(selectedItem).then(function(response){
                   console.log(response.data);
                   var currItem = response.data;
                   $scope.detailedInfo = currItem;
@@ -153,15 +227,61 @@ angular.module('items')
             }, function(error){
                 console.log('Unable to retrieve buying items:', error);
             })
-        }
-        $scope.initial(selectedItem);
-      }
-    // $scope.setFlag = function(item, flagged) {
-    //   // console.log("in here");
-    //   // console.log(item.flagged);
-    //   // console.log(flagged);
-    //   item.flagged = flagged;
-    // }
+       
+            $scope.favorite = function(){
+              console.log('in favorites')
+              var favItem = sessionStorage.getItem('selected');
+              console.log('fe favorites '+ favItem)
+              
+              itemFactory.findItem(favItem).then(function(response){
+                console.log(JSON.stringify(response));
+                console.log((response));
+
+                if(response){
+                  itemFactory.favorite(response.data).then(function(res){
+                    if(res.status !== 200)
+                    {
+                      console.log("\nunable to fav item");
+                    }
+                    else if (res.status === 200)
+                    {
+                      console.log('fav was success, front end');
+                    }
+        
+                  })
+                }
+        
+              }, function(error){
+                console.log('Unable to retrieve selling items:', error);
+              })
+            }
+
+            $scope.buyNow = function(){
+              var buyItem = sessionStorage.getItem('selected');
+              console.log('fe buy now item '+ buyItem)
+              itemFactory.findItem(buyItem).then(function(response){
+                console.log(JSON.stringify(response.data));
+                console.log((response.data));
+
+                if(response){
+                  itemFactory.buyItemNow(response.data).then(function(res){
+                    if(res.status !== 200)
+                    {
+                      console.log("\nunable to buy item");
+                    }
+                    else if (res.status === 200)
+                    {
+                      console.log('buy was success, front end');
+                    }
+        
+                  })
+                }
+        
+              }, function(error){
+                console.log('Unable to retrieve selling items:', error);
+              })
+            }
+      }  
 
     $scope.setCategory = function(category) {
       //setting the category from dropdown
@@ -401,6 +521,7 @@ angular.module('items')
     }
 
     $scope.favorite = function(){
+      console.log('in favorites')
       var favItem = sessionStorage.getItem('selected');
       console.log('fe favorites '+ favItem)
       itemFactory.findItem(favItem).then(function(response){
