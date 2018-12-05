@@ -4,6 +4,7 @@
     <title>Listing Details</title>
     <link rel='stylesheet' type='text/css' href='../css/listing.css'>
 </head>
+
     <body ng-app="ufxApp">
 
         <h1>Listing</h1>
@@ -11,10 +12,9 @@
         <a ng-init="details()"></a>
         <div class="product">
             <body>
-                <h2 align="right"> <img class="shiftleft" id="side" src="../images/iphone4side.jpg" alt="side" width="200" height="200" style="float: left;" >
-                <img id="frontback" src="../images/iphone4frontback.png" alt="frontback" width="200" height="200" style="float: left;" >
-                <img id="buttons" src="../images/iphone4buttons.jpg" alt="buttons" width="200" height="200" style="float: left;" >
-                    <h3 class="shiftright">
+                <img ng-src="{{response}}">
+  
+                  <h3 class="shiftright">
                     {{detailedInfo.title}}
                     <h4 class="shiftright">
                         Price: ${{detailedInfo.price}} <br>

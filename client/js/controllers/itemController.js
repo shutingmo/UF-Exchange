@@ -4,9 +4,22 @@ angular.module('items')
 
     $scope.listings = [];
 
+    
+
     itemFactory.getSelling().then(function(response) {
-      console.log('response data in get selling is ' + JSON.stringify(response.data));
+
+      console.log('response data in item controller is ' + JSON.stringify(response.data));
+      $scope.items = response.data;
+      $scope.listings = response.data;
+      console.log('scope items is ' + JSON.stringify($scope.items))
       $scope.sellingItems = response.data;
+      console.log(response.data.length)
+
+      // var scopeItems = $scope.items
+      console.log($scope.items)
+      
+
+
       // console.log("Check1");
 
     }, function(error) {
@@ -21,23 +34,16 @@ angular.module('items')
       console.log('Unable to retrieve buying items:', error);
     });
 
-    $scope.reinitialize = function(){
-      itemFactory.getSelling().then(function(response) {
-        console.log('reinit with this selling data ' + JSON.stringify(response.data));
-        $scope.sellingItems = response.data;
-        // console.log("Check1");
-  
-      }, function(error) {
-        console.log('Unable to retrieve selling items:', error);
-      });
-  
-      itemFactory.getBuying().then(function(response) {
-        console.log('reinit with this buying data ' + JSON.stringify(response.data));
-        $scope.buyingItems = response.data;
-        // console.log("Check1");
-      }, function(error) {
+    $scope.postItem = function(){
+      console.log('checking post item with ejs')
+      itemFactory.uploadImage().then(function(response){
+        console.log('response from post item is ' + JSON.stringify(response.config.url))
+        window.location.replace(response.config.url)
+      },function(error){
         console.log('Unable to retrieve buying items:', error);
-      });
+
+      })
+
     }
 
     $scope.getCurrentItem = function(items){
@@ -50,33 +56,33 @@ angular.module('items')
     var itemTitle;
     var currItem;
 
-    $scope.details = function(){
-      var selectedItem = sessionStorage.getItem('selected');
-      $scope.initial = function(id){
-        console.log("initial check");
-        itemFactory.findItem(id).then(function(response){
-          console.log(JSON.stringify(response.data));
-          currItem = response.data;
-          $scope.detailedInfo = currItem;
-          console.log($scope.detailedInfo);
+    // $scope.details = function(){
+    //   var selectedItem = sessionStorage.getItem('selected');
+    //   $scope.initial = function(id){
+    //     console.log("initial check");
+    //     itemFactory.findItem(id).then(function(response){
+    //       console.log(JSON.stringify(response.data));
+    //       currItem = response.data;
+    //       $scope.detailedInfo = currItem;
+    //       console.log($scope.detailedInfo);
 
-          if(response.data.seller){
-            email = response.data.seller.email
-            itemTitle = response.data.title
-          }
-          else if(response.data.buyer){
-            email = response.data.buyer.email
-            itemTitle = response.data.title
-          }
+    //       if(response.data.seller){
+    //         email = response.data.seller.email
+    //         itemTitle = response.data.title
+    //       }
+    //       else if(response.data.buyer){
+    //         email = response.data.buyer.email
+    //         itemTitle = response.data.title
+    //       }
 
-          console.log('email check is ' + email)
+    //       console.log('email check is ' + email)
 
-        }, function(error){
-          console.log('Unable to retrieve selling items:', error);
-        })
-      }
-      $scope.initial(selectedItem);
-    }
+    //     }, function(error){
+    //       console.log('Unable to retrieve selling items:', error);
+    //     })
+    //   }
+    //   $scope.initial(selectedItem);
+    // }
 
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
@@ -91,6 +97,13 @@ angular.module('items')
                   var currItem = res.data;
                   $scope.detailedInfo = currItem;
                   console.log($scope.detailedInfo);
+
+                  console.log('found buying item, image is ' + response.data.image.id)
+                  
+                  itemFactory.getCurrentImage().then(function(response){
+      
+                  })
+
                 }, function(error){
                   console.log('Unable to retrieve buying items:', error);
                 });
@@ -100,6 +113,34 @@ angular.module('items')
             var currItem = response.data;
             $scope.detailedInfo = currItem;
             console.log($scope.detailedInfo);
+
+            console.log('found selling item, image is ' + JSON.stringify(response.data.image.id))
+
+            // itemFactory.getCurrentImageID(response.data.image.id).then(function(response){
+              
+            // })
+
+            itemFactory.getCurrentImageFilename(response.data.image.filename).then(function(response){
+              // console.log('resposne in fe item controller ' + JSON.stringify(response))
+              console.log(response.config.url)
+
+              // $scope.response.config.url = response.config.url;
+              $scope.response = response.config.url;
+              console.log($scope.response)
+              // $scope.response.config.url = "http://localhost:3000/image/"+detailedInfo.image.filename;
+
+              // window.location.replace(response.config.url)
+
+            })
+
+            if(response.data.seller){
+              email = response.data.seller.email
+              itemTitle = response.data.title
+            }
+            else if(response.data.buyer){
+              email = response.data.buyer.email
+              itemTitle = response.data.title
+            }
             }, function(error){
                 console.log('Unable to retrieve buying items:', error);
             })
@@ -131,9 +172,18 @@ angular.module('items')
       // $scope.items.push($scope.newItem.location);
     }
 
-    $scope.uploadImg = function(img){
+    $scope.uploadImg = function(file){
+      console.log('hello uplaod image')
+      console.log($scope.picture)
+      itemFactory.uploadImage(file).then(function(res,err){
+        if(err){
+          console.log(err + " error in uploading image")
+        }
+        else{
+          console.log('upload image worked ' + JSON.stringify(res))
+        }
+      })
 
-    }
 
     $scope.saveBuying = function() {
       $scope.buyingItems.push($scope.newItem);

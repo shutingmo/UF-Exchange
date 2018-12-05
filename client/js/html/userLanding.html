@@ -234,7 +234,6 @@
 </div>
 
 <!-- closed account modal2 div -->
-
 <body ng-app="ufxApp">
   <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
     <div class="container" >
@@ -294,6 +293,7 @@
 
     <br />
 
+
     <div id="showListings">
       <a onclick="showSelling()" id="sell" style="background-color:#F78536" class ="btn btn-secondary small-btn" >Show Selling Listings</a>
       <a onclick="showBuying()" style="background-color:#F78536" class ="btn btn-secondary small-btn" >Show Buying Listings</a>
@@ -309,12 +309,16 @@
               <div class="w3-display-container">
                 <div class="card" style="width:150px">
                     <a href="/js/html/newListing.html">
-                      <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                        <img class="card-img-top" ng-if="items.image.filename" 
+                          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                        <img class="card-img-top" ng-hide="items.image.filename" 
+                          src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                       <div class="card-body">
                         <h4 class="card-title">{{items.title}}</h4>
                         <p class="card-text" >${{items.price}}</p>
                       </div>
                     </a>
+
                 </div>
               </div>
             </div>
@@ -331,12 +335,15 @@
                 <div class="w3-display-container">
                   <div class="card" style="width:150px">
                       <a href="/js/html/newListing.html">
-                        <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                          <h4 class="card-title">{{items.title}}</h4>
-                          <p class="card-text" >${{items.price}}</p>
-                        </div>
-                      </a>
+                        <img class="card-img-top" ng-if="items.image.filename" 
+                          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                        <img class="card-img-top" ng-hide="items.image.filename" 
+                          src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                      <div class="card-body">
+                        <h4 class="card-title">{{items.title}}</h4>
+                        <p class="card-text" >${{items.price}}</p>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -352,13 +359,16 @@
                 <div class="w3-container">
                   <div class="w3-display-container">
                       <div class="card" style="width:150px">
-                          <a href="/js/html/newListing.html">
-                            <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
-                            <div class="card-body">
-                              <h4 class="card-title">{{items.title}}</h4>
-                              <p class="card-text" >${{items.price}}</p>
-                            </div>
-                          </a>
+                        <a href="/js/html/newListing.html">
+                            <img class="card-img-top" ng-if="items.image.filename" 
+                              data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                            <img class="card-img-top" ng-hide="items.image.filename" 
+                              src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                          <div class="card-body">
+                            <h4 class="card-title">{{items.title}}</h4>
+                            <p class="card-text" >${{items.price}}</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
                 </div>
@@ -373,12 +383,15 @@
                   <div class="w3-display-container">
                       <div class="card" style="width:150px">
                           <a href="/js/html/newListing.html">
-                            <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                            <img class="card-img-top" ng-if="items.image.filename" 
+                              data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                            <img class="card-img-top" ng-hide="items.image.filename" 
+                              src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                             <div class="card-body">
                               <h4 class="card-title">{{items.title}}</h4>
                               <p class="card-text" >${{items.price}}</p>
                             </div>
-                          </a>
+                        </a>
                       </div>
                   </div>
                 </div>
@@ -395,7 +408,10 @@
                       <div class="w3-display-container">
                         <div class="card" style="width:150px">
                             <a href="/js/html/newListing.html">
-                              <img class="card-img-top" src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                              <img class="card-img-top" ng-if="items.image.filename" 
+                                data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
+                              <img class="card-img-top" ng-hide="items.image.filename" 
+                                src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                               <div class="card-body">
                                 <h4 class="card-title">{{items.title}}</h4>
                                 <p class="card-text" >${{items.price}}</p>
