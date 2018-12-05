@@ -12,8 +12,54 @@ angular.module('items')
       console.log('response data in item controller is ' + JSON.stringify(response.data));
       $scope.items = response.data;
       $scope.listings = response.data;
-      console.log('scope listings is ' + JSON.stringify($scope.listings))
+      console.log('scope items is ' + JSON.stringify($scope.items))
       $scope.sellingItems = response.data;
+      console.log(response.data.length)
+
+      // var scopeItems = $scope.items
+
+      $scope.items.source = "http://localhost:3000/image/Screen Shot 2018-12-02 at 3.26.30 PM.png"
+      for(var i = 0; i < response.data.length; i++){
+        // var imageurl;
+        console.log('looping')
+        console.log(response.data[i])
+        // $scope.items="";
+        if(response.data[i].image.filename){
+          console.log('has filename')
+          itemFactory.getCurrentImageFilename(response.data[i].image.filename).then(function(response){
+            // console.log('resposne in fe item controller ' + JSON.stringify(response))
+            console.log(response.config.url)
+
+            // $scope.response.config.url = response.config.url;
+            // console.log(response.config.url)
+            // $scope.response[i] = response.config.url;
+            // console.log($scope.items[i])
+            // console.log(scopeItems)
+            // imageurl = response.config.url
+            // console.log(imageurl)
+            // $scope.response.config.url = "http://localhost:3000/image/"+detailedInfo.image.filename;
+
+            // window.location.replace(response.config.url)
+
+          })
+        }
+        else{
+          // $scope.response[i] = "/js/images/add-item-icon.png";
+          // $scope.items.source = "/js/images/add-item-icon.png";
+          // console.log($scope.items.source)
+
+        }
+        // console.log($scope.items)
+        // console.log(imageurl)
+
+        // if($scope.items[i].image.filename){
+        //   var imageurl = "http://localhost:3000/image/"+$scope.items[i].image.filename
+        //   console.log(imageurl)
+        //   $scope.items[i].source = imageurl
+        //   console.log($scope.items[i].source)
+        // }
+        
+      }
 
       // console.log("Check1");
 
