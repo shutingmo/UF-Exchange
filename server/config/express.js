@@ -158,6 +158,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
       } else {
         // res.json(selling);
         console.log('did save selling item with image')
+        return res.status(200).send();
       }
     });
   }
