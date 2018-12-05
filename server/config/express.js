@@ -11,7 +11,6 @@ var path = require('path'),
     // upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'}) 
 
 
-
     buyingRouter = require('../routes/buyingServerRoutes.js'),
     sellingRouter = require('../routes/sellingServerRoutes.js'),
     userRouter = require('../routes/userServerRoutes.js'),
@@ -50,6 +49,8 @@ module.exports.init = function() {
   // app.use(flash());
 
   app.use(morgan('dev'));
+  /*app.use(cors());
+  app.options('*', cors())*/
 
   //body parsing middleware
   //body parsing middleware
@@ -113,7 +114,7 @@ module.exports.init = function() {
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
 
-  
+
 
   // app.get('/', function (req, res) {
   //   req.flash('info', 'Welcome');
@@ -136,6 +137,9 @@ module.exports.init = function() {
 
 
   app.all('/*', function(req, res){
+    /*res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");*/
     res.redirect('/');
   });
 

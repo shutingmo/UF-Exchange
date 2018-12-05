@@ -1,4 +1,3 @@
-
 angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
