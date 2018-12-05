@@ -1,52 +1,321 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-      <title>UFX</title>
-      <meta charset="utf-8" />
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>UFX &mdash; </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" />
+	<meta name="keywords" />
+	<meta name="author"/>
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="js/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="js/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="js/css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="js/css/superfish.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="js/css/magnific-popup.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="js/css/bootstrap-datepicker.min.css">
+	<!-- CS Select -->
+	<link rel="stylesheet" href="js/css/cs-select.css">
+	<link rel="stylesheet" href="js/css/cs-skin-border.css">
+	
+	<link rel="stylesheet" href="js/css/style.css">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Modernizr JS -->
+	<!-- <script src="js/modernizr-2.6.2.min.js"></script> -->
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body ng-app="ufxApp">
+		<div id="fh5co-wrapper">
+		<div id="fh5co-page">
+
+		<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+					<h1 id="fh5co-logo"><a href="index.html">UFX</a></h1>
+					<!-- START #fh5co-menu-wrap -->
+					<nav id="fh5co-menu-wrap" role="navigation">
+						<ul class="sf-menu" id="fh5co-primary-menu">
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="#fh5co-features">Features</a></li>
+							<li><a href="#fh5co-testimonial">Testimonies</a></li>
+							<li><a href="#footer">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<!-- end:header-top -->
+	
+<div class="fh5co-hero">
+	<div class="fh5co-overlay"></div>
+		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+			<div class="desc">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-5 col-md-5">
+							<div class="tabulation animate-box">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active">
+										<a href="#login" aria-controls="login" role="tab" data-toggle="tab">Log In</a>
+									</li>
+									<li role="presentation">
+										<a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Sign Up</a>
+									</li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="login">
+										<div class="row">
+											<div ng-controller="loginController">
+												<flash-message duration="3000" show-close="true" on-dismiss="myCallback(flash)"></flash-message>
+											
+												<div class="input-field">
+												<label for="username">Username:</label>
+												<input type="text" class="form-control" placeholder="Enter Username" ng-model="returnUser.username" required /><br />
+												</div>
+
+												<div class="input-field">
+													<label for="password">Password:</label>
+													<input type="password" class="form-control" placeholder="Enter Password" ng-model="returnUser.password" required/>
+												</div>
+												
+												<div>
+													<a href="js/html/changePass.html" style="font-size:12px">Forgot Password?</a>
+												</div><br />
+
+												<div class="col-xs-12">
+													<input type="submit" class="btn btn-primary btn-block" ng-click="login()" value="Login">
+												</div>
+											</div>
+										</div>
+									</div>
+			
+									<div role="tabpanel" class="tab-pane" id="signup">
+										<div class="row">
+											<div ng-controller="signupController">
+												<div class="input-field">
+														<label for="name">Name:</label>
+														<input type="text" class="form-control"  placeholder="Enter Name" ng-model="newUser.name" required /><br />
+													</div>
+
+													<div class="input-field">
+														<label for="username">Username:</label>
+														<input type="text" class="form-control" placeholder="Enter Username" ng-model="newUser.username" required /><br />
+													</div>
+
+													<div class="input-field">
+														<label for="email">Email:</label>
+														<input type="text" class="form-control" placeholder="Enter Email" ng-model="newUser.email" required /><br />
+													</div>
+
+													<div class="input-field">
+														<label for="password">Password:</label>
+														<input type="password" class="form-control"  placeholder="Enter Password" ng-model="newUser.password" required/><br />
+													</div>
+
+													<div class="input-field">
+														<label for="password">Retype Password:</label>
+														<input type="password" class="form-control" placeholder="Retype Password" ng-model="newUser.retypePassword" required/><br />
+													</div>
+
+													<div class="col-xs-12">
+													<input type="submit" class="btn btn-primary btn-block" ng-click="signup()" value="Sign Up">
+													</div>
+											</div>	
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+					<div class="desc2 animate-box">
+						<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+							<h2>Welcome to UFX</h2>
+							<h3>A website to help you sell or buy items</h3>
+							<span class="price">Sign Up for Free!</span>
+							<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	<div id="fh5co-features">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 animate-box">
+
+					<div class="feature-left">
+						<!-- <span class="icon">
+							<i class="icon-hotairballoon"></i>
+						</span> -->
+						<div class="feature-copy">
+							<h3>Set Locations with Maps</h3>
+							<p>Using the Mapbox Api, users are able to pinpoint the exact location a transaction can be made.</p>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 animate-box">
+					<div class="feature-left">
+						<!-- <span class="icon">
+							<i class="icon-search"></i>
+						</span> -->
+						<div class="feature-copy">
+							<h3>Communication</h3>
+							<p>Users can communicate via email through this website to set up a transaction.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="feature-left">
+						<!-- <span class="icon">
+							<i class="icon-wallet"></i>
+						</span> -->
+						<div class="feature-copy">
+							<h3>Favoriting and Flagging</h3>
+							<p>Users can favorite listings that they are interested in. Users also have the capability to flag listings or users.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 animate-box">
+			</div>
+		</div>
+	</div>
+</div>
 
 
-      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <link rel="stylesheet" href="assets/css/main.css" />
+	<!-- fh5co-blog-section -->
+	<div id="fh5co-testimonial" style="background-image:url(images/img_bg_1.jpg);">
+	<div class="container">
+		<div class="row animate-box">
+			<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<h2>Happy Clients</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<!-- <span class="quote"><span><i class="icon-quotes-right"></i></span></span> -->
+						<p>&ldquo;UFX has made my experience at UF so much easier! I was able to buy cheap textbooks and not break the bank.&rdquo;</p>
+					</blockquote>
+					<p class="author">Cynthia Mo <span class="subtext">Student</span></p>
+				</div>
+				
+			</div>
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<!-- <span class="quote"><span><i class="icon-quotes-right"></i></span></span> -->
+						<p>&ldquo;I don't know what I'd do without UFX. The Map capability made it really easy to meet up with the seller!&rdquo;</p>
+					</blockquote>
+					<p class="author">Lahari Manchikanti </a> <span class="subtext">Student</span></p>
+				</div>
+				
+				
+			</div>
+			<div class="col-md-4">
+				<div class="box-testimony animate-box">
+					<blockquote>
+						<!-- <span class="quote"><span><i class="icon-quotes-right"></i></span></span> -->
+						<p>&ldquo;I needed new headphones ASAP and was able to buy them really fast using UFX. I definitely recommend using this website!&rdquo;</p>
+					</blockquote>
+					<p class="author">Regan Tam <span class="subtext">Student</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		<footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<p> <br>Made by Team GLACKR for CEN3031</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- END fh5co-page -->
 
-      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-      <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
+	</div>
+	<!-- END fh5co-wrapper -->
 
-    <body ng-app="ufxApp" class="is-preload">
+  <!-- jQuery -->
 
-        <!-- Header -->
-        <section id="header">
-          <div class="inner">
-            <h1><font size="7">UFX</font></h1>
+	<script src="js/morejs/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/morejs/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/morejs/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/morejs/jquery.waypoints.min.js"></script>
+	<script src="js/morejs/sticky.js"></script>
 
-            <ul class="actions special">
+	<!-- Stellar -->
+	<script src="js/morejs/jquery.stellar.min.js"></script>
+	<!-- Superfish -->
+	<script src="js/morejs/hoverIntent.js"></script>
+	<script src="js/morejs/superfish.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/morejs/jquery.magnific-popup.min.js"></script>
+	<script src="js/morejs/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/morejs/bootstrap-datepicker.min.js"></script>
+	<!-- CS Select -->
+	<script src="js/morejs/classie.js"></script>
+	<script src="js/morejs/selectFx.js"></script>
+	
+	<!-- Main JS -->
+	<!-- <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+	<script src="../app.js"></script>
+	<script src="../factories/userFactory.js"></script>
+  <script src="../controllers/loginClientController.js"></script>
+  <script src="js/morejs/main.js"></script> -->
+  
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/factories/userFactory.js"></script>
+  <script src="/js/controllers/loginClientController.js"></script>
+  <script src="/js/controllers/signupClientController.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  
 
-              <li> <a href="js/html/login.html" class="button scrolly">Log In / Sign Up</a></li>
-
-            </ul>
-          </div>
-        </section>
-
-
-
-        <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-        <script src="/js/app.js"></script>
-        <script src="/js/factories/userFactory.js"></script>
-        <script src="/js/controllers/loginClientController.js"></script>
-        <script src="/js/controllers/signupClientController.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.scrolly.min.js"></script>
-        <script src="js/browser.min.js"></script>
-        <script src="js/breakpoints.min.js"></script>
-        <script src="js/util.js"></script>
-        <script src="js/main2.js"></script>
-        <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-      </body>
-
-
+	</body>
 </html>
+

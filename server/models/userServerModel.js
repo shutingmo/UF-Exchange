@@ -81,9 +81,9 @@ var userSchema = new Schema({
     type: [itemSchema],
     'default' : []
   },
-  orders:{
+  orders: {
     type: [itemSchema],
-    'default':[]
+    'default' : []
   },
   rating: {
     type: Number
@@ -96,7 +96,15 @@ var userSchema = new Schema({
     type: String,
     required: true,
     'default': 'user'
-  }
+  },
+  verified: {
+    type: Boolean,
+    'default': false
+  },
+  expire_at: {
+    type: Date,
+    'default': Date.now,
+    expires: 86400}
 });
 
 /* Use your schema to instantiate a Mongoose model */

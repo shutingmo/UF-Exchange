@@ -13,7 +13,6 @@ var path = require('path'),
     Grid = require('gridfs-stream'),
     methodOverride = require('method-override')
 
-
     buyingRouter = require('../routes/buyingServerRoutes.js'),
     sellingRouter = require('../routes/sellingServerRoutes.js'),
     userRouter = require('../routes/userServerRoutes.js'),
@@ -56,6 +55,8 @@ module.exports.init = function() {
 // })
 
   app.use(morgan('dev'));
+  /*app.use(cors());
+  app.options('*', cors())*/
 
   //body parsing middleware
   //body parsing middleware
@@ -379,7 +380,7 @@ app.delete('/files/:id', (req, res) => {
   // app.use('/account/update', userRouter);
   //for cancel button just follow jason's logout example in the html
 
-  
+
 
   // app.get('/', function (req, res) {
   //   req.flash('info', 'Welcome');
@@ -402,6 +403,9 @@ app.delete('/files/:id', (req, res) => {
 
 
   app.all('/*', function(req, res){
+    /*res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");*/
     res.redirect('/');
   });
 

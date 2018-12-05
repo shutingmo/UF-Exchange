@@ -40,7 +40,7 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
     function getUserOrders(){
         console.log('fe get user orders')
         userFactory.getUserOrders().then(function(res){
-            console.log('get user orders fe is '+JSON.stringify(res.data.orders))
+            console.log('get user orders fe is '+ JSON.stringify(res.data.orders))
 
             $scope.myOrders = res.data.orders
         })
@@ -72,7 +72,8 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
         console.log('logging you out...');
         userFactory.logout().then(function(err) {
             if (err.status === 200)
-                window.location.replace('../html/homeLanding.html');
+                // window.location.replace('../html/homeLanding.html');
+                window.location.replace('../../index.html')
             else
                 console.log('couldn\'t log you out', err);
         })

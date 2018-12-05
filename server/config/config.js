@@ -9,5 +9,3 @@ module.exports = {
   },
   port: process.env.PORT || 3000
 };
-
-/* Now go to the JSONtoMongo.js file and include this file as a variable named 'config' with a require() */

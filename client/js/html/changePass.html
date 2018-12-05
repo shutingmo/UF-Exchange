@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' type='text/css' href='../css/email.css'>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="ufxApp">
+<div ng-controller="loginController">
+    <div class="container" >
+        <div class="nav-header">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+            <h1 id="fh5co-logo"><a href="#">UFX</a></h1>
+        </div>
+    </div> 
+</div>
+    <div class="container login-container" >
+        <div class="col-d-6 login-form-2" >
+            <h3 id="move3">Forgot Your Password</h3>
+            <div class="cable-config" >
+                <div id="move3"  class="cable-choose"><br />
+                    Email: <input type="text" placeholder="Enter email" ng-model="returnUser.email" required><br/><br/>
+       
+                    <button type="submit" class="btnSubmit" ng-click="changePass()">Send Me A Link</button>
+                    <a href="..index.html">
+                        <button class="btnSubmit">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="../app.js"></script>
+<script src="../factories/userFactory.js"></script>
+<script src="../controllers/loginClientController.js"></script>
+
+</body>
+</html>

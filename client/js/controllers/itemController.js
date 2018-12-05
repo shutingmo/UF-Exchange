@@ -1,7 +1,7 @@
 angular.module('items')
 .controller('ItemController', ['$scope', '$location', '$window','itemFactory',
   function($scope, $location, $window, itemFactory) {
-    
+
     $scope.listings = [];
 
     
@@ -19,6 +19,7 @@ angular.module('items')
       console.log($scope.items)
       
 
+
       // console.log("Check1");
 
     }, function(error) {
@@ -26,7 +27,7 @@ angular.module('items')
     });
 
     itemFactory.getBuying().then(function(response) {
-      // console.log('response data is ' + JSON.stringify(response.data));
+      console.log('response data in get buying is ' + JSON.stringify(response.data));
       $scope.buyingItems = response.data;
       // console.log("Check1");
     }, function(error) {
@@ -44,6 +45,7 @@ angular.module('items')
       })
 
     }
+
     $scope.getCurrentItem = function(items){
       var itemId = items._id;
       console.log(items);
@@ -181,7 +183,7 @@ angular.module('items')
           console.log('upload image worked ' + JSON.stringify(res))
         }
       })
-    }
+
 
     $scope.saveBuying = function() {
       $scope.buyingItems.push($scope.newItem);
@@ -276,7 +278,7 @@ angular.module('items')
       //         + "&subject=" + escape("This is my subject")
       //         + "&body=" + escape("hello")
       // ;
-  
+
       // window.location.href = link;
       window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
 
@@ -302,7 +304,7 @@ angular.module('items')
     $scope.flagListing = function(){
       var flagItem = sessionStorage.getItem('selected');
       console.log('flag item is ' + flagItem)
-      
+
       itemFactory.findItem(flagItem).then(function(response){
         console.log(JSON.stringify(response.data));
         // flaggedItem = response.data;
@@ -374,11 +376,11 @@ angular.module('items')
           itemFactory.buyItemNow(response.data).then(function(res){
             if(res.status !== 200)
             {
-              console.log("\nunable to fav item");
+              console.log("\nunable to buy item");
             }
             else if (res.status === 200)
             {
-              console.log('fav was success, front end');
+              console.log('buy was success, front end');
             }
 
           })

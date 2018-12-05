@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listing Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- styling links -->
+    <link rel='stylesheet' type='text/css' href='../css/newListing.css'>
+    <link rel='stylesheet' type='text/css' href='../css/postListing.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- map links -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body ng-app="ufxApp">
+    <div ng-controller="accountController">
+        <div class="container" >
+            <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a href="userLanding.html">UFX</a></h1>
+                <nav id="fh5co-menu-wrap" role="navigation">
+                    <ul class="sf-menu" id="fh5co-primary-menu">
+                        <li><a href="#" class="navbar-brand" style="color:#00AD7C" ng-click="logout()"><span class="glyphicon glyphicon-log-out" title="logout"></span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div> 
+    </div>
+        
+    <div ng-controller="ItemController">
+        <a ng-init="details()"></a>
+       
+        <main class="container">
+
+
+            <!-- Left Column / Headphones Image -->
+            <div class="left-column">
+                <img data-image="red" class="active" src="../images/iphone4buttons.jpg" alt="">
+            </div>
+            
+            <!-- Right Column -->
+            <div class="right-column">
+            
+                <!-- Product Description -->
+                <div class="product-description">
+                <span>{{detailedInfo.category}}</span>
+                <h1>{{detailedInfo.title}}</h1>
+                <p>{{detailedInfo.description}}</p>
+                <p>Selling Location: {{detailedInfo.location}}</p>
+                </div>
+            
+                <!-- Product Configuration -->
+                <div class="product-configuration">
+            
+                <!-- Cable Configuration -->
+                <div class="cable-config">
+                    <span>User Options</span>
+            
+                    <div class="cable-choose"><br />
+                        <button ng-click="sendMail()">Email User</button>
+                        <button ng-click="flagListing()">Flag Listing</button>
+                        <button ng-click="flagUser()">Flag User</button>
+                        <button ng-click="favorite()">Like Listing</button>
+                    </div>
+            
+                </div>
+                </div>
+            
+                <!-- Product Pricing -->
+                <div class="product-price">
+                <span>${{detailedInfo.price}}</span>
+                <button ng-click="buyNow()" class="cart-btn" id="buy">Buy Now</a>
+                <a href="userLanding.html"><button class="cart-btn">Return to Listings</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id='map' style='width: 90%; height: 300px;'></div>
+
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.js"></script>
+    <script src="../app.js"></script>
+    <script src="../postListing.js"></script>
+    <script src="../factories/userFactory.js"></script>
+    <script src="../controllers/accountClientController.js"></script>
+    <script src="../factories/itemFactory.js"></script>
+    <script src="../controllers/itemController.js"></script>
+
+</body>
+
+</html>
