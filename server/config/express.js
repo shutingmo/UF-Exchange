@@ -67,6 +67,8 @@ module.exports.init = function() {
 
   app.use(methodOverride('_method'));
   app.set('view engine', 'ejs');
+  app.use(express.static(__dirname + '/View'));
+
   // app.set('views', __dirname + '/../../views/index');
 
   // app.set('views', __dirname + '/views');
@@ -154,12 +156,14 @@ app.post('/upload', upload.single('file'), (req, res) => {
     sellingItem.save(function(err) {
       if(err) {
         console.log(err);
-        res.status(400).send(err);
-        // res.render('index', {files: false}, {link:"../../client/js/html/userlanding.html"})
+        // res.status(400).send(err);
+        res.render('index', {files: false})
       } else {
-        res.status(200).send();
+        // res.status(200).send();
         console.log('did save selling item with image')
+        // res.redirect('/')
         // res.render('index', {files: req.file}, {link:"../../client/js/html/userlanding.html"})
+        res.render('index', {files: req.file})
 
       }
     });
@@ -178,12 +182,14 @@ app.post('/upload', upload.single('file'), (req, res) => {
       if(err) {
         console.log(err);
         // res.status(400).send(err);
-        // res.render('index', {files: false}, {link:"../../client/js/html/userlanding.html"})
+        res.render('index', {files: false})
 
       } else {
         // res.json(selling);
         console.log('did save buying item with image')
-        // res.render('index', {files: req.file}, {link:"../../client/js/html/userlanding.html"})
+        // res.sendFile('views/userLanding.html')
+        // res.redirect('/')
+        res.render('index', {files: req.file})
 
       }
     });
