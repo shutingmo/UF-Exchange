@@ -92,15 +92,24 @@ angular.module('items')
             if(response.data === null){
                 console.log("IN IF STATEMENT");
                 console.log(id);
-                itemFactory.findBuyingItem(id).then(function(res){
-                  console.log(res.data);
-                  var currItem = res.data;
+                itemFactory.findBuyingItem(id).then(function(response){
+                  console.log(response.data);
+                  var currItem = response.data;
                   $scope.detailedInfo = currItem;
                   console.log($scope.detailedInfo);
 
-                  console.log('found buying item, image is ' + res.data.image.id)
+                  console.log('found buying item, image is ' + response.data.image.id)
                   
-                  itemFactory.getCurrentImage().then(function(response){
+                  itemFactory.getCurrentImageFilename(response.data.image.filename).then(function(response){
+                    // console.log('resposne in fe item controller ' + JSON.stringify(response))
+                    console.log(response.config.url)
+      
+                    // $scope.response.config.url = response.config.url;
+                    $scope.response = response.config.url;
+                    console.log($scope.response)
+                    // $scope.response.config.url = "http://localhost:3000/image/"+detailedInfo.image.filename;
+      
+                    // window.location.replace(response.config.url)
       
                   })
 

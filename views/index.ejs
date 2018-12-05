@@ -20,99 +20,100 @@
 </head>
 
 <body ng-app="ufxApp">
-        <header id="fh5co-header-section" class="sticky-banner" ng-controller="accountController">
-            <div class="container" >
-                <div class="nav-header">
-                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-                <h1 id="fh5co-logo"><a href="/client/js/html/userLanding.html">UFX</a></h1>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 m-auto">
-                        <!-- <h1 class="text-center display-4 my-4">Mongo File Uploads</h1> -->
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
 
-                        <div class="field">
-                            <label for="status">Type of Item</label>
-                            <select name="status">
-                                <% var statuses = ["I want to Buy", "I want to Sell"]; %>
-                                <% for(var i = 0; i <= statuses.length-1; i++) { %>
-                                    <option value='<%= statuses[i] %>'><%= statuses[i] %></option>
-                                <% } %>
-                            </select>
-                        </div>
+    <a href="/js/html/userLanding.html">
+        UFX
+    </a>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 m-auto">
+            <h1 class="text-center display-4 my-4">Post Your Item</h1>
 
-                        <div class="field">
-                            <label for="title">Title</label>
-                            <input name="title" type="text" placeholder="Title" />
-                        </div>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
 
-                        <div class="field">
-                            <label for="category">Category</label>
-                            <select name="category">
-                                <% var categories = ["Textbooks", "Electronics", "Vehicles", "Tickets", "Clothing", "Entertainment", "Housing", "Miscellaneous"]; %>
-                                <% for(var i = 0; i <= categories.length-1; i++) { %>
-                                    <option value='<%= categories[i] %>'><%= categories[i] %></option>
-                                <% } %>
-                            </select>
-                        </div>
-
-                        <div class="field">
-                            <label for="price">Price</label>
-                            <input name="price" type="number" placeholder="Price" />
-                        </div> 
-                        
-                        <div class="field">
-                            <label for="description">Description</label><br />
-                            <!-- <input name="description" type="text" placeholder="Description" /> -->
-                            <textarea rows="4" name="description" type="text" placeholder="Description"></textarea>
-                        </div> 
-
-                        <div class="field">
-                            <label for="condition">Condition</label>
-                            <select name="condition">
-                                <% var conditions = ["New", "Like New", "Good", "Fair", "Poor"]; %>
-                                <% for(var i = 0; i <= conditions.length-1; i++) { %>
-                                    <option value='<%= conditions[i] %>'><%= conditions[i] %></option>
-                                <% } %>
-                            </select>
-                        </div>
-
-                        <div class="field">
-                            <label for="location">Location</label>
-                            <select name="location">
-                                <% var locations = ["Century Tower", "Reitz Union", "Hub", "Library West", "Southwest Rec"]; %>
-                                <% for(var i = 0; i <= locations.length-1; i++) { %>
-                                    <option id='Hub' value='<%= locations[i] %>'><%= locations[i] %></option>
-                                <% } %>
-                            </select>
-                        </div>
-                        
-                        <div class="custom-file mb-3">
-                            <input type="file" name="file" id="file" class="custom-file-input">
-                            <label for="file" class="custom-file-label">Choose File</label>
-                        </div>
-                        <input type="submit" value="Submit" class="btn btn-primary btn-block">
-                        </form>
-        <hr>
-        <% if(files){ %>
-          <% files.forEach(function(file) { %>
-            <div class="card card-body mb-3">
-              <% if(file.isImage) { %>
-                <img src="image/<%= file.filename %>" alt="">
-                <% } else { %>
-                  <a href = "/files/<%= file.filename %>" target = "_blank"><%= file.filename %></a>
+            <div class="field">
+                <label for="status">Type of Item</label>
+                <select name="status">
+                    <% var statuses = ["I want to Buy", "I want to Sell"]; %>
+                    <% for(var i = 0; i <= statuses.length-1; i++) { %>
+                        <option value='<%= statuses[i] %>'><%= statuses[i] %></option>
                     <% } %>
-                      <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
-                        <button class="btn btn-danger btn-block mt-4">Delete</button>
-                      </form>
+                </select>
             </div>
-            <% }) %>
-              <% } else { %>
-                <p>No files to show</p>
-                <% } %>
-      </div>
+
+            <div class="field">
+                <label for="title">Title</label>
+                <input name="title" type="text" placeholder="Title" />
+            </div>
+
+            <div class="field">
+                <label for="category">Category</label>
+                <select name="category">
+                    <% var categories = ["Textbooks", "Electronics", "Vehicles", "Tickets", "Clothing", "Entertainment", "Housing", "Miscellaneous"]; %>
+                    <% for(var i = 0; i <= categories.length-1; i++) { %>
+                        <option value='<%= categories[i] %>'><%= categories[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="price">Price</label>
+                <input name="price" type="number" placeholder="Price" />
+            </div> 
+            
+            <div class="field">
+                <label for="description">Description</label><br />
+                <!-- <input name="description" type="text" placeholder="Description" /> -->
+                <textarea rows="4" name="description" type="text" placeholder="Description"></textarea>
+            </div> 
+
+            <div class="field">
+                <label for="condition">Condition</label>
+                <select name="condition">
+                    <% var conditions = ["New", "Like New", "Good", "Fair", "Poor"]; %>
+                    <% for(var i = 0; i <= conditions.length-1; i++) { %>
+                        <option value='<%= conditions[i] %>'><%= conditions[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="location">Location</label>
+                <select name="location">
+                    <% var locations = ["Century Tower", "Reitz Union", "Hub", "Library West", "Southwest Rec"]; %>
+                    <% for(var i = 0; i <= locations.length-1; i++) { %>
+                        <option id='Hub' value='<%= locations[i] %>'><%= locations[i] %></option>
+
+                    <% } %>
+                </select>
+            </div>
+            
+            <div class="custom-file mb-3">
+                <input type="file" name="file" id="file" class="custom-file-input">
+                <label for="file" class="custom-file-label">Choose File</label>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+            <% if(files){ %>
+            <% files.forEach(function(file) { %>
+                <div class="card card-body mb-3">
+                <% if(file.isImage) { %>
+                    <img src="image/<%= file.filename %>" alt="">
+                    <% } else { %>
+                    <a href = "/files/<%= file.filename %>" target = "_blank"><%= file.filename %></a>
+                        <% } %>
+                        <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                            <button class="btn btn-danger btn-block mt-4">Delete</button>
+                        </form>
+                </div>
+                <% }) %>
+                <% } else { %>
+                    <p>No File Uploaded Yet</p>
+                    <% } %>
+        </div>
+        </div>
     </div>
-  </div>
   <div id='map' style='width: 400px; height: 300px;'></div>
   <!-- <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoibG1hbmNoaWsiLCJhIjoiY2pvdGl1cW9zMTFyeDNxbmg5MGFnam53aiJ9.9VK_ROK_ae2DQcXntmWjWQ'; 
