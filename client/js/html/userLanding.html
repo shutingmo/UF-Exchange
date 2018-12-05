@@ -129,13 +129,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Entertainment')">Entertainment</button>  
     <button class ="btn btn-secondary small-btn" ng-click="filterItems('Miscellaneous')">Miscellaneous</button> 
 
+    <img ng-if="items.image.filename" 
+          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" />
+    <img ng-hide="items.image.filename" 
+          src="../images/add-item-icon.png" />
     
     <div class="row">
       <div ng-repeat="items in items | orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img ng-src="{{items.source}}" style="width:65%">
+                <!-- <img ng-src="http://localhost:3000/image/{{items.image.filename}}" style="width:65%"> -->
+                <img ng-if="items.image.filename" 
+                      data-ng-src="http://localhost:3000/image/{{items.image.filename}}" style="width:65%">
+                <img ng-hide="items.image.filename" 
+                      src="../images/add-item-icon.png" style="width:65%">
+
                 <p>{{items.title}}<br><b>${{items.price}}</b></p>
                 <div class="w3-display-middle w3-display-hover">
                   <a href="/js/html/listing.html" class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></a>
