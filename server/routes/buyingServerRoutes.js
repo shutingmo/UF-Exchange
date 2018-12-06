@@ -17,6 +17,8 @@ var buying = require('../controllers/buyingServerController.js'),
       .put(buying.update)
       .delete(buying.delete);
 
+    router.route('/flagItem')
+      .post(buying.flagItem);
       //Find whether the listing is in the inventory
     //  router.param('itemId', buying.listingByID);
 
