@@ -403,7 +403,7 @@
                         <div class="card" style="width:150px">
                             <a href="/js/html/newListing.html">
                               <img class="card-img-top" ng-if="items.image.filename" 
-                                data-ng-src="http://localhost:3000/image/{{items.data.image.filename}}" alt="Card image" style="width:100%">
+                                data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%">
                               <img class="card-img-top" ng-hide="items.image.filename" 
                                 src="../images/add-item-icon.png" alt="Card image" style="width:100%">
                               <div class="card-body">
@@ -421,7 +421,7 @@
 
             <div id="placeholder6">
                 <div class="row">
-                  <div id="spacing" ng-repeat="x in favs| orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(items)">
+                  <div id="spacing" ng-repeat="x in favs| orderBy: title | filter: itemSearch | filter: itemSearchBar" ng-click="getCurrentItem(x)">
                     <div class="w3-col l3 s6">
                       <div class="w3-container">
                         <div class="w3-display-container">

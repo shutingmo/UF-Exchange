@@ -132,11 +132,33 @@ angular.module('items')
               var favItem = sessionStorage.getItem('selected');
               console.log('fe favorites '+ favItem)
               
-              itemFactory.findItem(favItem).then(function(response){
+              itemFactory.findSellingItem(favItem).then(function(response){
                 console.log(JSON.stringify(response));
                 console.log((response));
-
-                if(response){
+                
+                if(response.data === null)
+                {
+                  itemFactory.findBuyingItem(favItem).then(function(response){
+                    if(response){
+                      itemFactory.favorite(response.data).then(function(res){
+                        if(res.status !== 200)
+                        {
+                          console.log("\nunable to fav item");
+                        }
+                        else if (res.status === 200)
+                        {
+                          console.log('fav was success, front end');
+                        }
+            
+                      })
+                    }
+                
+                  }, function(error){
+                      console.log('error favoriting buying item ' + buyingItems)
+                  })
+                }
+                else if(response)
+                {
                   itemFactory.favorite(response.data).then(function(res){
                     if(res.status !== 200)
                     {
@@ -158,19 +180,64 @@ angular.module('items')
             $scope.buyNow = function(){
               var buyItem = sessionStorage.getItem('selected');
               console.log('fe buy now item '+ buyItem)
-              itemFactory.findItem(buyItem).then(function(response){
-                console.log(JSON.stringify(response.data));
-                console.log((response.data));
 
-                if(response){
+              // itemFactory.findItem(buyItem).then(function(response){
+              //   console.log(JSON.stringify(response.data));
+              //   console.log((response.data));
+
+              //   if(response){
+              //     itemFactory.buyItemNow(response.data).then(function(res){
+              //       if(res.status !== 200)
+              //       {
+              //         console.log("\nunable to buy item");
+              //       }
+              //       else if (res.status === 200)
+              //       {
+              //         console.log('buy was success, front end');
+              //       }
+        
+              //     })
+              //   }
+        
+              // }, function(error){
+              //   console.log('Unable to retrieve selling items:', error);
+              // })
+
+              itemFactory.findSellingItem(buyItem).then(function(response){
+                console.log(JSON.stringify(response));
+                console.log((response));
+                
+                if(response.data === null)
+                {
+                  itemFactory.findBuyingItem(buyItem).then(function(response){
+                    if(response){
+                      itemFactory.buyItemNow(response.data).then(function(res){
+                        if(res.status !== 200)
+                        {
+                          console.log("\nunable to fav item");
+                        }
+                        else if (res.status === 200)
+                        {
+                          console.log('fav was success, front end');
+                        }
+            
+                      })
+                    }
+                
+                  }, function(error){
+                      console.log('error favoriting buying item ' + buyingItems)
+                  })
+                }
+                else if(response)
+                {
                   itemFactory.buyItemNow(response.data).then(function(res){
                     if(res.status !== 200)
                     {
-                      console.log("\nunable to buy item");
+                      console.log("\nunable to fav item");
                     }
                     else if (res.status === 200)
                     {
-                      console.log('buy was success, front end');
+                      console.log('fav was success, front end');
                     }
         
                   })
@@ -179,6 +246,8 @@ angular.module('items')
               }, function(error){
                 console.log('Unable to retrieve selling items:', error);
               })
+
+
             }
       }  
 
