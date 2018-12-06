@@ -56,6 +56,33 @@ angular.module('items')
     var itemTitle;
     var currItem;
 
+    // $scope.details = function(){
+    //   var selectedItem = sessionStorage.getItem('selected');
+    //   $scope.initial = function(id){
+    //     console.log("initial check");
+    //     itemFactory.findItem(id).then(function(response){
+    //       console.log(JSON.stringify(response.data));
+    //       currItem = response.data;
+    //       $scope.detailedInfo = currItem;
+    //       console.log($scope.detailedInfo);
+
+    //       if(response.data.seller){
+    //         email = response.data.seller.email
+    //         itemTitle = response.data.title
+    //       }
+    //       else if(response.data.buyer){
+    //         email = response.data.buyer.email
+    //         itemTitle = response.data.title
+    //       }
+
+    //       console.log('email check is ' + email)
+
+    //     }, function(error){
+    //       console.log('Unable to retrieve selling items:', error);
+    //     })
+    //   }
+    //   $scope.initial(selectedItem);
+    // }
 
     $scope.details = function(){
       var selectedItem = sessionStorage.getItem('selected');
@@ -126,16 +153,38 @@ angular.module('items')
             }, function(error){
                 console.log('Unable to retrieve buying items:', error);
             })
-       
+        
+            $scope.buyNow = function(){
+              var buyItem = sessionStorage.getItem('selected');
+              console.log('fe buy now item '+ buyItem)
+              itemFactory.findItem(buyItem).then(function(response){
+                console.log(JSON.stringify(response.data));
+        
+                if(response){
+                  itemFactory.buyItemNow(response.data).then(function(res){
+                    if(res.status !== 200)
+                    {
+                      console.log("\nunable to buy item");
+                    }
+                    else if (res.status === 200)
+                    {
+                      console.log('buy was success, front end');
+                    }
+        
+                  })
+                }
+        
+              }, function(error){
+                console.log('Unable to retrieve selling items:', error);
+              })
+            }
+        
             $scope.favorite = function(){
-              console.log('in favorites')
               var favItem = sessionStorage.getItem('selected');
               console.log('fe favorites '+ favItem)
-              
               itemFactory.findItem(favItem).then(function(response){
-                console.log(JSON.stringify(response));
-                console.log((response));
-
+                console.log(JSON.stringify(response.data));
+        
                 if(response){
                   itemFactory.favorite(response.data).then(function(res){
                     if(res.status !== 200)
@@ -155,22 +204,6 @@ angular.module('items')
               })
             }
 
-            $scope.buyNow = function(){
-              var buyItem = sessionStorage.getItem('selected');
-              console.log('fe buy now item '+ buyItem)
-              itemFactory.findItem(buyItem).then(function(response){
-                console.log(JSON.stringify(response.data));
-                console.log((response.data));
-
-                if(response){
-                  itemFactory.buyItemNow(response.data).then(function(res){
-                    if(res.status !== 200)
-                    {
-                      console.log("\nunable to buy item");
-                    }
-                    else if (res.status === 200)
-                    {
-                      console.log('buy was success, front end');
             $scope.flagListing = function(){
               var flagItem = sessionStorage.getItem('selected');
               console.log('flag item is ' + flagItem)
@@ -203,7 +236,7 @@ angular.module('items')
                 console.log('Unable to retrieve selling items:', error);
               })
             }
-      }  
+
             $scope.filterItems = function(category){
               console.log('check 1')
               $scope.itemSearch = {};
@@ -219,6 +252,12 @@ angular.module('items')
               }
             }
       }
+    // $scope.setFlag = function(item, flagged) {
+    //   // console.log("in here");
+    //   // console.log(item.flagged);
+    //   // console.log(flagged);
+    //   item.flagged = flagged;
+    // }
 
     $scope.setCategory = function(category) {
       //setting the category from dropdown
@@ -432,51 +471,30 @@ angular.module('items')
       })
     }
 
-    $scope.buyNow = function(){
-      var buyItem = sessionStorage.getItem('selected');
-      console.log('fe buy now item '+ buyItem)
-      itemFactory.findItem(buyItem).then(function(response){
-        console.log(JSON.stringify(response.data));
+    // $scope.buyNow = function(){
+    //   var buyItem = sessionStorage.getItem('selected');
+    //   console.log('fe buy now item '+ buyItem)
+    //   itemFactory.findItem(buyItem).then(function(response){
+    //     console.log(JSON.stringify(response.data));
 
-        if(response){
-          itemFactory.buyItemNow(response.data).then(function(res){
-            if(res.status !== 200)
-            {
-              console.log("\nunable to buy item");
-            }
-            else if (res.status === 200)
-            {
-              console.log('buy was success, front end');
-            }
+    //     if(response){
+    //       itemFactory.buyItemNow(response.data).then(function(res){
+    //         if(res.status !== 200)
+    //         {
+    //           console.log("\nunable to buy item");
+    //         }
+    //         else if (res.status === 200)
+    //         {
+    //           console.log('buy was success, front end');
+    //         }
 
-          })
-        }
+    //       })
+    //     }
 
-      }, function(error){
-        console.log('Unable to retrieve selling items:', error);
-      })
-    }
-
-    $scope.favorite = function(){
-      console.log('in favorites')
-      var favItem = sessionStorage.getItem('selected');
-      console.log('fe favorites '+ favItem)
-      itemFactory.findItem(favItem).then(function(response){
-        console.log(JSON.stringify(response.data));
-
-        if(response){
-          itemFactory.favorite(response.data).then(function(res){
-            if(res.status !== 200)
-            {
-              console.log("\nunable to fav item");
-            }
-            else if (res.status === 200)
-            {
-              console.log('fav was success, front end');
-            }
-
-          })
-        }
+    //   }, function(error){
+    //     console.log('Unable to retrieve selling items:', error);
+    //   })
+    // }
 
     // $scope.favorite = function(){
     //   var favItem = sessionStorage.getItem('selected');
