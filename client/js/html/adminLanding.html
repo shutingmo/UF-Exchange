@@ -18,19 +18,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px;" id="mySidebar">
   <div class="w3-container w3-display-container w3-padding-16">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-    <h3 class="w3-wide"><b>UFX</b></h3>
+    <h3 class="w3-wide"><b>Glackr</b></h3>
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="adminAccount.html"class="w3-bar-item w3-button">My Account</a>
     <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      Admin Menu <i class="fa fa-caret-down"></i>
+      Manage Listings <i class="fa fa-caret-down"></i>
     </a>
     <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-        <a href="adminAccount.html"class="w3-bar-item w3-button">My Account</a>
-        <a onclick="showSellings()" class="w3-bar-item w3-button">Show Listings</a>
-        <a href="../../index.html" class="w3-bar-item w3-button">Logout</a>
+
+      <a onclick="showSellings()" class="w3-bar-item w3-button">Buy Listings</a>
+      <a onclick="showBuyings()" class="w3-bar-item w3-button">Sell Listings</a>
     </div>
-    <!-- <a href="../../index.html">Logout</a> -->
     <!-- <a onclick="showUsers()" class="w3-bar-item w3-button">Manage Users</a> -->
+    <a href="../../index.html" class="w3-bar-item w3-button">Logout</a>
+
 
     <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
     <!-- <a href="postListing.html" class="w3-bar-item w3-button">Create New Listing</a> -->
@@ -107,36 +109,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <div id="placeholder1" align=center>
     <h2>Welcome to Your Account</h2>
-    <h3>flagged listings</h3>
   </div>
 
-  <div ng-controller="adminController" id="placeholder1">
-      <div class="row">
-        <div id="spacing" ng-repeat="items in sellingItems |filter: {flagged: true}" ng-click="getCurrentItem(items)">
-          <div class="w3-col l3 s6">
-            <div class="w3-container">
-              <div class="w3-display-container">
-                <div class="card" style="width:150px">
-                    <a href="/js/html/newListing.html">
-                        <img class="card-img-top" ng-if="items.image.filename" 
-                          data-ng-src="http://localhost:3000/image/{{items.image.filename}}" alt="Card image" style="width:100%; ">
-                        <img class="card-img-top" ng-hide="items.image.filename" 
-                          src="../images/add-item-icon.png" alt="Card image" style="width:100%">
-                      <div class="card-body">
-                        <h4 class="card-title">{{items.title}}</h4>
-                        <p class="card-text" >${{items.price}}</p>
-                      </div>
-                    </a>
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <!-- <div ng-controller="adminController" id="placeholder2" class="demo-placeholder">
+  <div ng-controller="adminController" id="placeholder2" class="demo-placeholder">
     <div class="row">
       <div ng-repeat="item in sellingItems | filter: {flagged: true}">
           <div class="w3-col l3 s6">
@@ -157,8 +133,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </div>
 
       </div>
-    </div> -->
-<!-- 
+    </div>
+
     <div ng-controller="adminController" id="placeholder4" class="demo-placeholder">
       <div class="row">
         <div ng-repeat="item in buyingItems | filter: {flagged: true}">
@@ -179,7 +155,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           </div>
 
         </div>
-      </div> -->
+      </div>
 
 
     <div ng-controller="adminController" id="placeholder3" class="demo-placeholder">

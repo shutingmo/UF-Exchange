@@ -1,4 +1,3 @@
-
 angular.module('ufxApp').factory('userFactory', function($http) {
     var userFactoryMethods = {
         signupUser: function(user){
