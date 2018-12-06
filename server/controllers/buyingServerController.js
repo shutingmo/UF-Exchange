@@ -98,12 +98,28 @@ exports.create = function(req, res) {
       res.json(buying);
   }
 
+  exports.flagItem = function(req, res){
+    console.log('in flag item update be')
+    console.log(JSON.stringify(req.body))
+
+    Buying.updateOne({_id: req.body._id}, { $set: { flagged: 'true' }}, function(err){
+      if(err)
+      {
+          console.log('unable to flag')
+          return res.status(400).send(err)
+      }
+      else{
+          console.log('flagged item woohoo')
+          return res.status(200).send('successful flag')
+      }
+    })
+}
+
   exports.delete = function(req, res) {
     var buying = req.buying;
+    console.log(req.buying)
 
-    /** TODO **/
-    /* Remove the article */
-
+    
     buying.remove(function(err)
     {
       if (err)
@@ -113,7 +129,7 @@ exports.create = function(req, res) {
       }
       else
       {
-        res.json(buying);
+        res.json(selling);
       }
     })
 

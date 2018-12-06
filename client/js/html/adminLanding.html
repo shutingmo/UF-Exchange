@@ -142,7 +142,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-              <img src="../images/add-item-icon.png" style="width:65%">
+                <img class="card-img-top" ng-if="item.image.filename" 
+                  data-ng-src="http://localhost:3000/image/{{item.image.filename}}" alt="Card image" style="width:100%; ">
+                <img class="card-img-top" ng-hide="item.image.filename" 
+                  src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+          
               <p>{{item.title}}<br><b>${{item.price}}</b></p>
                <div class="w3-display-middle w3-display-hover">
                   <button ng-click="deleteSellingItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
@@ -161,8 +165,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             <div class="w3-col l3 s6">
               <div class="w3-container">
                 <div class="w3-display-container">
-                <img src="../images/add-item-icon.png" style="width:65%">
-                <p>{{item.title}}<br><b>${{item.price}}</b></p>
+                  <img class="card-img-top" ng-if="item.image.filename" 
+                    data-ng-src="http://localhost:3000/image/{{item.image.filename}}" alt="Card image" style="width:100%; ">
+                  <img class="card-img-top" ng-hide="item.image.filename" 
+                    src="../images/add-item-icon.png" alt="Card image" style="width:100%">
+                            <p>{{item.title}}<br><b>${{item.price}}</b></p>
                  <div class="w3-display-middle w3-display-hover">
                     <button ng-click="deleteBuyingItem($index)" class="w3-button w3-black">Delete <i class="fa fa-shopping-cart"></i></button>
                   </div>

@@ -52,9 +52,14 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
         return $http.delete('/buying/' + _id);
       },
 
-      flagItem: function(flagged){
+      flagSellingItem: function(flagged){
         console.log('in flac item fac')
         return $http.post('http://localhost:3000/selling/flagItem', flagged);
+      },
+
+      flagBuyingItem: function(flagged){
+        console.log('in flac item fac')
+        return $http.post('http://localhost:3000/buying/flagItem', flagged);
       },
 
       buyItemNow: function(buy){

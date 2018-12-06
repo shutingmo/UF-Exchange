@@ -17,7 +17,8 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
       itemFactory.getSelling().then(function(response) {
         // console.log('response data is ' + JSON.stringify(response.data));
         $scope.sellingItems = response.data;
-        // console.log("Check1");
+
+        console.log($scope.sellingItems);
 
       }, function(error) {
         console.log('Unable to retrieve selling items:', error);
@@ -26,6 +27,8 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
       itemFactory.getBuying().then(function(response) {
         // console.log('response data is ' + JSON.stringify(response.data));
         $scope.buyingItems = response.data;
+        console.log($scope.buyingItems);
+
         // console.log("Check1");
       }, function(error) {
         console.log('Unable to retrieve buying items:', error);
@@ -33,13 +36,11 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
 
 
       $scope.deleteUser = function(index) {
-       /**TODO
-          Delete the article using the Listings factory. If the removal is successful,
-      navigate back to 'listing.list'. Otherwise, display the error.
-         */
+       
         var userId = $scope.users[index]._id;
         $scope.users.splice(index,1);
 
+        console.log('in delete user ')
         userFactory.deleteUser(userId).then(function(response){
             console.log("Success");
 
@@ -49,43 +50,48 @@ angular.module('ufxApp').controller('adminController', ['$scope','userFactory', 
 
         };
 
-        $scope.deleteSellingItem = function(index) {
-         /**TODO
-            Delete the article using the Listings factory. If the removal is successful,
-        navigate back to 'listing.list'. Otherwise, display the error.
-           */
-          var listingId = $scope.sellingItems[index]._id;
-          $scope.sellingItems.splice(index,1);
+      $scope.deleteSellingItem = function(index) {
+        /**TODO
+          Delete the article using the Listings factory. If the removal is successful,
+      navigate back to 'listing.list'. Otherwise, display the error.
+          */
+         console.log('delete selling')
+        var listingId = $scope.sellingItems[index]._id;
+        $scope.sellingItems.splice(index,1);
 
-          itemFactory.deleteSelling(listingId).then(function(response)
-          {
+        itemFactory.deleteSelling(listingId).then(function(response)
+        {
 
-            console.log("Success");
+          console.log("Success");
+          window.location.reload();
 
-          }, function(error) {
-            console.log('Unable to retrieve selling items:', error);
-          });
 
-        };
+        }, function(error) {
+          console.log('Unable to retrieve selling items:', error);
+        });
 
-        $scope.deleteBuyingItem = function(index) {
-         /**TODO
-            Delete the article using the Listings factory. If the removal is successful,
-        navigate back to 'listing.list'. Otherwise, display the error.
-           */
-          var listingId = $scope.buyingItems[index]._id;
-          $scope.buyingItems.splice(index,1);
+      };
 
-          itemFactory.deleteBuying(listingId).then(function(err)
-          {
+      $scope.deleteBuyingItem = function(index) {
+        /**TODO
+          Delete the article using the Listings factory. If the removal is successful,
+      navigate back to 'listing.list'. Otherwise, display the error.
+          */
+        var listingId = $scope.buyingItems[index]._id;
+        $scope.buyingItems.splice(index,1);
 
-            console.log("Success");
+        itemFactory.deleteBuying(listingId).then(function(response)
+        {
 
-          }, function(error) {
-            console.log('Unable to retrieve selling items:', error);
-          });
+          console.log("Success");
 
-        };
+          window.location.reload();
+
+        }, function(error) {
+          console.log('Unable to retrieve selling items:', error);
+        });
+
+      };
 
 
       }

@@ -189,6 +189,7 @@ var express = require('express'),
 
   exports.delete = function(req, res) {
     var selling = req.selling;
+    // console.log(req.selling)
 
     /** TODO **/
     /* Remove the article */
