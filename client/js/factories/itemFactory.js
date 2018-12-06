@@ -33,7 +33,7 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
       },
 
       findItem: function(_id) {
-        return $http.get('http://localhost:3000/selling/' + _id);
+        return $http.get('/selling/' + _id);
       },
 
       findSellingItem: function(_id) {
@@ -69,8 +69,10 @@ angular.module("ufxApp").factory('itemFactory', function($http) {
 
       favorite: function(like){
         console.log('in fav item fac')
+        console.log(like)
+        // return $http.post('http://localhost:3000/selling/favorite', like);
+        return $http.post('/selling/favorite', like);
 
-        return $http.post('http://localhost:3000/selling/favorite', like);
       },
 
       buyItemNow: function(buy){

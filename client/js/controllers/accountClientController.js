@@ -1,5 +1,5 @@
-angular.module('user').controller('accountController', ['$scope','userFactory',
-    function($scope, userFactory){
+angular.module('user').controller('accountController', ['$scope','userFactory','itemFactory',
+    function($scope, userFactory, itemFactory){
 
     userFactory.getCurrentUser().then(function(user){
         console.log('client controller get cur user')
@@ -34,12 +34,14 @@ angular.module('user').controller('accountController', ['$scope','userFactory',
     function getUserFavs(){
         console.log('fe get user favs')
         userFactory.getUserFavorites().then(function(res){
+            console.log(res)
             console.log('get user favs fe is '+JSON.stringify(res.data.favorite))
             // $scope.favs.push(res.data.favorite);
             $scope.favs = res.data.favorite
 
             console.log($scope.favs)
 
+        
             console.log('get user orders fe is '+JSON.stringify(res.data.orders))
             $scope.userOrders = res.data.orders
             console.log($scope.userOrders)

@@ -93,7 +93,9 @@ angular.module('ufxApp').factory('userFactory', function($http) {
         getUserFavorites: function(){
             console.log('in fac get fav')
 
-            return $http.get('http://localhost:3000/account/getinfo/getFavs');
+            return $http.get('/account/getinfo/getFavs');
+
+            // return $http.get('http://localhost:3000/account/getinfo/getFavs');
         }
 
     };
