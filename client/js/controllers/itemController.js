@@ -19,12 +19,10 @@ angular.module('items')
       console.log($scope.items)
       
 
-
-      // console.log("Check1");
-
     }, function(error) {
       console.log('Unable to retrieve selling items:', error);
     });
+
 
     itemFactory.getBuying().then(function(response) {
       console.log('response data in get buying is ' + JSON.stringify(response.data));
@@ -33,6 +31,8 @@ angular.module('items')
     }, function(error) {
       console.log('Unable to retrieve buying items:', error);
     });
+
+
 
     $scope.postItem = function(){
       console.log('checking post item with ejs')
@@ -61,6 +61,8 @@ angular.module('items')
       var selectedItem = sessionStorage.getItem('selected');
       
         console.log("initial check");
+
+
         itemFactory.findSellingItem(selectedItem).then(function(response){
             if(response.data === null){
                 console.log("IN IF STATEMENT");
@@ -127,6 +129,7 @@ angular.module('items')
                 console.log('Unable to retrieve buying items:', error);
             })
        
+
             $scope.favorite = function(){
               console.log('in favorites')
               var favItem = sessionStorage.getItem('selected');
@@ -180,28 +183,6 @@ angular.module('items')
             $scope.buyNow = function(){
               var buyItem = sessionStorage.getItem('selected');
               console.log('fe buy now item '+ buyItem)
-
-              // itemFactory.findItem(buyItem).then(function(response){
-              //   console.log(JSON.stringify(response.data));
-              //   console.log((response.data));
-
-              //   if(response){
-              //     itemFactory.buyItemNow(response.data).then(function(res){
-              //       if(res.status !== 200)
-              //       {
-              //         console.log("\nunable to buy item");
-              //       }
-              //       else if (res.status === 200)
-              //       {
-              //         console.log('buy was success, front end');
-              //       }
-        
-              //     })
-              //   }
-        
-              // }, function(error){
-              //   console.log('Unable to retrieve selling items:', error);
-              // })
 
               itemFactory.findSellingItem(buyItem).then(function(response){
                 console.log(JSON.stringify(response));
@@ -370,13 +351,7 @@ angular.module('items')
     };
 
     $scope.sendMail = function() {
-      // var link = "mailto:" + email
-      //         + "?cc=myCCadress@example.com"
-      //         + "&subject=" + escape("This is my subject")
-      //         + "&body=" + escape("hello")
-      // ;
-
-      // window.location.href = link;
+     
       window.location.href = "mailto:"+email+"?subject=Interested in "+itemTitle+"&body=hello i am interested";
 
     }
